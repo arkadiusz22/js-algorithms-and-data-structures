@@ -1,14 +1,24 @@
-# Evaluating Functions
+# Definitions
 
-## Key Metrics
+## What is an Algorithm?
+
+An algorithm is a process or set of steps to accomplish a task.
+
+---
+
+## Evaluating Functions
+
+### Key Metrics
 
 1. **Faster** - Time complexity
 2. **Less memory intensive** - Space complexity
 3. **More readable**
 
-## Example Functions
+---
 
-### Version 1: Iterative Sum
+### Example Functions
+
+#### Version 1: Iterative Sum
 
 ```javascript
 function addUpTo_v1(n) {
@@ -20,13 +30,15 @@ function addUpTo_v1(n) {
 }
 ```
 
-### Version 2: Formula-Based Sum
+#### Version 2: Formula-Based Sum
 
 ```javascript
 function addUpTo_v2(n) {
   return (n * (n + 1)) / 2;
 }
 ```
+
+---
 
 ### Measuring Performance
 
@@ -42,11 +54,13 @@ measurePerformance(() => addUpTo_v1(10000));
 measurePerformance(() => addUpTo_v2(10000));
 ```
 
-### Why Time is Not Reliable for Performance Measurement
+#### Why Time is Not Reliable for Performance Measurement
 
 - Time cannot be precisely measured.
 - Performance depends on hardware and other external factors.
 - Code performance should ideally be estimated beforehand.
+
+---
 
 ## Counting Operations
 
@@ -65,14 +79,18 @@ measurePerformance(() => addUpTo_v2(10000));
 
 - Always has only 3 operations.
 
-### Big O Notation
+---
 
-- Describes the relationship between function runtime and input size.
+## Big O Notation
 
-#### Examples:
+Big O describes the relationship between function runtime and input size.
+
+### Examples:
 
 - **addUpTo_v1**: Proportional to `n` → `O(n)`
 - **addUpTo_v2**: Constant number of operations → `O(1)`
+
+---
 
 ## Additional Examples
 
@@ -114,6 +132,8 @@ measurePerformance(() => printAllPairs(10));
 
 **Complexity**: Nested `O(n)` operations → `O(n^2)`.
 
+---
+
 ## Simplifying Big O Expressions
 
 ### Rules:
@@ -134,6 +154,8 @@ measurePerformance(() => printAllPairs(10));
 3. Accessing array elements by index or object fields by key is constant.
 4. In a loop, complexity is the loop length times the complexity of operations inside the loop.
 
+---
+
 ## Complexity Classifications
 
 1. **O(1)** - Constant - Excellent
@@ -144,17 +166,21 @@ measurePerformance(() => printAllPairs(10));
 6. **O(2^n)** - Exponential - Very Bad
 7. **O(n!)** - Factorial - Extremely Bad
 
+---
+
 ## Space Complexity
 
-- **Auxiliary Space Complexity**: Space required by the algorithm itself (excluding input data).
+### Auxiliary Space Complexity
 
-### Examples:
+Space required by the algorithm itself (excluding input data).
+
+#### Examples:
 
 1. Booleans, numbers, `undefined`, `null` → Constant space (`O(1)`).
 2. Strings → `O(n)` space (where `n` is the string length).
 3. Reference types (arrays, objects) → `O(n)` (array length, number of object keys).
 
-### Space Complexity of addUpTo_v1
+#### Space Complexity of addUpTo_v1
 
 - 2 number declarations → `O(1)`.
 
@@ -172,13 +198,58 @@ function double(array) {
 
 **Space Complexity**: Creates an array of `n` elements → `O(n)`.
 
+---
+
 ## Logarithms
 
-- **Definition**: Inverse of exponentiation.
-  - `log2(value) = exponent` → `2^exponent = value`
+### Definition
+
+Logarithms are the inverse of exponentiation.
+
+- `log2(value) = exponent` → `2^exponent = value`
 - In computer science, the base is typically omitted (assumed to be 2).
 
-### Quick Approximation:
+#### Quick Approximation:
 
 - Divide the value by the base repeatedly until the result is below 1.
 - The number of divisions is the logarithm (approximately).
+
+---
+
+# Arrays and Objects: Time Complexities and Use Cases
+
+## Objects
+
+### Use Case
+
+Objects are ideal when you don't need order and require fast access, insertion, or removal.
+
+### Time Complexities
+
+- Access, insertion, or removal: **O(1)**
+- Searching for a specific value: **O(n)**
+
+### Common Methods
+
+- `.keys`, `.values`, and `.entries`: **O(n)**
+- `.hasOwnProperty`: **O(1)**
+
+---
+
+## Arrays
+
+### Use Case
+
+Arrays are ordered lists of data. Use arrays when you need order or fast access, insertion, and removal (depending on the specific case).
+
+### Time Complexities
+
+- Searching through an array: **O(n)**
+- Accessing data by index: **O(1)**
+- Inserting or removing an element at the end (`push`/`pop`): **O(1)**
+- Inserting or removing an element at the beginning (`shift`/`unshift`): **O(n)** (requires re-indexing all elements)
+
+### Common Methods and Their Time Complexities
+
+- `.concat`, `.slice`, `.splice`, `.forEach`, `.map`, `.filter`, `.reduce`: **O(n)**
+- `.sort`: **O(n \* log n)**
