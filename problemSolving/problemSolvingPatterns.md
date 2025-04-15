@@ -30,7 +30,7 @@ Popular problem patterns:
 - Useful for efficiently tracking a subset of data in arrays or strings without the need for nested loops.
 - Typically, the window starts at the beginning and moves towards the end of the data.
 - Example: Finding the longest substring with unique characters in a string.
-- Example: Refer to the `maxSubarraySum` function.
+- Example: Refer to the `maxSubarraySum` function or to the `minSubArrayLen` function.
 
 ### Divide and Conquer
 
