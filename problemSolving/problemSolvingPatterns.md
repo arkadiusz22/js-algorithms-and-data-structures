@@ -37,3 +37,4 @@ Popular problem patterns:
 - Involves dividing the dataset into smaller chunks, solving each chunk individually, and then combining the results.
 - This approach reduces the problem size at each step, often leading to logarithmic time complexity.
 - Commonly used in algorithms like binary search, merge sort, and quick sort.
+- Example: Refer to the `sortedFrequency` function.
