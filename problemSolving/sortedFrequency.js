@@ -10,31 +10,46 @@
 
 /**
  * @param {Array<Number>} collection
- * @param {Number} searchedValue
+ * @param {Number} targetValue
  */
-function sortedFrequency(collection, searchedValue) {
-  if (!collection.length) return -1;
+function sortedFrequency(collection, targetValue) {
+  // use binary search to find first element equal to targetValue
+  let left = 0;
+  let right = collection.length;
 
-  if (collection.length === 1) {
-    return collection[0] === searchedValue ? 1 : -1;
+  while (left < right) {
+    const middle = Math.floor((left + right) / 2);
+
+    if (collection[middle] < targetValue) {
+      left = middle + 1;
+    } else {
+      right = middle;
+    }
   }
+  const leftmostTargetElementIndex =
+    left < collection.length && collection[left] === targetValue ? left : -1;
 
-  const middleIndex = Math.floor(collection.length / 2);
+  if (leftmostTargetElementIndex === -1) return -1;
 
-  const leftCollection = collection.slice(0, middleIndex);
-  const rightCollection = collection.slice(middleIndex);
+  // use binary search to find last element equal to targetValue
+  left = 0;
+  right = collection.length;
+  while (left < right) {
+    const middle = Math.floor((left + right) / 2);
 
-  const leftSolution = sortedFrequency(leftCollection, searchedValue);
-  const rightSolution = sortedFrequency(rightCollection, searchedValue);
+    if (collection[middle] <= targetValue) {
+      left = middle + 1;
+    } else {
+      right = middle;
+    }
+  }
+  const rightmostTargetElementIndex =
+    right - 1 >= 0 && collection[right - 1] === targetValue ? right - 1 : -1;
 
-  if (leftSolution === -1 && rightSolution === -1) return -1;
+  if (rightmostTargetElementIndex === -1) return -1;
 
-  let count = 0;
-
-  if (leftSolution !== -1) count += leftSolution;
-  if (rightSolution !== -1) count += rightSolution;
-
-  return count;
+  // evaluate the distance between both elements
+  return rightmostTargetElementIndex - leftmostTargetElementIndex + 1;
 }
 
 console.log(
