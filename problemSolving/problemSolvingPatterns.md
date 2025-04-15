@@ -15,13 +15,13 @@ Popular problem patterns:
 
 - Use JavaScript objects to group values and their frequencies in the given input(s).
 - This approach often avoids nested loops and can achieve a time complexity of O(n).
-- Example: Refer to the `same` function in the `same.js` file or to the `validAnagram` function in the `validAnagram.js` file
+- Example: Refer to the `same` function, to the `validAnagram` function or to the `sameFrequency` function.
 
 ### Multiple Pointers
 
 - Create pointers or values that correspond to an index or position in the input data. These pointers move towards the beginning, end, or middle of the data based on a specific condition.
 - This approach is very efficient for solving problems with minimal space complexity, often reducing the need for nested loops.
-- Example: Refer to the `sumZero` function in the `sumZero.js` file or the `countUniqueValues` function in the `countUniqueValues.js` file.
+- Example: Refer to the `sumZero` function, the `countUniqueValues` function or to the `isSubsequence` function.
 
 ### Sliding Window
 
@@ -30,4 +30,10 @@ Popular problem patterns:
 - Useful for efficiently tracking a subset of data in arrays or strings without the need for nested loops.
 - Typically, the window starts at the beginning and moves towards the end of the data.
 - Example: Finding the longest substring with unique characters in a string.
-- Example: Refer to the `maxSubarraySum` function in the `maxSubarraySum.js` file.
+- Example: Refer to the `maxSubarraySum` function.
+
+### Divide and Conquer
+
+- Involves dividing the dataset into smaller chunks, solving each chunk individually, and then combining the results.
+- This approach reduces the problem size at each step, often leading to logarithmic time complexity.
+- Commonly used in algorithms like binary search, merge sort, and quick sort.
