@@ -51,3 +51,9 @@ Tips for writing pure recursion functions:
 - Use methods like `slice`, `concat`, and the spread operator (`...`) to create copies of arrays to avoid mutation.
 - For strings, use methods like `slice`, `substr`, or `substring` to create copies.
 - For objects, use `Object.assign` or the spread operator to create shallow copies.
+
+### Examples
+
+- `factorial.js`
+- `productOfArray.js`
+- `flatten.js`
