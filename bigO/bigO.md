@@ -14,70 +14,30 @@ An algorithm is a process or set of steps to accomplish a task.
 2. **Less memory intensive** - Space complexity
 3. **More readable**
 
----
-
-### Example Functions
-
-#### Version 1: Iterative Sum
-
-```javascript
-function addUpTo_v1(n) {
-  let total = 0;
-  for (let i = 1; i <= n; i++) {
-    total += i;
-  }
-  return total;
-}
-```
-
-#### Version 2: Formula-Based Sum
-
-```javascript
-function addUpTo_v2(n) {
-  return (n * (n + 1)) / 2;
-}
-```
-
----
-
-### Measuring Performance
-
-```javascript
-function measurePerformance(callback) {
-  const t1 = performance.now();
-  callback();
-  const t2 = performance.now();
-  console.log(`Time Elapsed: ${(t2 - t1) / 1000} seconds`);
-}
-
-measurePerformance(() => addUpTo_v1(10000));
-measurePerformance(() => addUpTo_v2(10000));
-```
-
 #### Why Time is Not Reliable for Performance Measurement
 
 - Time cannot be precisely measured.
 - Performance depends on hardware and other external factors.
-- Code performance should ideally be estimated beforehand.
+- Code performance should ideally be estimated beforehand using theoretical analysis.
 
 ---
 
 ## Counting Operations
 
-### addUpTo_v1
+### addUpTo_v1 function
 
 - Number of operations depends on `n`:
-  - `n` additions and `n` assignments for updating `total`.
-  - `n` additions and `n` assignments for incrementing the loop counter.
+  - `n` additions and assignments for updating `total`.
+  - `n` additions and assignments for incrementing the loop counter.
   - 1 assignment for initializing `total`.
   - 1 assignment for initializing the loop counter.
   - `n` comparisons between `n` and the loop counter.
 
 **Simplification Rule**: Simplify the total number of operations. For example, `50n + 2` simplifies to `O(n)`.
 
-### addUpTo_v2
+### addUpTo_v2 function
 
-- Always has only 3 operations.
+- Always has only 3 operations, regardless of `n`.
 
 ---
 
@@ -94,43 +54,13 @@ Big O describes the relationship between function runtime and input size.
 
 ## Additional Examples
 
-### Counting Up and Down
+### countUpAndDown function
 
-```javascript
-function countUpAndDown(n) {
-  console.log("going up");
-  for (let i = 0; i < n; i++) {
-    console.log(i);
-  }
-  console.log("at the top - going down...");
-  for (let j = n - 1; j >= 0; j--) {
-    console.log(j);
-  }
-  console.log("down");
-}
+- **Complexity**: Simplifies to `O(n)`.
 
-measurePerformance(() => countUpAndDown(3));
-measurePerformance(() => countUpAndDown(10));
-```
+### printAllPairs function
 
-**Complexity**: Simplifies to `O(n)`.
-
-### Printing All Pairs
-
-```javascript
-function printAllPairs(n) {
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
-      console.log(i, j);
-    }
-  }
-}
-
-measurePerformance(() => printAllPairs(3));
-measurePerformance(() => printAllPairs(10));
-```
-
-**Complexity**: Nested `O(n)` operations → `O(n^2)`.
+- **Complexity**: Nested `O(n)` operations → `O(n^2)`.
 
 ---
 
@@ -149,10 +79,10 @@ measurePerformance(() => printAllPairs(10));
 
 ### Key Points:
 
-1. Arithmetic operations are constant.
-2. Variable assignments are constant.
-3. Accessing array elements by index or object fields by key is constant.
-4. In a loop, complexity is the loop length times the complexity of operations inside the loop.
+- Arithmetic operations are constant.
+- Variable assignments are constant.
+- Accessing array elements by index or object fields by key is constant.
+- In a loop, complexity is the loop length times the complexity of operations inside the loop.
 
 ---
 
@@ -179,24 +109,6 @@ Space required by the algorithm itself (excluding input data).
 1. Booleans, numbers, `undefined`, `null` → Constant space (`O(1)`).
 2. Strings → `O(n)` space (where `n` is the string length).
 3. Reference types (arrays, objects) → `O(n)` (array length, number of object keys).
-
-#### Space Complexity of addUpTo_v1
-
-- 2 number declarations → `O(1)`.
-
-### Doubling Array Elements
-
-```javascript
-function double(array) {
-  let newArray = [];
-  for (let i = 0; i < array.length; i++) {
-    newArray.push(2 * array[i]);
-  }
-  return newArray;
-}
-```
-
-**Space Complexity**: Creates an array of `n` elements → `O(n)`.
 
 ---
 
@@ -252,4 +164,4 @@ Arrays are ordered lists of data. Use arrays when you need order or fast access,
 ### Common Methods and Their Time Complexities
 
 - `.concat`, `.slice`, `.splice`, `.forEach`, `.map`, `.filter`, `.reduce`: **O(n)**
-- `.sort`: **O(n \* log n)**
+- `.sort`: **O(n log n)**
