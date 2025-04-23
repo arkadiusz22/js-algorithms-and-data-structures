@@ -17,3 +17,10 @@
 - Follows the divide-and-conquer paradigm.
 - Time complexity: O(log n), making it highly efficient for large datasets.
 - Example implementation: `binarySearch.js`.
+
+### Naive String Search
+
+- A straightforward method to count how many times a smaller string appears within a larger string.
+- Compares the smaller string to every possible substring of the larger string, one character at a time.
+- Simple to implement but inefficient for large strings due to its time complexity of O(n \* m), where `n` is the length of the larger string and `m` is the length of the smaller string.
+- Example implementation: `substringSearch.js`.
