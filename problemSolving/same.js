@@ -45,6 +45,6 @@ function same(array1, array2) {
 }
 
 // Test cases
-console.log(same([1, 2, 3], [4, 1, 9]) === true ? "Passed" : "Failed");
-console.log(same([1, 2, 3], [4, 9]) === false ? "Passed" : "Failed");
-console.log(same([1, 2, 3], [4, 4, 1]) === false ? "Passed" : "Failed");
+console.log(same([1, 2, 3], [4, 1, 9]) === true ? "✓ Passed" : "X Failed");
+console.log(same([1, 2, 3], [4, 9]) === false ? "✓ Passed" : "X Failed");
+console.log(same([1, 2, 3], [4, 4, 1]) === false ? "✓ Passed" : "X Failed");

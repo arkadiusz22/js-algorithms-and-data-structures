@@ -53,7 +53,7 @@ const obj4 = {
   r: { r1: 3, r2: { r3: 5 } },
 };
 
-console.log(nestedEvenSum(obj1) === 6 ? "Passed" : "Failed");
-console.log(nestedEvenSum(obj2) === 10 ? "Passed" : "Failed");
-console.log(nestedEvenSum(obj3) === 28 ? "Passed" : "Failed");
-console.log(nestedEvenSum(obj4) === 20 ? "Passed" : "Failed");
+console.log(nestedEvenSum(obj1) === 6 ? "✓ Passed" : "X Failed");
+console.log(nestedEvenSum(obj2) === 10 ? "✓ Passed" : "X Failed");
+console.log(nestedEvenSum(obj3) === 28 ? "✓ Passed" : "X Failed");
+console.log(nestedEvenSum(obj4) === 20 ? "✓ Passed" : "X Failed");

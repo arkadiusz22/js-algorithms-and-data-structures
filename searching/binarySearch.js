@@ -30,11 +30,11 @@ function binarySearch(array, value) {
 }
 
 // Test cases
-console.log(binarySearch([1, 2, 3, 4, 5], 3) === 2 ? "Passed" : "Failed");
-console.log(binarySearch([], 3) === -1 ? "Passed" : "Failed");
-console.log(binarySearch([1, 2, 3, 4, 5], 5) === 4 ? "Passed" : "Failed");
-console.log(binarySearch([1, 2, 3, 4, 5], 6) === -1 ? "Passed" : "Failed");
-console.log(binarySearch([1, 2, 3, 4, 5], 2) === 1 ? "Passed" : "Failed");
+console.log(binarySearch([1, 2, 3, 4, 5], 3) === 2 ? "✓ Passed" : "X Failed");
+console.log(binarySearch([], 3) === -1 ? "✓ Passed" : "X Failed");
+console.log(binarySearch([1, 2, 3, 4, 5], 5) === 4 ? "✓ Passed" : "X Failed");
+console.log(binarySearch([1, 2, 3, 4, 5], 6) === -1 ? "✓ Passed" : "X Failed");
+console.log(binarySearch([1, 2, 3, 4, 5], 2) === 1 ? "✓ Passed" : "X Failed");
 console.log(
   binarySearch(
     [
@@ -43,8 +43,8 @@ console.log(
     ],
     10
   ) === 2
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );
 console.log(
   binarySearch(
@@ -54,8 +54,8 @@ console.log(
     ],
     95
   ) === 16
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );
 console.log(
   binarySearch(
@@ -65,6 +65,6 @@ console.log(
     ],
     100
   ) === -1
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );

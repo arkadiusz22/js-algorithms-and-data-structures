@@ -53,14 +53,14 @@ function sortedFrequency(collection, targetValue) {
 }
 
 console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2) === 4 ? "Passed" : "Failed"
+  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2) === 4 ? "✓ Passed" : "X Failed"
 );
 console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3) === 1 ? "Passed" : "Failed"
+  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3) === 1 ? "✓ Passed" : "X Failed"
 );
 console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1) === 2 ? "Passed" : "Failed"
+  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1) === 2 ? "✓ Passed" : "X Failed"
 );
 console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4) === -1 ? "Passed" : "Failed"
+  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4) === -1 ? "✓ Passed" : "X Failed"
 );

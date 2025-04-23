@@ -44,8 +44,8 @@ function sameFrequency(number1, number2) {
 }
 
 // Test cases
-console.log(sameFrequency(182, 281) === true ? "Passed" : "Failed");
-console.log(sameFrequency(34, 14) === false ? "Passed" : "Failed");
-console.log(sameFrequency(3589578, 5879385) === true ? "Passed" : "Failed");
-console.log(sameFrequency(22, 222) === false ? "Passed" : "Failed");
-console.log(sameFrequency(22, 225) === false ? "Passed" : "Failed");
+console.log(sameFrequency(182, 281) === true ? "✓ Passed" : "X Failed");
+console.log(sameFrequency(34, 14) === false ? "✓ Passed" : "X Failed");
+console.log(sameFrequency(3589578, 5879385) === true ? "✓ Passed" : "X Failed");
+console.log(sameFrequency(22, 222) === false ? "✓ Passed" : "X Failed");
+console.log(sameFrequency(22, 225) === false ? "✓ Passed" : "X Failed");

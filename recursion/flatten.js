@@ -34,23 +34,23 @@ function flatten(array) {
 // Test cases
 console.log(
   JSON.stringify(flatten([1, 2, 3, [4, 5]])) === JSON.stringify([1, 2, 3, 4, 5])
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );
 console.log(
   JSON.stringify(flatten([1, [2, [3, 4], [[5]]]])) ===
     JSON.stringify([1, 2, 3, 4, 5])
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );
 console.log(
   JSON.stringify(flatten([[1], [2], [3]])) === JSON.stringify([1, 2, 3])
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );
 console.log(
   JSON.stringify(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) ===
     JSON.stringify([1, 2, 3])
-    ? "Passed"
-    : "Failed"
+    ? "✓ Passed"
+    : "X Failed"
 );
