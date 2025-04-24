@@ -35,10 +35,7 @@ function sumZero(array) {
 
 // Test cases
 console.log(
-  sumZero([-3, -2, -1, 0, 1, 2, 3])[0] === -3 &&
-    sumZero([-3, -2, -1, 0, 1, 2, 3])[1] === 3
-    ? "✓ Passed"
-    : "X Failed"
+  sumZero([-3, -2, -1, 0, 1, 2, 3])[0] === -3 && sumZero([-3, -2, -1, 0, 1, 2, 3])[1] === 3 ? "✓ Passed" : "X Failed"
 );
 console.log(sumZero([-2, 0, 1, 3]) === undefined ? "✓ Passed" : "X Failed");
 console.log(sumZero([1, 2, 3]) === undefined ? "✓ Passed" : "X Failed");

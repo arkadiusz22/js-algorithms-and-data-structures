@@ -26,8 +26,7 @@ function sortedFrequency(collection, targetValue) {
       right = middle;
     }
   }
-  const leftmostTargetElementIndex =
-    left < collection.length && collection[left] === targetValue ? left : -1;
+  const leftmostTargetElementIndex = left < collection.length && collection[left] === targetValue ? left : -1;
 
   if (leftmostTargetElementIndex === -1) return -1;
 
@@ -43,8 +42,7 @@ function sortedFrequency(collection, targetValue) {
       right = middle;
     }
   }
-  const rightmostTargetElementIndex =
-    right - 1 >= 0 && collection[right - 1] === targetValue ? right - 1 : -1;
+  const rightmostTargetElementIndex = right - 1 >= 0 && collection[right - 1] === targetValue ? right - 1 : -1;
 
   if (rightmostTargetElementIndex === -1) return -1;
 
@@ -52,15 +50,7 @@ function sortedFrequency(collection, targetValue) {
   return rightmostTargetElementIndex - leftmostTargetElementIndex + 1;
 }
 
-console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2) === 4 ? "✓ Passed" : "X Failed"
-);
-console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3) === 1 ? "✓ Passed" : "X Failed"
-);
-console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1) === 2 ? "✓ Passed" : "X Failed"
-);
-console.log(
-  sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4) === -1 ? "✓ Passed" : "X Failed"
-);
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2) === 4 ? "✓ Passed" : "X Failed");
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3) === 1 ? "✓ Passed" : "X Failed");
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1) === 2 ? "✓ Passed" : "X Failed");
+console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4) === -1 ? "✓ Passed" : "X Failed");

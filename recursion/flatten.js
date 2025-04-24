@@ -32,25 +32,11 @@ function flatten(array) {
 }
 
 // Test cases
+console.log(JSON.stringify(flatten([1, 2, 3, [4, 5]])) === JSON.stringify([1, 2, 3, 4, 5]) ? "✓ Passed" : "X Failed");
 console.log(
-  JSON.stringify(flatten([1, 2, 3, [4, 5]])) === JSON.stringify([1, 2, 3, 4, 5])
-    ? "✓ Passed"
-    : "X Failed"
+  JSON.stringify(flatten([1, [2, [3, 4], [[5]]]])) === JSON.stringify([1, 2, 3, 4, 5]) ? "✓ Passed" : "X Failed"
 );
+console.log(JSON.stringify(flatten([[1], [2], [3]])) === JSON.stringify([1, 2, 3]) ? "✓ Passed" : "X Failed");
 console.log(
-  JSON.stringify(flatten([1, [2, [3, 4], [[5]]]])) ===
-    JSON.stringify([1, 2, 3, 4, 5])
-    ? "✓ Passed"
-    : "X Failed"
-);
-console.log(
-  JSON.stringify(flatten([[1], [2], [3]])) === JSON.stringify([1, 2, 3])
-    ? "✓ Passed"
-    : "X Failed"
-);
-console.log(
-  JSON.stringify(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) ===
-    JSON.stringify([1, 2, 3])
-    ? "✓ Passed"
-    : "X Failed"
+  JSON.stringify(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) === JSON.stringify([1, 2, 3]) ? "✓ Passed" : "X Failed"
 );

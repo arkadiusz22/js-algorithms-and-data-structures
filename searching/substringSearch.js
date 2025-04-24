@@ -34,24 +34,10 @@ function substringSearch(text, lookup) {
 }
 
 // Test cases
-console.log(
-  substringSearch("harold said haha in hamburg", "a") === 5
-    ? "✓ Passed"
-    : "X Failed"
-);
-console.log(
-  substringSearch("harold said haha in hamburg", "ha") === 4
-    ? "✓ Passed"
-    : "X Failed"
-);
-console.log(
-  substringSearch("wowomgzomg", "omg") === 2 ? "✓ Passed" : "X Failed"
-);
-console.log(
-  substringSearch("this is a test string", "is") === 2 ? "✓ Passed" : "X Failed"
-);
+console.log(substringSearch("harold said haha in hamburg", "a") === 5 ? "✓ Passed" : "X Failed");
+console.log(substringSearch("harold said haha in hamburg", "ha") === 4 ? "✓ Passed" : "X Failed");
+console.log(substringSearch("wowomgzomg", "omg") === 2 ? "✓ Passed" : "X Failed");
+console.log(substringSearch("this is a test string", "is") === 2 ? "✓ Passed" : "X Failed");
 console.log(substringSearch("aaaaaa", "aa") === 5 ? "✓ Passed" : "X Failed");
 console.log(substringSearch("abcdefg", "h") === 0 ? "✓ Passed" : "X Failed");
-console.log(
-  substringSearch("mississippi", "iss") === 2 ? "✓ Passed" : "X Failed"
-);
+console.log(substringSearch("mississippi", "iss") === 2 ? "✓ Passed" : "X Failed");

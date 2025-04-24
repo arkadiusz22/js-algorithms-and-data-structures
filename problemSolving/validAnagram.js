@@ -40,23 +40,9 @@ function validAnagram(string1, string2) {
 // Test cases
 console.log(validAnagram("", "") === true ? "✓ Passed" : "X Failed");
 console.log(validAnagram("aaz", "zza") === false ? "✓ Passed" : "X Failed");
-console.log(
-  validAnagram("anagram", "nagaram") === true ? "✓ Passed" : "X Failed"
-);
+console.log(validAnagram("anagram", "nagaram") === true ? "✓ Passed" : "X Failed");
 console.log(validAnagram("rat", "car") === false ? "✓ Passed" : "X Failed");
-console.log(
-  validAnagram("awesome", "awesom") === false ? "✓ Passed" : "X Failed"
-);
-console.log(
-  validAnagram("amanaplanacanalpanama", "acanalmanplanpamana") === false
-    ? "✓ Passed"
-    : "X Failed"
-);
-console.log(
-  validAnagram("qwerty", "qeywrt") === true ? "✓ Passed" : "X Failed"
-);
-console.log(
-  validAnagram("texttwisttime", "timetwisttext") === true
-    ? "✓ Passed"
-    : "X Failed"
-);
+console.log(validAnagram("awesome", "awesom") === false ? "✓ Passed" : "X Failed");
+console.log(validAnagram("amanaplanacanalpanama", "acanalmanplanpamana") === false ? "✓ Passed" : "X Failed");
+console.log(validAnagram("qwerty", "qeywrt") === true ? "✓ Passed" : "X Failed");
+console.log(validAnagram("texttwisttime", "timetwisttext") === true ? "✓ Passed" : "X Failed");

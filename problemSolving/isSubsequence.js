@@ -48,11 +48,7 @@ function isSubsequence(lookup, text) {
 }
 
 // TestCases:
-console.log(
-  isSubsequence("hello", "hello world") === true ? "✓ Passed" : "X Failed"
-);
+console.log(isSubsequence("hello", "hello world") === true ? "✓ Passed" : "X Failed");
 console.log(isSubsequence("sing", "sting") === true ? "✓ Passed" : "X Failed");
-console.log(
-  isSubsequence("abc", "abracadabra") === true ? "✓ Passed" : "X Failed"
-);
+console.log(isSubsequence("abc", "abracadabra") === true ? "✓ Passed" : "X Failed");
 console.log(isSubsequence("abc", "acb") === false ? "✓ Passed" : "X Failed");
