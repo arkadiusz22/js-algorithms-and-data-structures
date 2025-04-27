@@ -35,7 +35,22 @@
 
 ### Selection Sort
 
-tbd
+- Selection Sort is a straightforward comparison-based sorting algorithm. While it is not the most efficient for large datasets, it is simple to understand and implement.
+- The algorithm repeatedly selects the smallest (or largest, depending on the desired order) element from the unsorted portion of the array and moves it to the sorted portion. This process continues until the entire array is sorted.
+- Performs fewer swaps compared to Bubble Sort, as it only swaps once per iteration of the outer loop, whereas Bubble Sort may perform multiple swaps in a single pass.
+- Time Complexity:
+  - Worst, average, and best case: O(n^2), where n is the number of elements in the array.
+- Space Complexity: O(1) (in-place sorting algorithm).
+- Characteristics:
+  - Unstable: The relative order of equal elements may not be preserved.
+- Example implementation: `selectionSort.js`.
+
+- Algorithm:
+
+1. Begin with the first element of the array as the current position.
+2. Search for the smallest element in the unsorted portion of the array.
+3. Swap the smallest element with the element at the current position, if they are not the same.
+4. Advance the current position to the next element and repeat steps 2-3 until the entire array is sorted.
 
 ### Insertion Sort
 
