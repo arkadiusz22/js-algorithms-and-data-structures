@@ -17,6 +17,7 @@ function selectionSort(array) {
   return array;
 }
 
+console.log(JSON.stringify(selectionSort([1])) === JSON.stringify([1]) ? "✓ Passed" : "X Failed");
 console.log(
   JSON.stringify(selectionSort([4, 2, 1, 13, 6, 2])) === JSON.stringify([1, 2, 2, 4, 6, 13]) ? "✓ Passed" : "X Failed"
 );

@@ -54,7 +54,24 @@
 
 ### Insertion Sort
 
-tbd
+- Insertion Sort is another elementary sorting algorithm. It builds the sorted portion of the array incrementally by taking one element at a time and inserting it into its correct position within the sorted portion.
+- It is simple to implement and works well for small or nearly sorted datasets but is inefficient for large datasets due to its high time complexity.
+- Time Complexity:
+  - Worst and average case: O(n^2), where n is the number of elements in the array.
+  - Best case: O(n) - when the array is already (or almost) sorted.
+- Space Complexity: O(1) (in-place sorting algorithm).
+- Characteristics:
+  - Stable: It preserves the relative order of equal elements.
+  - Adaptive: Performs fewer comparisons and shifts when the array is nearly sorted.
+- Example implementation: `insertionSort.js`.
+
+- Algorithm:
+
+1. Start with the second element of the array (consider the first element as already sorted).
+2. Compare the current element with elements in the sorted portion of the array, moving from right to left.
+3. Shift elements in the sorted portion one position to the right to make space for the current element, if necessary.
+4. Insert the current element into its correct position within the sorted portion.
+5. Repeat steps 2-4 for all remaining elements in the array until the entire array is sorted.
 
 ### Merge Sort
 
