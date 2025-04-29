@@ -56,6 +56,7 @@
 
 - Insertion Sort is another elementary sorting algorithm. It builds the sorted portion of the array incrementally by taking one element at a time and inserting it into its correct position within the sorted portion.
 - It is simple to implement and works well for small or nearly sorted datasets but is inefficient for large datasets due to its high time complexity.
+- It is also well-suited for cases where a previously sorted array has been extended by a small number of new elements.
 - Time Complexity:
   - Worst and average case: O(n^2), where n is the number of elements in the array.
   - Best case: O(n) - when the array is already (or almost) sorted.
