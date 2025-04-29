@@ -12,7 +12,7 @@
  * @param {Array<Number>} collection
  * @param {Number} targetValue
  */
-function sortedFrequency(collection, targetValue) {
+export function sortedFrequency(collection, targetValue) {
   // use binary search to find first element equal to targetValue
   let left = 0;
   let right = collection.length;
@@ -49,8 +49,3 @@ function sortedFrequency(collection, targetValue) {
   // evaluate the distance between both elements
   return rightmostTargetElementIndex - leftmostTargetElementIndex + 1;
 }
-
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 2) === 4 ? "✓ Passed" : "X Failed");
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 3) === 1 ? "✓ Passed" : "X Failed");
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 1) === 2 ? "✓ Passed" : "X Failed");
-console.log(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4) === -1 ? "✓ Passed" : "X Failed");

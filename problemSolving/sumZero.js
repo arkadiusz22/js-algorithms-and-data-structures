@@ -11,7 +11,7 @@
 /**
  * @param {Array<Number>} array
  */
-function sumZero(array) {
+export function sumZero(array) {
   let leftIndex = 0;
   let rightIndex = array.length - 1;
 
@@ -32,10 +32,3 @@ function sumZero(array) {
 
   return undefined;
 }
-
-// Test cases
-console.log(
-  sumZero([-3, -2, -1, 0, 1, 2, 3])[0] === -3 && sumZero([-3, -2, -1, 0, 1, 2, 3])[1] === 3 ? "✓ Passed" : "X Failed"
-);
-console.log(sumZero([-2, 0, 1, 3]) === undefined ? "✓ Passed" : "X Failed");
-console.log(sumZero([1, 2, 3]) === undefined ? "✓ Passed" : "X Failed");

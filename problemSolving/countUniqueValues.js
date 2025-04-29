@@ -15,7 +15,7 @@
 /**
  * @param {Array<Number>} array
  */
-function countUniqueValues(array) {
+export function countUniqueValues(array) {
   if (!array.length) return 0;
   if (array.length === 1) return 1;
 
@@ -47,10 +47,3 @@ function countUniqueValues(array) {
 
   return uniqeNumbersCounter;
 }
-
-// Test cases
-console.log(countUniqueValues([1, 1, 1, 1, 1, 2]) === 2 ? "✓ Passed" : "X Failed");
-console.log(countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 1]) === 7 ? "✓ Passed" : "X Failed");
-console.log(countUniqueValues([1]) === 1 ? "✓ Passed" : "X Failed");
-console.log(countUniqueValues([]) === 0 ? "✓ Passed" : "X Failed");
-console.log(countUniqueValues([-2, -1, -1, 0, 1]) === 4 ? "✓ Passed" : "X Failed");

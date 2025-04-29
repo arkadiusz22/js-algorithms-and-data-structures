@@ -11,7 +11,7 @@
  * @param {Array<Number>} array1
  * @param {Array<Number>} array2
  */
-function same(array1, array2) {
+export function same(array1, array2) {
   // If arrays have different lengths, return false.
   if (array1.length !== array2.length) return false;
 
@@ -43,8 +43,3 @@ function same(array1, array2) {
   // If all checks pass, return true.
   return true;
 }
-
-// Test cases
-console.log(same([1, 2, 3], [4, 1, 9]) === true ? "✓ Passed" : "X Failed");
-console.log(same([1, 2, 3], [4, 9]) === false ? "✓ Passed" : "X Failed");
-console.log(same([1, 2, 3], [4, 4, 1]) === false ? "✓ Passed" : "X Failed");

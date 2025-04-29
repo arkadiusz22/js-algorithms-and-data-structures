@@ -17,7 +17,7 @@
  * @param {string} lookup - set of characters to find within the other string
  * @param {string} text - longer string, in which to search for the lookup
  */
-function isSubsequence(lookup, text) {
+export function isSubsequence(lookup, text) {
   if (lookup.length > text.length) {
     return false;
   }
@@ -46,9 +46,3 @@ function isSubsequence(lookup, text) {
   // and pointer of the lookup does not reach its end
   return false;
 }
-
-// TestCases:
-console.log(isSubsequence("hello", "hello world") === true ? "✓ Passed" : "X Failed");
-console.log(isSubsequence("sing", "sting") === true ? "✓ Passed" : "X Failed");
-console.log(isSubsequence("abc", "abracadabra") === true ? "✓ Passed" : "X Failed");
-console.log(isSubsequence("abc", "acb") === false ? "✓ Passed" : "X Failed");

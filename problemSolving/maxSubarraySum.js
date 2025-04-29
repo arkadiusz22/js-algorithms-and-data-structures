@@ -12,7 +12,7 @@
  * @param {Array<Number>} array - The input array of integers.
  * @param {Number} n - The number of consecutive elements to sum.
  */
-function maxSubarraySum(array, n) {
+export function maxSubarraySum(array, n) {
   // Edge case: If n is greater than the array length, return null.
   if (n > array.length) return null;
 
@@ -33,10 +33,3 @@ function maxSubarraySum(array, n) {
 
   return maxSum;
 }
-
-// Test cases
-console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2) === 10 ? "✓ Passed" : "X Failed");
-console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4) === 17 ? "✓ Passed" : "X Failed");
-console.log(maxSubarraySum([4, 2, 1, 6], 1) === 6 ? "✓ Passed" : "X Failed");
-console.log(maxSubarraySum([4, 2, 1, 6, 2], 4) === 13 ? "✓ Passed" : "X Failed");
-console.log(maxSubarraySum([], 4) === null ? "✓ Passed" : "X Failed");
