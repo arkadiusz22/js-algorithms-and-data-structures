@@ -9,7 +9,7 @@
 /**
  * @param {Array<Number>} array
  */
-function flatten(array) {
+export function flatten(array) {
   // Edge case: return an empty array if input is empty
   if (array.length === 0) return [];
 
@@ -30,13 +30,3 @@ function flatten(array) {
 
   return result;
 }
-
-// Test cases
-console.log(JSON.stringify(flatten([1, 2, 3, [4, 5]])) === JSON.stringify([1, 2, 3, 4, 5]) ? "✓ Passed" : "X Failed");
-console.log(
-  JSON.stringify(flatten([1, [2, [3, 4], [[5]]]])) === JSON.stringify([1, 2, 3, 4, 5]) ? "✓ Passed" : "X Failed"
-);
-console.log(JSON.stringify(flatten([[1], [2], [3]])) === JSON.stringify([1, 2, 3]) ? "✓ Passed" : "X Failed");
-console.log(
-  JSON.stringify(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) === JSON.stringify([1, 2, 3]) ? "✓ Passed" : "X Failed"
-);

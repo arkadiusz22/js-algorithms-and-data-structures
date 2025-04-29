@@ -4,7 +4,7 @@
 /**
  * @param {Object} object
  */
-function nestedEvenSum(object) {
+export function nestedEvenSum(object) {
   let accumulator = 0;
 
   for (const key in object) {
@@ -52,8 +52,3 @@ const obj4 = {
   q: { q1: 2, q2: { q3: 4, q4: { q5: 6, q6: { q7: 8 } } } },
   r: { r1: 3, r2: { r3: 5 } },
 };
-
-console.log(nestedEvenSum(obj1) === 6 ? "✓ Passed" : "X Failed");
-console.log(nestedEvenSum(obj2) === 10 ? "✓ Passed" : "X Failed");
-console.log(nestedEvenSum(obj3) === 28 ? "✓ Passed" : "X Failed");
-console.log(nestedEvenSum(obj4) === 20 ? "✓ Passed" : "X Failed");
