@@ -5,7 +5,7 @@
  * @param {String} text
  * @param {String} lookup
  */
-function substringSearch(text, lookup) {
+export function substringSearch(text, lookup) {
   if (!text.length || !lookup.length || text.length < lookup.length) return 0;
 
   let counter = 0;
@@ -32,12 +32,3 @@ function substringSearch(text, lookup) {
 
   return counter;
 }
-
-// Test cases
-console.log(substringSearch("harold said haha in hamburg", "a") === 5 ? "✓ Passed" : "X Failed");
-console.log(substringSearch("harold said haha in hamburg", "ha") === 4 ? "✓ Passed" : "X Failed");
-console.log(substringSearch("wowomgzomg", "omg") === 2 ? "✓ Passed" : "X Failed");
-console.log(substringSearch("this is a test string", "is") === 2 ? "✓ Passed" : "X Failed");
-console.log(substringSearch("aaaaaa", "aa") === 5 ? "✓ Passed" : "X Failed");
-console.log(substringSearch("abcdefg", "h") === 0 ? "✓ Passed" : "X Failed");
-console.log(substringSearch("mississippi", "iss") === 2 ? "✓ Passed" : "X Failed");
