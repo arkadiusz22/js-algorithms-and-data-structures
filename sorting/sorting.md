@@ -94,7 +94,30 @@
 
 ### Quick Sort
 
-tbd
+- Quick Sort is a highly efficient, comparison-based sorting algorithm that uses the divide-and-conquer strategy to sort elements.
+- Like Merge Sort, it treats arrays with 0 or 1 element as already sorted.
+- The algorithm selects a single element, called the pivot, and partitions the array so that all elements less than the pivot are moved to its left, and all elements greater are moved to its right. The pivot is then in its final sorted position.
+- This partitioning process is applied recursively to the subarrays on either side of the pivot until the entire array is sorted.
+- Common strategies for selecting the pivot include choosing the first element, last element, middle element, or a random element from the array. Choosing the first or last element can lead to poor performance (O(n^2)) on already sorted or reverse-sorted arrays. Selecting the middle or a random element helps avoid the worst-case scenario and generally results in better average performance.
+- Step 1 of the implementation involves writing a function that partitions the array around the chosen pivot so that elements less than the pivot are moved to its left, and elements greater are moved to its right. The partitioning must be done in place, without creating new arrays. This function is a key component of the Quick Sort algorithm. Example implementation: `pivotHelper.js`.
+- Quick Sort is often faster in practice than other O(n log n) algorithms due to its in-place sorting and low constant factors, but its performance can degrade to O(n^2) in the worst case (e.g., when the smallest or largest element is always chosen as the pivot).
+- Time Complexity:
+  - Best and average case: O(n log n), where n is the number of elements in the array.
+  - Worst case: O(n^2) (rare in practice with good pivot selection).
+- Space Complexity: O(log n) (in-place, due to recursion stack).
+- Characteristics:
+  - Unstable: The relative order of equal elements may not be preserved.
+  - In-place: Does not require additional arrays for sorting.
+  - Adaptive: Performance depends on pivot selection and input data.
+- Example implementation: `quickSort.js`.
+
+- Algorithm:
+
+1. If the array has 0 or 1 element, it is already sorted.
+2. Select a pivot element from the array.
+3. Partition the array so that all elements less than the pivot are moved to its left, and all elements greater are moved to its right. The pivot is now in its correct sorted position.
+4. Recursively apply the above steps to the subarrays to the left and right of the pivot.
+5. Continue until all subarrays have 0 or 1 element, at which point the array is fully sorted.
 
 ### Radix Sort
 
