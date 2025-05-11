@@ -76,7 +76,21 @@
 
 ### Merge Sort
 
-tbd
+- Created by John von Neumann in 1948.
+- It is a combination of splitting, merging, and sorting arrays.
+- Arrays containing 0 or 1 element are always considered sorted.
+- It applies the divide-and-conquer approach:
+  1. Splits the array into smaller portions until arrays with 1 or 0 elements are reached.
+  2. Merges these smaller arrays while ensuring the resulting array is sorted.
+- The merging process is repeated until the final sorted array is obtained.
+- Step 1 of the implementation involves writing a function that takes two sorted arrays and merges them into a single sorted array. This function is a key component of the Merge Sort algorithm.
+- Example implementation `mergeSort.js`.
+- Time Complexity:
+  - Best, worst, and average case: O(n log n), where n is the number of elements in the array. O(n log n) is the best possible complexity for data agnostic sort algorithm
+- Space Complexity: O(n) (requires additional space for merging).
+- Characteristics:
+  - Stable: It preserves the relative order of equal elements.
+  - Suitable for large datasets due to its predictable time complexity.
 
 ### Quick Sort
 
