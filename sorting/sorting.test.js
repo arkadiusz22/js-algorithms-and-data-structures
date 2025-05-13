@@ -4,6 +4,7 @@ import { insertionSort } from "./insertionSort.js";
 import { describe, expect, test } from "@jest/globals";
 import { mergeSort, mergeArrays } from "./mergeSort.js";
 import { quickSort } from "./quickSort.js";
+import { radixSort } from "./radixSort.js";
 
 describe("bubbleSort", () => {
   test("should sort a single element array", () => {
@@ -208,5 +209,56 @@ describe("quickSort", () => {
 
   test("should sort an array with one negative and one positive number", () => {
     expect(quickSort([-1, 1])).toEqual([-1, 1]);
+  });
+});
+
+describe("radixSort", () => {
+  test("should sort a single element array", () => {
+    expect(radixSort([1])).toEqual([1]);
+  });
+
+  test("should sort a small array", () => {
+    expect(radixSort([4, 2, 1])).toEqual([1, 2, 4]);
+  });
+
+  test("should sort a mixed array", () => {
+    expect(radixSort([4, 2, 1, 13, 6, 2])).toEqual([1, 2, 2, 4, 6, 13]);
+  });
+
+  test("should sort an array with duplicate numbers", () => {
+    expect(radixSort([4, 2, 2, 1, 6, 6, 3])).toEqual([1, 2, 2, 3, 4, 6, 6]);
+  });
+
+  test("should sort an array with large numbers", () => {
+    expect(radixSort([100, 50, 200, 150, 0, 50])).toEqual([0, 50, 50, 100, 150, 200]);
+  });
+
+  test("should sort an array with zeros", () => {
+    expect(radixSort([0, 0, 0, 1, 0])).toEqual([0, 0, 0, 0, 1]);
+  });
+
+  test("should sort an empty array", () => {
+    expect(radixSort([])).toEqual([]);
+  });
+
+  test("should sort an array with all elements equal", () => {
+    expect(radixSort([7, 7, 7, 7])).toEqual([7, 7, 7, 7]);
+  });
+
+  test("should sort an array with one and two digit numbers", () => {
+    expect(radixSort([9, 8, 10, 2, 11, 1])).toEqual([1, 2, 8, 9, 10, 11]);
+  });
+
+  test("should sort an array with three digit numbers", () => {
+    expect(radixSort([123, 456, 789, 101, 202, 303])).toEqual([101, 123, 202, 303, 456, 789]);
+  });
+
+  test("should sort an array with numbers containing zeros", () => {
+    expect(radixSort([100, 10, 1, 0, 1000])).toEqual([0, 1, 10, 100, 1000]);
+  });
+
+  // Note: radixSort typically does not support negative numbers in its basic form.
+  test("should not sort negative numbers correctly (radixSort limitation)", () => {
+    expect(radixSort([10, -1, 2, 5, 0, 3, 3])).not.toEqual([-1, 0, 2, 3, 3, 5, 10]);
   });
 });

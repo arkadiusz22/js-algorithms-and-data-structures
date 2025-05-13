@@ -121,7 +121,28 @@
 
 ### Radix Sort
 
-tbd
+- Radix Sort is a non-comparison-based sorting algorithm, highly efficient for sorting integers or data that can be represented as fixed-length strings (e.g., binary or decimal numbers).
+- Processes elements by grouping them based on individual digits or characters, typically starting from the least significant digit (LSD), but can also use the most significant digit (MSD).
+- Most effective for integers, but adaptable to strings or other data types with positional components.
+- Especially effective for large lists of integers or fixed-length strings, and in scenarios where comparison-based sorts are less efficient.
+- Characteristics:
+  - Stable: Preserves the relative order of equal elements.
+  - Not in-place: Requires additional space for buckets.
+  - Not adaptive.
+  - Limitation: Basic implementation does not support negative numbers.
+- Time Complexity: O(nk), where n is the number of elements and k is the number of digits in the largest number. Can outperform comparison sorts when k is small relative to n.
+- Space Complexity: O(n + k), due to the use of buckets for grouping elements.
+- Example implementation: `radixSort.js`.
+
+- Algorithm (LSD version):
+
+  1. Find the maximum number of digits (or characters) in the input data.
+  2. For each digit position (starting from the least significant digit):
+
+     - Place each element into a bucket corresponding to the current digit.
+     - Collect elements from the buckets in order to reform the array.
+
+  3. Repeat for each digit position until all positions have been processed.
 
 ### Other Important Sorting Algorithms
 
