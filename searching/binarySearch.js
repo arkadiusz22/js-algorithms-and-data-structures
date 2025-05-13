@@ -2,8 +2,8 @@
 // Otherwise, return -1.
 
 /**
- * @param {Array<Number>} array
- * @param {Number} value
+ * @param {Array<number>} array
+ * @param {number} value
  */
 export function binarySearch(array, value) {
   if (!array.length) return -1;

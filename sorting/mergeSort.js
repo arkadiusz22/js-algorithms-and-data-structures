@@ -1,6 +1,6 @@
 /**
- * @param {Array<Number>} array1
- * @param {Array<Number>} array2
+ * @param {Array<number>} array1
+ * @param {Array<number>} array2
  */
 
 export function mergeArrays(array1, array2) {
@@ -34,7 +34,7 @@ export function mergeArrays(array1, array2) {
 }
 
 /**
- * @param {Array<Number>} array
+ * @param {Array<number>} array
  */
 export function mergeSort(array) {
   if (!array.length) return [];

@@ -8,8 +8,8 @@
 // [1,2,1], [4,4,1] - false (wrong frequencies)
 
 /**
- * @param {Array<Number>} array1
- * @param {Array<Number>} array2
+ * @param {Array<number>} array1
+ * @param {Array<number>} array2
  */
 export function same(array1, array2) {
   // If arrays have different lengths, return false.

@@ -14,9 +14,9 @@
 // minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95); // 0
 
 /**
- * @param {Array<Number>} array
- * @param {Number} expectedScore
- * @returns length of the shortest subarray which has sum greater than or equal to expectedScore
+ * @param {Array<number>} array
+ * @param {number} expectedScore
+ * @returns {number} length of the shortest subarray which has sum greater than or equal to expectedScore
  */
 export function minSubArrayLen(array, expectedScore) {
   if (!array.length) return 0;

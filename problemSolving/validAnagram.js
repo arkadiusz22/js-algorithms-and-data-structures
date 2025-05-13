@@ -12,8 +12,8 @@
 // validAnagram("texttwisttime", "timetwisttext"); // true
 
 /**
- * @param {String} string1
- * @param {String} string2
+ * @param {string} string1
+ * @param {string} string2
  */
 export function validAnagram(string1, string2) {
   if (string1.length !== string2.length) return false;

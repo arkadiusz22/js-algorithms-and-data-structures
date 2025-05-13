@@ -7,7 +7,7 @@
 // flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1, 2, 3]
 
 /**
- * @param {Array<Number>} array
+ * @param {Array<number>} array
  */
 export function flatten(array) {
   // Edge case: return an empty array if input is empty

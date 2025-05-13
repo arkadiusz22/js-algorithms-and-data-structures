@@ -1,5 +1,5 @@
 /**
- * @param {Number} number
+ * @param {number} number
  */
 export function factorial(number) {
   if (number === 1) return 1;

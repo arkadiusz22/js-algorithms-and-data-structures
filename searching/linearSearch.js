@@ -3,8 +3,8 @@
 // Don't use indexOf to implement this function!
 
 /**
- * @param {Array<Number>} array
- * @param {Number} value
+ * @param {Array<number>} array
+ * @param {number} value
  */
 export function linearSearch(array, value) {
   for (let index = 0; index < array.length; index++) {

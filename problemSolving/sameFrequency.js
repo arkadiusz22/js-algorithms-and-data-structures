@@ -10,8 +10,8 @@
 // sameFrequency(22,222) - false
 
 /**
- * @param {Number} number1
- * @param {Number} number2
+ * @param {number} number1
+ * @param {number} number2
  */
 export function sameFrequency(number1, number2) {
   // Convert numbers to strings for easy digit manipulation.

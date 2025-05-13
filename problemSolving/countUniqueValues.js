@@ -13,7 +13,7 @@
 // Can be done with O(1) space complexity and O(n) time complexity
 
 /**
- * @param {Array<Number>} array
+ * @param {Array<number>} array
  */
 export function countUniqueValues(array) {
   if (!array.length) return 0;

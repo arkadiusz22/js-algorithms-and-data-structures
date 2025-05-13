@@ -2,8 +2,8 @@
 // Return 0 if the shorter string does not appear in the longer string.
 
 /**
- * @param {String} text
- * @param {String} lookup
+ * @param {string} text
+ * @param {string} lookup
  */
 export function substringSearch(text, lookup) {
   if (!text.length || !lookup.length || text.length < lookup.length) return 0;

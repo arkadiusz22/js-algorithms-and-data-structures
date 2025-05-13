@@ -9,8 +9,8 @@
 // sortedFrequency([1,1,2,2,2,2,3],4) // -1
 
 /**
- * @param {Array<Number>} collection
- * @param {Number} targetValue
+ * @param {Array<number>} collection
+ * @param {number} targetValue
  */
 export function sortedFrequency(collection, targetValue) {
   // use binary search to find first element equal to targetValue

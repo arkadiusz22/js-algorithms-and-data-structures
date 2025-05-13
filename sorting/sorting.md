@@ -3,7 +3,7 @@
 - Sorting is the process of rearranging the items in a collection so that they follow a specific order, such as ascending or descending.
 - It is a fundamental operation in computer science and programming, used in tasks like searching, organizing data, and optimizing algorithms.
 - There are numerous sorting algorithms, each with unique characteristics, advantages, and trade-offs. Some are general-purpose and efficient for most cases, while others are tailored for specific scenarios or constraints.
-
+- **Comparison Sort Lower Bound**: There is a theoretical lower bound for the time complexity of all comparison-based sorting algorithms, which is O(n log n) in the worst case. No comparison-based algorithm can guarantee better performance for arbitrary data.
 - **Stable vs. Unstable Sort**: A stable sort preserves the relative order of records with equal keys (values). In contrast, an unstable sort may rearrange equal elements arbitrarily.
 
 ### Built-in JavaScript Sort Function
@@ -122,3 +122,12 @@
 ### Radix Sort
 
 tbd
+
+### Other Important Sorting Algorithms
+
+These algorithms are widely used in standard libraries and real-world applications, each chosen for specific strengths:
+
+- **Heap Sort**: In-place, O(n log n), comparison-based. Uses a binary heap. Not stable, but valued for predictable performance and low memory use.
+- **Shell Sort**: In-place, comparison-based. Generalizes insertion sort by allowing distant exchanges. Faster than insertion sort for medium arrays; used in some libraries.
+- **TimSort**: Hybrid of merge and insertion sort. Stable, adaptive, and fast on real-world data. Default in Python and Java (non-primitive types).
+- **Counting Sort & Bucket Sort**: Non-comparison sorts. Extremely fast for integers or data with a limited range.

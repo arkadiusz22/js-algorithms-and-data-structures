@@ -9,7 +9,7 @@
 // [1,2,3] - undefined
 
 /**
- * @param {Array<Number>} array
+ * @param {Array<number>} array
  */
 export function sumZero(array) {
   let leftIndex = 0;

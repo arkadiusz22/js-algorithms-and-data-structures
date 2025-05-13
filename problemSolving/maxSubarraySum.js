@@ -9,8 +9,8 @@
 // maxSubarraySum([],4) // null
 
 /**
- * @param {Array<Number>} array - The input array of integers.
- * @param {Number} n - The number of consecutive elements to sum.
+ * @param {Array<number>} array - The input array of integers.
+ * @param {number} n - The number of consecutive elements to sum.
  */
 export function maxSubarraySum(array, n) {
   // Edge case: If n is greater than the array length, return null.
