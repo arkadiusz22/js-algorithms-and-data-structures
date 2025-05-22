@@ -10,7 +10,6 @@ class Node {
   constructor(value) {
     /** @type {T} */
     this.value = value;
-
     /** @type {Node<T>|null} */
     this.next = null;
   }
@@ -29,7 +28,7 @@ export class SinglyLinkedList {
   length;
 
   /**
-   * Create a list
+   * Create a new, empty singly linked list.
    */
   constructor() {
     this.head = null;
@@ -40,7 +39,7 @@ export class SinglyLinkedList {
   /**
    * Adds a new Node containing the specified value to the end of the list.
    * @param {T} value - The value to store in the new Node.
-   * @returns {SinglyLinkedList<T>} The updated list.
+   * @returns {SinglyLinkedList<T>} The updated list instance.
    */
   push(value) {
     const newNode = new Node(value);
@@ -60,10 +59,10 @@ export class SinglyLinkedList {
 
   /**
    * Removes the Node from the end of the list.
-   * @returns {T|undefined} The value of the removed Node.
+   * @returns {T|null} The value of the removed Node, or null if the list is empty.
    */
   pop() {
-    if (!this.length) return undefined;
+    if (!this.length) return null;
 
     if (this.length === 1) {
       const value = this.head.value;
@@ -89,11 +88,11 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Removes the Node from the beggining of the list.
-   * @returns {T|undefined} The value of the removed Node.
+   * Removes the Node from the beginning of the list.
+   * @returns {T|null} The value of the removed Node, or null if the list is empty.
    */
   shift() {
-    if (!this.length) return undefined;
+    if (!this.length) return null;
 
     if (this.length === 1) {
       const value = this.head.value;
@@ -111,9 +110,9 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Adds the Node to the beggining of the list.
+   * Adds a new Node containing the specified value to the beginning of the list.
    * @param {T} value - The value to store in the new Node.
-   * @returns {SinglyLinkedList<T>} The updated list.
+   * @returns {SinglyLinkedList<T>} The updated list instance.
    */
   unshift(value) {
     if (!this.length) {
@@ -126,5 +125,46 @@ export class SinglyLinkedList {
     }
 
     return this;
+  }
+
+  /**
+   * Returns the value at the given position in the list.
+   * @param {number} index - The zero-based position of the item in the list.
+   * @returns {T|null} The value of the node at the given index, or null if out of bounds.
+   */
+  get(index) {
+    if (!this.length || index < 0 || index >= this.length) return null;
+
+    let count = 0;
+    let current = this.head;
+
+    while (count < index) {
+      current = current.next;
+      count += 1;
+    }
+
+    return current.value;
+  }
+
+  /**
+   * Updates the value at the specified index in the list.
+   * @param {number} index - The zero-based position of the item in the list.
+   * @param {T} value - The new value to set at the specified index.
+   * @returns {boolean} True if the update was successful, false otherwise.
+   */
+  set(index, value) {
+    if (!this.length || index < 0 || index >= this.length) return false;
+
+    let count = 0;
+    let current = this.head;
+
+    while (count < index) {
+      current = current.next;
+      count += 1;
+    }
+
+    current.value = value;
+
+    return true;
   }
 }

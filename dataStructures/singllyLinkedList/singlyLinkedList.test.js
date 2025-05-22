@@ -32,7 +32,7 @@ describe("SinglyLinkedList", () => {
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
 
-    expect(list.pop()).toBeUndefined();
+    expect(list.pop()).toBeNull();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
     expect(list.length).toBe(0);
@@ -55,7 +55,7 @@ describe("SinglyLinkedList", () => {
     expect(list.tail).toBeNull();
     expect(list.length).toBe(0);
 
-    expect(list.shift()).toBeUndefined();
+    expect(list.shift()).toBeNull();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
     expect(list.length).toBe(0);
@@ -83,5 +83,48 @@ describe("SinglyLinkedList", () => {
     expect(list.tail.value).toBe(5);
     expect(list.length).toBe(3);
     expect(list.tail.next).toBeNull();
+  });
+
+  test("get retrieves the correct value at a given index and handles edge cases", () => {
+    const list = new SinglyLinkedList();
+
+    expect(list.get(0)).toBeNull();
+    expect(list.get(-1)).toBeNull();
+    expect(list.get(1)).toBeNull();
+
+    list.push("a");
+    expect(list.get(0)).toBe("a");
+    expect(list.get(1)).toBeNull();
+
+    list.push("b").push("c");
+    expect(list.get(0)).toBe("a");
+    expect(list.get(1)).toBe("b");
+    expect(list.get(2)).toBe("c");
+
+    expect(list.get(-1)).toBeNull();
+    expect(list.get(3)).toBeNull();
+    expect(list.get(100)).toBeNull();
+  });
+
+  test("set updates the value at a given index and handles edge cases", () => {
+    const list = new SinglyLinkedList();
+
+    expect(list.set(0, 100)).toBe(false);
+    expect(list.set(-1, 100)).toBe(false);
+    expect(list.set(1, 100)).toBe(false);
+
+    list.push("a").push("b").push("c");
+
+    expect(list.set(0, "x")).toBe(true);
+    expect(list.get(0)).toBe("x");
+
+    expect(list.set(2, "z")).toBe(true);
+    expect(list.get(2)).toBe("z");
+
+    expect(list.set(-1, "fail")).toBe(false);
+    expect(list.set(3, "fail")).toBe(false);
+
+    expect(list.set(1, 42)).toBe(true);
+    expect(list.get(1)).toBe(42);
   });
 });
