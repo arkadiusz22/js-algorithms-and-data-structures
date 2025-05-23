@@ -18,16 +18,16 @@ describe("SinglyLinkedList", () => {
     const list = new SinglyLinkedList();
     list.push(1).push(2).push(3);
 
-    expect(list.pop()).toBe(3);
+    expect(list.pop().value).toBe(3);
     expect(list.tail.value).toBe(2);
     expect(list.length).toBe(2);
     expect(list.tail.next).toBeNull();
 
-    expect(list.pop()).toBe(2);
+    expect(list.pop().value).toBe(2);
     expect(list.length).toBe(1);
     expect(list.tail.value).toBe(1);
 
-    expect(list.pop()).toBe(1);
+    expect(list.pop().value).toBe(1);
     expect(list.length).toBe(0);
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
@@ -42,15 +42,15 @@ describe("SinglyLinkedList", () => {
     const list = new SinglyLinkedList();
     list.push(1).push(2).push(3);
 
-    expect(list.shift()).toBe(1);
+    expect(list.shift().value).toBe(1);
     expect(list.head.value).toBe(2);
     expect(list.length).toBe(2);
 
-    expect(list.shift()).toBe(2);
+    expect(list.shift().value).toBe(2);
     expect(list.head.value).toBe(3);
     expect(list.length).toBe(1);
 
-    expect(list.shift()).toBe(3);
+    expect(list.shift().value).toBe(3);
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
     expect(list.length).toBe(0);
@@ -93,13 +93,13 @@ describe("SinglyLinkedList", () => {
     expect(list.get(1)).toBeNull();
 
     list.push("a");
-    expect(list.get(0)).toBe("a");
+    expect(list.get(0).value).toBe("a");
     expect(list.get(1)).toBeNull();
 
     list.push("b").push("c");
-    expect(list.get(0)).toBe("a");
-    expect(list.get(1)).toBe("b");
-    expect(list.get(2)).toBe("c");
+    expect(list.get(0).value).toBe("a");
+    expect(list.get(1).value).toBe("b");
+    expect(list.get(2).value).toBe("c");
 
     expect(list.get(-1)).toBeNull();
     expect(list.get(3)).toBeNull();
@@ -116,15 +116,15 @@ describe("SinglyLinkedList", () => {
     list.push("a").push("b").push("c");
 
     expect(list.set(0, "x")).toBe(true);
-    expect(list.get(0)).toBe("x");
+    expect(list.get(0).value).toBe("x");
 
     expect(list.set(2, "z")).toBe(true);
-    expect(list.get(2)).toBe("z");
+    expect(list.get(2).value).toBe("z");
 
     expect(list.set(-1, "fail")).toBe(false);
     expect(list.set(3, "fail")).toBe(false);
 
     expect(list.set(1, 42)).toBe(true);
-    expect(list.get(1)).toBe(42);
+    expect(list.get(1).value).toBe(42);
   });
 });

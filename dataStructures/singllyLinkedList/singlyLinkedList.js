@@ -59,17 +59,17 @@ export class SinglyLinkedList {
 
   /**
    * Removes the Node from the end of the list.
-   * @returns {T|null} The value of the removed Node, or null if the list is empty.
+   * @returns {Node<T>|null} The removed Node, or null if the list is empty.
    */
   pop() {
     if (!this.length) return null;
 
     if (this.length === 1) {
-      const value = this.head.value;
+      const removedNode = this.head;
       this.head = null;
       this.tail = null;
       this.length = 0;
-      return value;
+      return removedNode;
     }
 
     let pre = this.head;
@@ -84,29 +84,29 @@ export class SinglyLinkedList {
     this.tail = pre;
     this.length -= 1;
 
-    return current.value;
+    return current;
   }
 
   /**
    * Removes the Node from the beginning of the list.
-   * @returns {T|null} The value of the removed Node, or null if the list is empty.
+   * @returns {Node<T>|null} The removed Node, or null if the list is empty.
    */
   shift() {
     if (!this.length) return null;
 
     if (this.length === 1) {
-      const value = this.head.value;
+      const removedNode = this.head;
       this.head = null;
       this.tail = null;
       this.length = 0;
-      return value;
+      return removedNode;
     }
 
-    const removedValue = this.head.value;
+    const removedNode = this.head;
     this.head = this.head.next;
     this.length -= 1;
 
-    return removedValue;
+    return removedNode;
   }
 
   /**
@@ -130,7 +130,7 @@ export class SinglyLinkedList {
   /**
    * Returns the value at the given position in the list.
    * @param {number} index - The zero-based position of the item in the list.
-   * @returns {T|null} The value of the node at the given index, or null if out of bounds.
+   * @returns {Node<T>|null} The Node at the given index, or null if out of bounds.
    */
   get(index) {
     if (!this.length || index < 0 || index >= this.length) return null;
@@ -143,7 +143,7 @@ export class SinglyLinkedList {
       count += 1;
     }
 
-    return current.value;
+    return current;
   }
 
   /**
@@ -155,16 +155,11 @@ export class SinglyLinkedList {
   set(index, value) {
     if (!this.length || index < 0 || index >= this.length) return false;
 
-    let count = 0;
-    let current = this.head;
+    const current = this.get(index);
 
-    while (count < index) {
-      current = current.next;
-      count += 1;
-    }
+    if (!current) return false;
 
     current.value = value;
-
     return true;
   }
 }
