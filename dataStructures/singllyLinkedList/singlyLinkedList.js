@@ -162,4 +162,80 @@ export class SinglyLinkedList {
     current.value = value;
     return true;
   }
+
+  /**
+   * Inserts new Node with given value at the specified index in the list.
+   * @param {number} index - The zero-based position where to insert the new node.
+   * @param {T} value - The new value to insert at the specified index.
+   * @returns {boolean} True if the insertion was successful, false otherwise.
+   */
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(value);
+    if (index === 0) return !!this.unshift(value);
+
+    const pre = this.get(index - 1);
+    const newNode = new Node(value);
+    newNode.next = pre.next;
+    pre.next = newNode;
+
+    this.length += 1;
+    return true;
+  }
+  /**
+   * Removes the node at the specified index in the list.
+   * @param {number} index - The zero-based position of the node to remove.
+   * @returns {Node<T>|null} The removed node, or null if the index is invalid.
+   */
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    const pre = this.get(index - 1);
+    if (!pre || !pre.next) return null;
+
+    const removedNode = pre.next;
+    pre.next = removedNode.next;
+
+    this.length -= 1;
+
+    return removedNode;
+  }
+  /**
+   * Reverses the order of nodes in the linked list.
+   * Time complexity: O(n) where n is the number of nodes in the list.
+   * @returns {SinglyLinkedList<T>|null} The reversed list instance, or null if the list is empty.
+   */
+  reverse() {
+    // Handle edge cases - empty list or single node
+    if (!this.length) return null;
+    if (this.length === 1) return this;
+
+    // Start with the head, which will become the new tail
+    let currentNode = this.head;
+
+    // Swap head and tail pointers
+    this.head = this.tail;
+    this.tail = currentNode;
+
+    // Set up pointers for traversal
+    let previousNode = null;
+    let nextNode;
+
+    // Iterate through list, reversing links
+    while (currentNode !== null) {
+      // Save next node reference
+      nextNode = currentNode.next;
+
+      // Reverse the link
+      currentNode.next = previousNode;
+
+      // Move pointers forward
+      previousNode = currentNode;
+      currentNode = nextNode;
+    }
+
+    return this;
+  }
 }
