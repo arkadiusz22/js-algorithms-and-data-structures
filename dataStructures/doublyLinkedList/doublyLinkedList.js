@@ -113,14 +113,14 @@ export class DoublyLinkedList {
    */
   unshift(value) {
     if (!this.length) {
-      this.push(value);
-    } else {
+      return this.push(value);
+    }
+
       const newNode = new Node(value);
       newNode.next = this.head;
       this.head.prev = newNode;
       this.head = newNode;
       this.length += 1;
-    }
 
     return this;
   }
@@ -157,62 +157,73 @@ export class DoublyLinkedList {
     return current;
   }
 
-  // /**
-  //  * Updates the value at the specified index in the list.
-  //  * @param {number} index - The zero-based position of the item in the list.
-  //  * @param {T} value - The new value to set at the specified index.
-  //  * @returns {boolean} True if the update was successful, false otherwise.
-  //  */
-  // set(index, value) {
-  //   if (!this.length || index < 0 || index >= this.length) return false;
+  /**
+   * Updates the value at the specified index in the list.
+   * @param {number} index - The zero-based position of the item in the list.
+   * @param {T} value - The new value to set at the specified index.
+   * @returns {boolean} True if the update was successful, false otherwise.
+   */
+  set(index, value) {
+    const current = this.get(index);
 
-  //   const current = this.get(index);
+    if (!current) return false;
 
-  //   if (!current) return false;
+    current.value = value;
+    return true;
+  }
 
-  //   current.value = value;
-  //   return true;
-  // }
+  /**
+   * Inserts new Node with given value at the specified index in the list.
+   * @param {number} index - The zero-based position where to insert the new node.
+   * @param {T} value - The new value to insert at the specified index.
+   * @returns {boolean} True if the insertion was successful, false otherwise.
+   */
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(value);
+    if (index === 0) return !!this.unshift(value);
 
-  // /**
-  //  * Inserts new Node with given value at the specified index in the list.
-  //  * @param {number} index - The zero-based position where to insert the new node.
-  //  * @param {T} value - The new value to insert at the specified index.
-  //  * @returns {boolean} True if the insertion was successful, false otherwise.
-  //  */
-  // insert(index, value) {
-  //   if (index < 0 || index > this.length) return false;
-  //   if (index === this.length) return !!this.push(value);
-  //   if (index === 0) return !!this.unshift(value);
+    const prev = this.get(index - 1);
+    if (!prev) return false;
 
-  //   const pre = this.get(index - 1);
-  //   const newNode = new Node(value);
-  //   newNode.next = pre.next;
-  //   pre.next = newNode;
+    const next = prev.next;
+    const newNode = new Node(value);
 
-  //   this.length += 1;
-  //   return true;
-  // }
-  // /**
-  //  * Removes the node at the specified index in the list.
-  //  * @param {number} index - The zero-based position of the node to remove.
-  //  * @returns {Node<T>|null} The removed node, or null if the index is invalid.
-  //  */
-  // remove(index) {
-  //   if (index < 0 || index >= this.length) return null;
-  //   if (index === this.length - 1) return this.pop();
-  //   if (index === 0) return this.shift();
+    prev.next = newNode;
+    newNode.prev = prev;
 
-  //   const pre = this.get(index - 1);
-  //   if (!pre || !pre.next) return null;
+    newNode.next = next;
+    if (next) next.prev = newNode;
 
-  //   const removedNode = pre.next;
-  //   pre.next = removedNode.next;
+    this.length += 1;
 
-  //   this.length -= 1;
+    return true;
+  }
 
-  //   return removedNode;
-  // }
+  /**
+   * Removes the node at the specified index in the list.
+   * @param {number} index - The zero-based position of the node to remove.
+   * @returns {Node<T>|null} The removed node, or null if the index is invalid.
+   */
+  remove(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === this.length - 1) return this.pop();
+    if (index === 0) return this.shift();
+
+    const removedNode = this.get(index);
+    if (!removedNode) return null;
+
+    if (removedNode.prev) removedNode.prev.next = removedNode.next;
+    if (removedNode.next) removedNode.next.prev = removedNode.prev;
+
+    removedNode.prev = null;
+    removedNode.next = null;
+
+    this.length -= 1;
+
+    return removedNode;
+  }
+
   // /**
   //  * Reverses the order of nodes in the linked list.
   //  * Time complexity: O(n) where n is the number of nodes in the list.

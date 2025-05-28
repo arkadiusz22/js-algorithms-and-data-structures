@@ -119,15 +119,12 @@ describe("DoublyLinkedList", () => {
   test("get returns the correct node at a given index or null if out of bounds", () => {
     const list = new DoublyLinkedList();
 
-    // Empty list
     expect(list.get(0)).toBeNull();
     expect(list.get(-1)).toBeNull();
     expect(list.get(1)).toBeNull();
 
-    // Add elements
     list.push("a").push("b").push("c");
 
-    // Valid indices
     const node0 = list.get(0);
     expect(node0).not.toBeNull();
     expect(node0.value).toBe("a");
@@ -144,9 +141,121 @@ describe("DoublyLinkedList", () => {
     expect(node2.value).toBe("c");
     expect(node2.next).toBeNull();
 
-    // Out of bounds
     expect(list.get(-1)).toBeNull();
     expect(list.get(3)).toBeNull();
     expect(list.get(100)).toBeNull();
+  });
+
+  test("set updates the value at the specified index and returns true, or false if index is invalid", () => {
+    const list = new DoublyLinkedList();
+
+    expect(list.set(0, "x")).toBe(false);
+    expect(list.set(-1, "y")).toBe(false);
+
+    list.push("a").push("b").push("c");
+
+    expect(list.set(0, "A")).toBe(true);
+    expect(list.head.value).toBe("A");
+    expect(list.get(0).value).toBe("A");
+
+    expect(list.set(1, "B")).toBe(true);
+    expect(list.get(1).value).toBe("B");
+
+    expect(list.set(2, "C")).toBe(true);
+    expect(list.tail.value).toBe("C");
+    expect(list.get(2).value).toBe("C");
+
+    expect(list.set(-1, "z")).toBe(false);
+    expect(list.set(3, "z")).toBe(false);
+    expect(list.set(100, "z")).toBe(false);
+  });
+
+  test("insert adds elements at the correct index and updates pointers and length", () => {
+    const list = new DoublyLinkedList();
+
+    expect(list.insert).toBeDefined();
+    expect(list.insert(0, "first")).toBe(true);
+    expect(list.length).toBe(1);
+    expect(list.head.value).toBe("first");
+    expect(list.tail.value).toBe("first");
+
+    expect(list.insert(1, "second")).toBe(true);
+    expect(list.length).toBe(2);
+    expect(list.head.value).toBe("first");
+    expect(list.tail.value).toBe("second");
+    expect(list.head.next.value).toBe("second");
+    expect(list.tail.prev.value).toBe("first");
+
+    expect(list.insert(1, "middle")).toBe(true);
+    expect(list.length).toBe(3);
+    expect(list.get(0).value).toBe("first");
+    expect(list.get(1).value).toBe("middle");
+    expect(list.get(2).value).toBe("second");
+    expect(list.get(1).prev.value).toBe("first");
+    expect(list.get(1).next.value).toBe("second");
+
+    expect(list.insert(0, "zero")).toBe(true);
+    expect(list.length).toBe(4);
+    expect(list.head.value).toBe("zero");
+    expect(list.head.next.value).toBe("first");
+
+    expect(list.insert(4, "last")).toBe(true);
+    expect(list.length).toBe(5);
+    expect(list.tail.value).toBe("last");
+    expect(list.tail.prev.value).toBe("second");
+
+    expect(list.insert(-1, "fail")).toBe(false);
+    expect(list.insert(100, "fail")).toBe(false);
+  });
+
+  test("remove deletes elements at specified indices and handles edge cases", () => {
+    const list = new DoublyLinkedList();
+
+    expect(list.remove(0)).toBeNull();
+    expect(list.remove(-1)).toBeNull();
+    expect(list.remove(1)).toBeNull();
+
+    list.push("a").push("b").push("c").push("d").push("e");
+    expect(list.length).toBe(5);
+
+    const removedMiddle = list.remove(2);
+    expect(removedMiddle.value).toBe("c");
+    expect(list.length).toBe(4);
+    expect(list.get(0).value).toBe("a");
+    expect(list.get(1).value).toBe("b");
+    expect(list.get(2).value).toBe("d");
+    expect(list.get(3).value).toBe("e");
+    expect(list.get(2).prev.value).toBe("b");
+    expect(list.get(2).next.value).toBe("e");
+
+    const removedFirst = list.remove(0);
+    expect(removedFirst.value).toBe("a");
+    expect(list.length).toBe(3);
+    expect(list.head.value).toBe("b");
+    expect(list.head.prev).toBeNull();
+
+    const removedLast = list.remove(list.length - 1);
+    expect(removedLast.value).toBe("e");
+    expect(list.length).toBe(2);
+    expect(list.tail.value).toBe("d");
+    expect(list.tail.next).toBeNull();
+
+    expect(list.remove(-1)).toBeNull();
+    expect(list.remove(list.length)).toBeNull();
+    expect(list.remove(100)).toBeNull();
+
+    expect(list.remove(0).value).toBe("b");
+    expect(list.length).toBe(1);
+    expect(list.head.value).toBe("d");
+    expect(list.tail.value).toBe("d");
+    expect(list.head.prev).toBeNull();
+    expect(list.tail.next).toBeNull();
+
+    expect(list.remove(0).value).toBe("d");
+    expect(list.length).toBe(0);
+    expect(list.head).toBeNull();
+    expect(list.tail).toBeNull();
+
+    expect(list.remove(0)).toBeNull();
   });
 });
