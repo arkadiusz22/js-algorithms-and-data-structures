@@ -258,4 +258,45 @@ describe("DoublyLinkedList", () => {
 
     expect(list.remove(0)).toBeNull();
   });
+
+  test("reverse reverses the list in place and updates head, tail, and pointers correctly", () => {
+    const list = new DoublyLinkedList();
+
+    expect(list.reverse?.()).toBeNull();
+    expect(list.head).toBeNull();
+    expect(list.tail).toBeNull();
+    expect(list.length).toBe(0);
+
+    list.push(1);
+    expect(list.reverse?.()).toBe(list);
+    expect(list.head.value).toBe(1);
+    expect(list.tail.value).toBe(1);
+    expect(list.head.next).toBeNull();
+    expect(list.head.prev).toBeNull();
+
+    list.push(2);
+    expect(list.head.value).toBe(1);
+    expect(list.tail.value).toBe(2);
+    list.reverse();
+    expect(list.head.value).toBe(2);
+    expect(list.tail.value).toBe(1);
+    expect(list.head.next.value).toBe(1);
+    expect(list.head.prev).toBeNull();
+    expect(list.tail.prev.value).toBe(2);
+    expect(list.tail.next).toBeNull();
+
+    list.push(3);
+    expect(list.head.value).toBe(2);
+    expect(list.tail.value).toBe(3);
+    list.reverse();
+    expect(list.head.value).toBe(3);
+    expect(list.head.next.value).toBe(1);
+    expect(list.head.prev).toBeNull();
+    expect(list.head.next.next.value).toBe(2);
+    expect(list.head.next.next.next).toBeNull();
+    expect(list.tail.value).toBe(2);
+    expect(list.tail.prev.value).toBe(1);
+    expect(list.tail.prev.prev.value).toBe(3);
+    expect(list.tail.next).toBeNull();
+  });
 });

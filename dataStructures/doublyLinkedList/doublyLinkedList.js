@@ -116,11 +116,11 @@ export class DoublyLinkedList {
       return this.push(value);
     }
 
-      const newNode = new Node(value);
-      newNode.next = this.head;
-      this.head.prev = newNode;
-      this.head = newNode;
-      this.length += 1;
+    const newNode = new Node(value);
+    newNode.next = this.head;
+    this.head.prev = newNode;
+    this.head = newNode;
+    this.length += 1;
 
     return this;
   }
@@ -224,40 +224,33 @@ export class DoublyLinkedList {
     return removedNode;
   }
 
-  // /**
-  //  * Reverses the order of nodes in the linked list.
-  //  * Time complexity: O(n) where n is the number of nodes in the list.
-  //  * @returns {DoublyLinkedList<T>|null} The reversed list instance, or null if the list is empty.
-  //  */
-  // reverse() {
-  //   // Handle edge cases - empty list or single node
-  //   if (!this.length) return null;
-  //   if (this.length === 1) return this;
+  /**
+   * Reverses the order of nodes in the linked list.
+   * Time complexity: O(n) where n is the number of nodes in the list.
+   * @returns {DoublyLinkedList<T>|null} The reversed list instance.
+   */
+  reverse() {
+    // Handle edge cases - empty list or single node
+    if (!this.length) return null;
+    if (this.length === 1) return this;
 
-  //   // Start with the head, which will become the new tail
-  //   let currentNode = this.head;
+    let current = this.head;
 
-  //   // Swap head and tail pointers
-  //   this.head = this.tail;
-  //   this.tail = currentNode;
+    // Traverse the list and swap prev/next pointers for each node
+    while (current) {
+      // Store next node before swapping
+      const next = current.next;
 
-  //   // Set up pointers for traversal
-  //   let previousNode = null;
-  //   let nextNode;
+      // Swap the pointers
+      [current.next, current.prev] = [current.prev, current.next];
 
-  //   // Iterate through list, reversing links
-  //   while (currentNode !== null) {
-  //     // Save next node reference
-  //     nextNode = currentNode.next;
+      // Move to the next node (which is now in prev due to swap)
+      current = next;
+    }
 
-  //     // Reverse the link
-  //     currentNode.next = previousNode;
+    // Swap head and tail pointers
+    [this.head, this.tail] = [this.tail, this.head];
 
-  //     // Move pointers forward
-  //     previousNode = currentNode;
-  //     currentNode = nextNode;
-  //   }
-
-  //   return this;
-  // }
+    return this;
+  }
 }
