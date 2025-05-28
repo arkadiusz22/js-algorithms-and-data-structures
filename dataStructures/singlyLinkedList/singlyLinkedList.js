@@ -72,16 +72,16 @@ export class SinglyLinkedList {
       return removedNode;
     }
 
-    let pre = this.head;
+    let prev = this.head;
     let current = this.head.next;
 
     while (current.next) {
-      pre = current;
+      prev = current;
       current = current.next;
     }
 
-    pre.next = null;
-    this.tail = pre;
+    prev.next = null;
+    this.tail = prev;
     this.length -= 1;
 
     return current;
@@ -153,8 +153,6 @@ export class SinglyLinkedList {
    * @returns {boolean} True if the update was successful, false otherwise.
    */
   set(index, value) {
-    if (!this.length || index < 0 || index >= this.length) return false;
-
     const current = this.get(index);
 
     if (!current) return false;
@@ -174,14 +172,15 @@ export class SinglyLinkedList {
     if (index === this.length) return !!this.push(value);
     if (index === 0) return !!this.unshift(value);
 
-    const pre = this.get(index - 1);
+    const prev = this.get(index - 1);
     const newNode = new Node(value);
-    newNode.next = pre.next;
-    pre.next = newNode;
+    newNode.next = prev.next;
+    prev.next = newNode;
 
     this.length += 1;
     return true;
   }
+
   /**
    * Removes the node at the specified index in the list.
    * @param {number} index - The zero-based position of the node to remove.
@@ -192,16 +191,17 @@ export class SinglyLinkedList {
     if (index === this.length - 1) return this.pop();
     if (index === 0) return this.shift();
 
-    const pre = this.get(index - 1);
-    if (!pre || !pre.next) return null;
+    const prev = this.get(index - 1);
+    if (!prev || !prev.next) return null;
 
-    const removedNode = pre.next;
-    pre.next = removedNode.next;
+    const removedNode = prev.next;
+    prev.next = removedNode.next;
 
     this.length -= 1;
 
     return removedNode;
   }
+
   /**
    * Reverses the order of nodes in the linked list.
    * Time complexity: O(n) where n is the number of nodes in the list.
