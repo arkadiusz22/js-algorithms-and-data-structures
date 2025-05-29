@@ -8,7 +8,7 @@ A stack is an abstract data structure that follows the **LIFO (Last In, First Ou
 - **Single Access Point**: Elements can only be accessed from the top
 - **Three Primary Operations**:
   - **Push**: Add an element to the top
-  - **Pop**: Remove the top element
+  - **Pop**: Remove and return the top element
   - **Peek/Top**: View the top element without removing it
 
 ### Real-World Examples & Use Cases
@@ -23,17 +23,11 @@ A stack is an abstract data structure that follows the **LIFO (Last In, First Ou
   - Depth-First Search (DFS) with explicit stack
   - Tree traversal (iterative approaches)
 
-### Implementation Options
-
-| Method                 | Pros                             | Cons                                                   |
-| ---------------------- | -------------------------------- | ------------------------------------------------------ |
-| **Array-based**        | Simple, cache-friendly           | Fixed size (static arrays)                             |
-| **Linked List**        | Dynamic size, memory efficient   | Extra memory for pointers                              |
-| **Language Built-ins** | Optimized performance, clean API | Limited customization, language-dependent availability |
-
 ### Time & Space Complexity
 
-- **Insertion/Removal**: O(1) - primary strength
+- **Insertion (Push)**: O(1) - primary strength
+- **Removal (Pop)**: O(1) - primary strength
+- **Peek**: O(1)
 - **Search/Access**: O(n) - not optimized for these operations
 - **Space**: O(n) where n is the number of elements
 
