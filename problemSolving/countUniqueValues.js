@@ -25,23 +25,23 @@ export function countUniqueValues(array) {
   // initialize leftIndex at 0 element
   let leftIndex = 0;
   // initialize rightIndex at 1 element
-  let rigthIndex = leftIndex + 1;
+  let rightIndex = leftIndex + 1;
 
   // if right index is higher or equal than array.length, end the loop
-  while (rigthIndex < array.length) {
+  while (rightIndex < array.length) {
     // check if values under both indexes are the same
 
     const leftValue = array[leftIndex];
-    const rightValue = array[rigthIndex];
+    const rightValue = array[rightIndex];
 
     if (leftValue === rightValue) {
       // if yes, do not increase the uniqeNumbersCounter and increase right index by 1
-      rigthIndex += 1;
+      rightIndex += 1;
     } else {
       // if no, increase the uniqeNumbersCounter, assign value of right index to left index and increase right index by 1
       uniqeNumbersCounter += 1;
-      leftIndex = rigthIndex;
-      rigthIndex += 1;
+      leftIndex = rightIndex;
+      rightIndex += 1;
     }
   }
 

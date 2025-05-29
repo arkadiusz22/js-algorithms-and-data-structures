@@ -136,7 +136,9 @@ export class DoublyLinkedList {
     let count;
     let current;
 
-    if (index <= Math.floor(this.length / 2)) {
+    const isCloserToHead = index <= Math.floor(this.length / 2);
+
+    if (isCloserToHead) {
       count = 0;
       current = this.head;
 
