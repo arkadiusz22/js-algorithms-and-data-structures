@@ -10,6 +10,7 @@ class Node {
   constructor(value) {
     /** @type {T} */
     this.value = value;
+
     /** @type {Node<T>|null} */
     this.next = null;
   }
@@ -20,19 +21,17 @@ class Node {
  * @template T The type of values stored in the list
  */
 export class SinglyLinkedList {
-  /** @type {Node<T>|null} */
-  head;
-  /** @type {Node<T>|null} */
-  tail;
-  /** @type {number} */
-  length;
-
   /**
    * Create a new, empty singly linked list.
    */
   constructor() {
+    /** @type {Node<T>|null} */
     this.head = null;
+
+    /** @type {Node<T>|null} */
     this.tail = null;
+
+    /** @type {number} */
     this.length = 0;
   }
 

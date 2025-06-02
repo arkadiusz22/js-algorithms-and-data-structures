@@ -10,6 +10,7 @@ class Node {
   constructor(value) {
     /** @type {T} */
     this.value = value;
+
     /** @type {Node<T>|null} */
     this.next = null;
   }
@@ -20,16 +21,14 @@ class Node {
  * @template T The type of values stored in the stack
  */
 export class Stack {
-  /** @type {Node<T>|null} */
-  first;
-  /** @type {number} */
-  size;
-
   /**
    * Create a new, empty stack.
    */
   constructor() {
+    /** @type {Node<T>|null} */
     this.first = null;
+
+    /** @type {number} */
     this.size = 0;
   }
 

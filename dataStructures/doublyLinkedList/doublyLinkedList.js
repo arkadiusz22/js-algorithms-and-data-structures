@@ -10,8 +10,10 @@ class Node {
   constructor(value) {
     /** @type {T} */
     this.value = value;
+
     /** @type {Node<T>|null} */
     this.next = null;
+
     /** @type {Node<T>|null} */
     this.prev = null;
   }
@@ -22,19 +24,17 @@ class Node {
  * @template T The type of values stored in the list
  */
 export class DoublyLinkedList {
-  /** @type {Node<T>|null} */
-  head;
-  /** @type {Node<T>|null} */
-  tail;
-  /** @type {number} */
-  length;
-
   /**
    * Create a new, empty doubly linked list.
    */
   constructor() {
+    /** @type {Node<T>|null} */
     this.head = null;
+
+    /** @type {Node<T>|null} */
     this.tail = null;
+
+    /** @type {number} */
     this.length = 0;
   }
 

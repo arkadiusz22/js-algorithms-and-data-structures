@@ -10,6 +10,7 @@ class Node {
   constructor(value) {
     /** @type {T} */
     this.value = value;
+
     /** @type {Node<T>|null} */
     this.next = null;
   }
@@ -20,19 +21,17 @@ class Node {
  * @template T The type of values stored in the queue
  */
 export class Queue {
-  /** @type {Node<T>|null} */
-  first;
-  /** @type {Node<T>|null} */
-  last;
-  /** @type {number} */
-  size;
-
   /**
    * Create a new, empty queue.
    */
   constructor() {
+    /** @type {Node<T>|null} */
     this.first = null;
+
+    /** @type {Node<T>|null} */
     this.last = null;
+
+    /** @type {number} */
     this.size = 0;
   }
 
