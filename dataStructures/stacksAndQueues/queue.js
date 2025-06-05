@@ -88,4 +88,12 @@ export class Queue {
 
     return this.first.value;
   }
+
+  /**
+   * Checks if the queue is empty.
+   * @returns {boolean} True if the queue is empty, false otherwise.
+   */
+  isEmpty() {
+    return !this.size;
+  }
 }

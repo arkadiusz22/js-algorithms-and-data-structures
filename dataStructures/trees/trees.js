@@ -1,3 +1,5 @@
+import { Queue } from "../stacksAndQueues/queue.js";
+
 /**
  * Represents a Node in a BinarySearchTree linked list.
  * @template T The type of value stored in the Node
@@ -87,5 +89,74 @@ export class BinarySearchTree {
       }
     }
     return null;
+  }
+
+  /**
+   * Performs breadth-first search traversal of the binary search tree.
+   * Visits nodes level by level from left to right.
+   * @returns {Array<T>} Array of values in BFS order, empty array if tree is empty
+   */
+  breadthFirstSearch() {
+    if (!this.root) return [];
+
+    /** @type {Array<T>} */
+    const values = [];
+
+    /** @type {Queue<Node<T>>} */
+    const nodeQueue = new Queue();
+
+    nodeQueue.enqueue(this.root);
+
+    while (!nodeQueue.isEmpty()) {
+      const node = nodeQueue.dequeue();
+      if (!node) break;
+
+      values.push(node.value);
+
+      if (node.left) nodeQueue.enqueue(node.left);
+      if (node.right) nodeQueue.enqueue(node.right);
+    }
+
+    return values;
+  }
+
+  /**
+   * Performs depth-first search traversal of the binary search tree.
+   * @param {('preOrder'|'inOrder'|'postOrder')} order - The traversal order to use
+   * @returns {Array<T>} Array of values in DFS order, empty array if tree is empty
+   */
+  depthFirstSearch(order = "inOrder") {
+    if (!this.root) return [];
+
+    /** @type {Array<T>} */
+    const values = [];
+
+    /**
+     * @param {Node<T>} node
+     * @returns {void}
+     */
+    function traverse(node) {
+      switch (order) {
+        case "preOrder":
+          values.push(node.value);
+          if (node.left) traverse(node.left);
+          if (node.right) traverse(node.right);
+          break;
+        case "inOrder":
+          if (node.left) traverse(node.left);
+          values.push(node.value);
+          if (node.right) traverse(node.right);
+          break;
+        case "postOrder":
+          if (node.left) traverse(node.left);
+          if (node.right) traverse(node.right);
+          values.push(node.value);
+          break;
+      }
+    }
+
+    traverse(this.root);
+
+    return values;
   }
 }
