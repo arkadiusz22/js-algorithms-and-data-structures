@@ -1,8 +1,9 @@
 /**
- * @param {Array<number>} array The array to be sorted.
- * @param {number} startIndex The start of the range in array from which the pivot should be selected.
- * @param {number} endIndex The end of the range in array from which the pivot should be selected.
- * @returns {number} The index of the pivot element after partitioning.
+ * Partitions the array around a pivot element and returns the index of the pivot.
+ * @param {Array<number>} array - The array to be sorted
+ * @param {number} startIndex - The start of the range in array from which the pivot should be selected
+ * @param {number} endIndex - The end of the range in array from which the pivot should be selected
+ * @returns {number} The index of the pivot element after partitioning
  */
 export function pivotHelper(array = [], startIndex = 0, endIndex = array.length - 1) {
   const pivotInitialIndex = startIndex;
@@ -26,10 +27,11 @@ export function pivotHelper(array = [], startIndex = 0, endIndex = array.length 
 }
 
 /**
- * @param {Array<number>} array The array to be sorted.
- * @param {number} startIndex The start of the range in array to be sorted.
- * @param {number} endIndex The end of the range in array to be sorted.
- * @returns {Array<number>} The sorted array.
+ * Sorts an array using the quick sort algorithm (divide and conquer).
+ * @param {Array<number>} array - The array to be sorted
+ * @param {number} startIndex - The start of the range in array to be sorted
+ * @param {number} endIndex - The end of the range in array to be sorted
+ * @returns {Array<number>} The sorted array
  */
 export function quickSort(array = [], startIndex = 0, endIndex = array.length - 1) {
   // If the array has 0 or 1 elements, it's already sorted.

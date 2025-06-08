@@ -2,8 +2,10 @@
 // Return 0 if the shorter string does not appear in the longer string.
 
 /**
- * @param {string} text
- * @param {string} lookup
+ * Counts how many times a shorter string appears as a substring within a longer string.
+ * @param {string} text - The longer string to search within
+ * @param {string} lookup - The shorter string to search for
+ * @returns {number} The number of occurrences of the lookup string in the text
  */
 export function substringSearch(text, lookup) {
   if (!text.length || !lookup.length || text.length < lookup.length) return 0;

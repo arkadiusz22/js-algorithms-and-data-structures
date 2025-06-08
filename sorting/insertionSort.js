@@ -1,5 +1,7 @@
 /**
- * @param {Array<number>} array - The array to be sorted.
+ * Sorts an array using the insertion sort algorithm.
+ * @param {Array<number>} array - The array to be sorted
+ * @returns {Array<number>} The sorted array
  */
 export function insertionSort(array) {
   if (array.length <= 1) return array;

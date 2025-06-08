@@ -10,34 +10,37 @@
 // sameFrequency(22,222) - false
 
 /**
- * @param {number} number1
- * @param {number} number2
+ * Determines if two positive integers have the same frequency of digits.
+ * @param {number} number1 - The first number
+ * @param {number} number2 - The second number
+ * @returns {boolean} True if both numbers have the same frequency of digits, false otherwise
  */
 export function sameFrequency(number1, number2) {
-  // Convert numbers to strings for easy digit manipulation.
+  // Convert numbers to strings for easy digit manipulation
   const number1str = number1.toString();
   const number2str = number2.toString();
 
-  // If the lengths of the strings are different, return false immediately.
+  // If strings have different lengths, they cannot have same frequency
   if (number1str.length !== number2str.length) return false;
 
-  // Create frequency counters for both numbers.
-  const digits1 = {};
-  const digits2 = {};
+  // Create frequency counters for both numbers
+  const frequencyCounter1 = {};
+  const frequencyCounter2 = {};
 
-  // Populate the frequency counter for the first number.
-  for (const digit of number1str) {
-    digits1[digit] = ++digits1[digit] || 1;
+  // Count frequency of each digit in first number
+  for (let digit of number1str) {
+    frequencyCounter1[digit] = ++frequencyCounter1[digit] || 1;
   }
 
-  // Populate the frequency counter for the second number.
-  for (const digit of number2str) {
-    digits2[digit] = ++digits2[digit] || 1;
+  // Count frequency of each digit in second number
+  for (let digit of number2str) {
+    frequencyCounter2[digit] = ++frequencyCounter2[digit] || 1;
   }
 
-  // Compare the frequency counters.
-  for (const key in digits1) {
-    if (digits1[key] !== digits2[key]) return false;
+  // Compare frequencies
+  for (let key in frequencyCounter1) {
+    if (!(key in frequencyCounter2)) return false;
+    if (frequencyCounter1[key] !== frequencyCounter2[key]) return false;
   }
 
   return true;

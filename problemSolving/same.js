@@ -8,8 +8,11 @@
 // [1,2,1], [4,4,1] - false (wrong frequencies)
 
 /**
- * @param {Array<number>} array1
- * @param {Array<number>} array2
+ * Checks if every value in the first array has its corresponding value squared in the second array.
+ * The frequency of values must be the same.
+ * @param {Array<number>} array1 - The first array
+ * @param {Array<number>} array2 - The second array containing squared values
+ * @returns {boolean} True if array2 contains the squares of array1 with correct frequencies
  */
 export function same(array1, array2) {
   // If arrays have different lengths, return false.

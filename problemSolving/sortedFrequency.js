@@ -1,6 +1,6 @@
 // Given a sorted array and a number, write a function called sortedFrequency that counts the occurrences of the number in the array
-// return -1 if the element does not occure in the array
-// Time Complexity - O(log n)
+// return -1 if the element does not occur in the array
+// Time Complexity: O(log n)
 
 // Examples:
 // sortedFrequency([1,1,2,2,2,2,3],2) // 4
@@ -9,11 +9,13 @@
 // sortedFrequency([1,1,2,2,2,2,3],4) // -1
 
 /**
- * @param {Array<number>} collection
- * @param {number} targetValue
+ * Counts the occurrences of a number in a sorted array using binary search.
+ * @param {Array<number>} collection - The sorted array to search in
+ * @param {number} targetValue - The value to count occurrences of
+ * @returns {number} The count of occurrences, or -1 if not found
  */
 export function sortedFrequency(collection, targetValue) {
-  // use binary search to find first element equal to targetValue
+  // Use binary search to find first element equal to targetValue
   let left = 0;
   let right = collection.length;
 
@@ -30,7 +32,7 @@ export function sortedFrequency(collection, targetValue) {
 
   if (leftmostTargetElementIndex === -1) return -1;
 
-  // use binary search to find last element equal to targetValue
+  // Use binary search to find last element equal to targetValue
   left = 0;
   right = collection.length;
   while (left < right) {
@@ -46,6 +48,6 @@ export function sortedFrequency(collection, targetValue) {
 
   if (rightmostTargetElementIndex === -1) return -1;
 
-  // evaluate the distance between both elements
+  // Evaluate the distance between both elements
   return rightmostTargetElementIndex - leftmostTargetElementIndex + 1;
 }

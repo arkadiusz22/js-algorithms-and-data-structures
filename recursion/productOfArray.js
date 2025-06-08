@@ -7,10 +7,12 @@
 // productOfArray([2, 5, 6, 20]) // 1200
 
 /**
- * @param {Array<number>} array
+ * Calculates the product of all numbers in an array recursively.
+ * @param {Array<number>} array - The array of numbers to multiply
+ * @returns {number} The product of all numbers in the array
  */
 export function productOfArray(array) {
-  // Edge case
+  // Edge case: return 0 for empty array
   if (!array.length) return 0;
 
   // Base case

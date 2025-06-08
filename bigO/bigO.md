@@ -22,8 +22,8 @@ An algorithm is a process or set of steps to accomplish a task.
 
 ## Counting Operations
 
-- **addUpTo_v1**: Number of operations depends on `n` (O(n))
-- **addUpTo_v2**: Always 3 operations (O(1))
+- **addUpToV1**: Number of operations depends on `n` (O(n))
+- **addUpToV2**: Always 3 operations (O(1))
 
 ---
 
@@ -31,10 +31,10 @@ An algorithm is a process or set of steps to accomplish a task.
 
 Big O describes the relationship between function runtime and input size.
 
-| Example    | Complexity |
-| ---------- | ---------- |
-| addUpTo_v1 | O(n)       |
-| addUpTo_v2 | O(1)       |
+| Example   | Complexity |
+| --------- | ---------- |
+| addUpToV1 | O(n)       |
+| addUpToV2 | O(1)       |
 
 ---
 

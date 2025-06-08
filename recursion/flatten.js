@@ -7,7 +7,9 @@
 // flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1, 2, 3]
 
 /**
- * @param {Array<number>} array
+ * Recursively flattens an array of arrays and returns a new array with all values flattened.
+ * @param {Array<number>} array - The array to flatten
+ * @returns {Array<number>} A new flattened array with all values
  */
 export function flatten(array) {
   // Edge case: return an empty array if input is empty

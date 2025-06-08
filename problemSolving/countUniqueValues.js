@@ -8,42 +8,42 @@
 // countUniqueValues([]) // 0
 // countUniqueValues([-2,-1,-1,0,1]) // 4
 
-// Time Complexity - O(n)
-// Space Complexity - O(n)
-// Can be done with O(1) space complexity and O(n) time complexity
+// Time Complexity: O(n)
+// Space Complexity: O(1)
 
 /**
- * @param {Array<number>} array
+ * Counts the unique values in a sorted array using the two-pointer technique.
+ * @param {Array<number>} array - The sorted array to count unique values in
+ * @returns {number} The number of unique values in the array
  */
 export function countUniqueValues(array) {
   if (!array.length) return 0;
   if (array.length === 1) return 1;
 
-  // intialize result as let with value of 1
-  let uniqeNumbersCounter = 1;
+  // Initialize result counter with value of 1
+  let uniqueNumbersCounter = 1;
 
-  // initialize leftIndex at 0 element
+  // Initialize leftIndex at 0 element
   let leftIndex = 0;
-  // initialize rightIndex at 1 element
+  // Initialize rightIndex at 1 element
   let rightIndex = leftIndex + 1;
 
-  // if right index is higher or equal than array.length, end the loop
+  // If right index is higher or equal than array.length, end the loop
   while (rightIndex < array.length) {
-    // check if values under both indexes are the same
-
+    // Check if values under both indexes are the same
     const leftValue = array[leftIndex];
     const rightValue = array[rightIndex];
 
     if (leftValue === rightValue) {
-      // if yes, do not increase the uniqeNumbersCounter and increase right index by 1
+      // If yes, do not increase the uniqueNumbersCounter and increase right index by 1
       rightIndex += 1;
     } else {
-      // if no, increase the uniqeNumbersCounter, assign value of right index to left index and increase right index by 1
-      uniqeNumbersCounter += 1;
+      // If no, increase the uniqueNumbersCounter, assign value of right index to left index and increase right index by 1
+      uniqueNumbersCounter += 1;
       leftIndex = rightIndex;
       rightIndex += 1;
     }
   }
 
-  return uniqeNumbersCounter;
+  return uniqueNumbersCounter;
 }

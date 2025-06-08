@@ -14,20 +14,20 @@
 // minSubArrayLen([1, 4, 16, 22, 5, 7, 8, 9, 10], 95); // 0
 
 /**
- * @param {Array<number>} array
- * @param {number} expectedScore
- * @returns {number} length of the shortest subarray which has sum greater than or equal to expectedScore
+ * Finds the minimal length of a contiguous subarray of which the sum is greater than or equal to the target value.
+ * @param {Array<number>} array - The input array of positive integers
+ * @param {number} target - The target sum value
+ * @returns {number} The length of the shortest subarray which has sum greater than or equal to target, or 0 if none exists
  */
-export function minSubArrayLen(array, expectedScore) {
+export function minSubArrayLen(array, target) {
   if (!array.length) return 0;
 
   let start = 0;
   let end = 0;
   let windowTotal = array[start];
   let minWindowWidth = Infinity;
-
   while (end < array.length) {
-    if (windowTotal >= expectedScore) {
+    if (windowTotal >= target) {
       const currentWindowWidth = end - start + 1;
       minWindowWidth = Math.min(minWindowWidth, currentWindowWidth);
 

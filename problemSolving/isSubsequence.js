@@ -9,13 +9,14 @@
 // isSubsequence('abc', 'abracadabra'); // true
 // isSubsequence('abc', 'acb'); // false (order matters)
 
-// Your solution MUST have AT LEAST the following complexities:
-// Time Complexity - O(N + M)
-// Space Complexity - O(1)
+// Time Complexity: O(N + M)
+// Space Complexity: O(1)
 
 /**
- * @param {string} lookup - set of characters to find within the other string
- * @param {string} text - longer string, in which to search for the lookup
+ * Checks whether the characters in the first string form a subsequence of the characters in the second string.
+ * @param {string} lookup - Set of characters to find within the other string
+ * @param {string} text - Longer string, in which to search for the lookup
+ * @returns {boolean} True if lookup is a subsequence of text, false otherwise
  */
 export function isSubsequence(lookup, text) {
   if (lookup.length > text.length) {

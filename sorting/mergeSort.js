@@ -1,8 +1,9 @@
 /**
- * @param {Array<number>} array1
- * @param {Array<number>} array2
+ * Merges two sorted arrays into a single sorted array.
+ * @param {Array<number>} array1 - The first sorted array
+ * @param {Array<number>} array2 - The second sorted array
+ * @returns {Array<number>} The merged sorted array
  */
-
 export function mergeArrays(array1, array2) {
   if (!array1.length) return array2;
   if (!array2.length) return array1;
@@ -34,7 +35,9 @@ export function mergeArrays(array1, array2) {
 }
 
 /**
- * @param {Array<number>} array
+ * Sorts an array using the merge sort algorithm (divide and conquer).
+ * @param {Array<number>} array - The array to be sorted
+ * @returns {Array<number>} The sorted array
  */
 export function mergeSort(array) {
   if (!array.length) return [];

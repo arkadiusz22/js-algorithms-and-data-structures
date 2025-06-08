@@ -2,7 +2,9 @@
 // Return the sum of all even numbers in an object which may contain nested objects.
 
 /**
- * @param {Object} object
+ * Recursively calculates the sum of all even numbers in an object which may contain nested objects.
+ * @param {Object} object - The object to search for even numbers
+ * @returns {number} The sum of all even numbers found
  */
 export function nestedEvenSum(object) {
   let accumulator = 0;
