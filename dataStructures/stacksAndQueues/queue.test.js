@@ -5,7 +5,7 @@ describe("Queue", () => {
   test("enqueue adds elements to the queue and updates first, last, and size correctly", () => {
     const queue = new Queue();
 
-    expect(queue.isEmpty()).toBeTruthy();
+    expect(queue.isEmpty()).toBe(true);
 
     expect(queue.enqueue(10)).toBe(1);
     expect(queue.first.value).toBe(10);
@@ -24,7 +24,7 @@ describe("Queue", () => {
     expect(queue.last.value).toBe(30);
     expect(queue.size).toBe(3);
 
-    expect(queue.isEmpty()).toBeFalsy();
+    expect(queue.isEmpty()).toBe(false);
   });
 
   test("dequeue removes elements correctly, updates first, last, and size, and handles edge cases", () => {

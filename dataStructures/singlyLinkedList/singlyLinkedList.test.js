@@ -85,7 +85,7 @@ describe("SinglyLinkedList", () => {
     expect(list.tail.next).toBeNull();
   });
 
-  test("get retrieves the correct value at a given index and handles edge cases", () => {
+  test("get retrieves the correct node at a given index and handles edge cases", () => {
     const list = new SinglyLinkedList();
 
     expect(list.get(0)).toBeNull();
@@ -157,7 +157,6 @@ describe("SinglyLinkedList", () => {
     expect(list.tail.value).toBe("last");
 
     expect(list.insert(-1, "fail")).toBe(false);
-
     expect(list.insert(100, "fail")).toBe(false);
 
     expect(list.get(0).value).toBe("zero");
@@ -215,7 +214,7 @@ describe("SinglyLinkedList", () => {
 
   test("reverse reverses the list in place and updates head, tail, and next pointers correctly", () => {
     let list = new SinglyLinkedList();
-    list.reverse();
+    expect(list.reverse()).toBeNull();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
     expect(list.length).toBe(0);

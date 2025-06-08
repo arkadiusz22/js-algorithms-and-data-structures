@@ -8,6 +8,7 @@ describe("Stack", () => {
     expect(stack.push(10)).toBe(1);
     expect(stack.first.value).toBe(10);
     expect(stack.size).toBe(1);
+    expect(stack.isEmpty()).toBe(false);
 
     expect(stack.push(20)).toBe(2);
     expect(stack.first.value).toBe(20);
@@ -40,6 +41,7 @@ describe("Stack", () => {
     expect(stack.pop()).toBe(1);
     expect(stack.first).toBeNull();
     expect(stack.size).toBe(0);
+    expect(stack.isEmpty()).toBe(true);
 
     expect(stack.pop()).toBeNull();
   });

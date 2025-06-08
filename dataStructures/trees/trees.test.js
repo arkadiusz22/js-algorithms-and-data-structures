@@ -10,6 +10,7 @@ describe("BinarySearchTree", () => {
       expect(bst.root.value).toBe(10);
       expect(bst.root.left).toBeNull();
       expect(bst.root.right).toBeNull();
+      expect(bst.isEmpty()).toBe(false);
     });
 
     test("insert adds elements correctly based on BST ordering rules", () => {
@@ -61,6 +62,7 @@ describe("BinarySearchTree", () => {
       expect(bst.root.left.right.value).toBe("d");
       expect(bst.root.right.value).toBe("z");
     });
+
     test("find returns null for empty tree and non-existing values", () => {
       const bst = new BinarySearchTree();
 
@@ -149,6 +151,7 @@ describe("BinarySearchTree", () => {
       expect(foundRight.right).toBeNull();
     });
   });
+
   describe("traversal", () => {
     describe("breadthFirstSearch", () => {
       test("handles empty tree and single-node tree correctly", () => {

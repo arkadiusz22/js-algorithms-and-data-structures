@@ -126,7 +126,7 @@ export class DoublyLinkedList {
   }
 
   /**
-   * Returns the value at the given position in the list.
+   * Returns the node at the given position in the list.
    * @param {number} index - The zero-based position of the item in the list.
    * @returns {Node<T>|null} The Node at the given index, or null if out of bounds.
    */
@@ -175,7 +175,7 @@ export class DoublyLinkedList {
   }
 
   /**
-   * Inserts new Node with given value at the specified index in the list.
+   * Inserts a new Node with given value at the specified index in the list.
    * @param {number} index - The zero-based position where to insert the new node.
    * @param {T} value - The new value to insert at the specified index.
    * @returns {boolean} True if the insertion was successful, false otherwise.

@@ -77,4 +77,12 @@ export class Stack {
 
     return this.first.value;
   }
+
+  /**
+   * Checks if the stack is empty.
+   * @returns {boolean} True if the stack is empty, false otherwise.
+   */
+  isEmpty() {
+    return !this.size;
+  }
 }

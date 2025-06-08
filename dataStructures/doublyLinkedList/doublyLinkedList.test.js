@@ -173,7 +173,6 @@ describe("DoublyLinkedList", () => {
   test("insert adds elements at the correct index and updates pointers and length", () => {
     const list = new DoublyLinkedList();
 
-    expect(list.insert).toBeDefined();
     expect(list.insert(0, "first")).toBe(true);
     expect(list.length).toBe(1);
     expect(list.head.value).toBe("first");
@@ -262,13 +261,13 @@ describe("DoublyLinkedList", () => {
   test("reverse reverses the list in place and updates head, tail, and pointers correctly", () => {
     const list = new DoublyLinkedList();
 
-    expect(list.reverse?.()).toBeNull();
+    expect(list.reverse()).toBeNull();
     expect(list.head).toBeNull();
     expect(list.tail).toBeNull();
     expect(list.length).toBe(0);
 
     list.push(1);
-    expect(list.reverse?.()).toBe(list);
+    expect(list.reverse()).toBe(list);
     expect(list.head.value).toBe(1);
     expect(list.tail.value).toBe(1);
     expect(list.head.next).toBeNull();

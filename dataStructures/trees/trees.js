@@ -1,7 +1,7 @@
 import { Queue } from "../stacksAndQueues/queue.js";
 
 /**
- * Represents a Node in a BinarySearchTree linked list.
+ * Represents a Node in a binary search tree.
  * @template T The type of value stored in the Node
  */
 class Node {
@@ -158,5 +158,13 @@ export class BinarySearchTree {
     traverse(this.root);
 
     return values;
+  }
+
+  /**
+   * Checks if the tree is empty.
+   * @returns {boolean} True if the tree is empty, false otherwise.
+   */
+  isEmpty() {
+    return !this.root;
   }
 }
