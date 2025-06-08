@@ -1,8 +1,10 @@
-## Data Structures
+# Data Structures
 
 Data structures are ways to organize and store data to enable efficient access, modification, and management. The choice of data structure impacts the performance and maintainability of your code.
 
-### Common Data Structures
+---
+
+## Common Data Structures
 
 - **Array**: Ordered collection of elements, accessible by index. Fast access, insertion/removal at the end.
 - **Singly Linked List**: Sequence of nodes, each pointing to the next. Efficient inserts/removals at the beginning or end.
@@ -16,15 +18,21 @@ Data structures are ways to organize and store data to enable efficient access, 
 - **Hash Table (Map)**: Key-value pairs with fast access, insertion, and deletion by key. Used for lookups.
 - **Graph**: Set of nodes (vertices) connected by edges. Models networks, relationships, and paths.
 
-### Choosing the Right Data Structure
+---
 
-- **Array**: Use for ordered data with fast access by index.
-- **Linked List**: Use for ordered data with frequent inserts/removals at the beginning or end.
-- **Stack**: Use for undo/redo, call stack, or depth-first traversal.
-- **Queue**: Use for scheduling, buffering, or breadth-first traversal.
-- **Tree**: Use for hierarchical data, like file systems or the DOM.
-- **Graph**: Use for representing networks, maps, or relationships.
-- **Heap**: Use for priority queues or scheduling tasks.
-- **Hash Table**: Use for fast lookups by key.
+## Choosing the Right Data Structure
+
+| Data Structure | Best For                          |
+| -------------- | --------------------------------- |
+| Array          | Ordered data, fast index access   |
+| Linked List    | Frequent inserts/removals at ends |
+| Stack          | Undo/redo, call stack, DFS        |
+| Queue          | Scheduling, buffering, BFS        |
+| Tree           | Hierarchical/nested data          |
+| Graph          | Networks, relationships           |
+| Heap           | Priority queues, scheduling       |
+| Hash Table     | Fast key-based lookups            |
+
+---
 
 Selecting the appropriate data structure is crucial for writing efficient and maintainable code. Each structure has strengths and trade-offs depending on the use case.
