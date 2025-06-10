@@ -1,10 +1,10 @@
 /**
- * Represents a Node in a doubly linked list.
- * @template T The type of value stored in the Node
+ * Represents a node in a doubly linked list.
+ * @template T The type of value stored in the node.
  */
 class Node {
   /**
-   * Create a Node.
+   * Create a node.
    * @param {T} value - The value to store in the new Node.
    */
   constructor(value) {

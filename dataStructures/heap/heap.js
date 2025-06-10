@@ -1,6 +1,6 @@
 /**
- * Represents a Max Binary Heap data structure.
- * @template T The type of values stored in the heap
+ * Represents a max binary heap data structure.
+ * @template T The type of values stored in the heap.
  */
 export class MaxBinaryHeap {
   constructor() {

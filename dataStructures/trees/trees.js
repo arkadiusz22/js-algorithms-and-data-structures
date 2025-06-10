@@ -1,13 +1,13 @@
 import { Queue } from "../stacksAndQueues/queue.js";
 
 /**
- * Represents a Node in a binary search tree.
- * @template T The type of value stored in the Node
+ * Represents a node in a binary search tree.
+ * @template T The type of value stored in the node
  */
 class Node {
   /**
-   * Create a Node.
-   * @param {T} value - The value to store in the new Node.
+   * Create a node.
+   * @param {T} value - The value to store in the new node.
    */
   constructor(value) {
     /** @type {T} */

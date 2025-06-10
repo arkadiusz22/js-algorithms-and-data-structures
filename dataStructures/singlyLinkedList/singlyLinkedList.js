@@ -1,11 +1,11 @@
 /**
- * Represents a Node in a singly linked list.
- * @template T The type of value stored in the Node
+ * Represents a node in a singly linked list.
+ * @template T The type of value stored in the node
  */
 class Node {
   /**
-   * Create a Node.
-   * @param {T} value - The value to store in the new Node.
+   * Create a node.
+   * @param {T} value - The value to store in the new node.
    */
   constructor(value) {
     /** @type {T} */
@@ -36,8 +36,8 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Adds a new Node containing the specified value to the end of the list.
-   * @param {T} value - The value to store in the new Node.
+   * Adds a new node containing the specified value to the end of the list.
+   * @param {T} value - The value to store in the new node.
    * @returns {SinglyLinkedList<T>} The updated list instance.
    */
   push(value) {
@@ -57,8 +57,8 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Removes the Node from the end of the list.
-   * @returns {Node<T>|null} The removed Node, or null if the list is empty.
+   * Removes the node from the end of the list.
+   * @returns {Node<T>|null} The removed node, or null if the list is empty.
    */
   pop() {
     if (!this.length) return null;
@@ -87,8 +87,8 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Removes the Node from the beginning of the list.
-   * @returns {Node<T>|null} The removed Node, or null if the list is empty.
+   * Removes the node from the beginning of the list.
+   * @returns {Node<T>|null} The removed node, or null if the list is empty.
    */
   shift() {
     if (!this.length) return null;
@@ -109,8 +109,8 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Adds a new Node containing the specified value to the beginning of the list.
-   * @param {T} value - The value to store in the new Node.
+   * Adds a new node containing the specified value to the beginning of the list.
+   * @param {T} value - The value to store in the new node.
    * @returns {SinglyLinkedList<T>} The updated list instance.
    */
   unshift(value) {
@@ -129,7 +129,7 @@ export class SinglyLinkedList {
   /**
    * Returns the node at the given position in the list.
    * @param {number} index - The zero-based position of the item in the list.
-   * @returns {Node<T>|null} The Node at the given index, or null if out of bounds.
+   * @returns {Node<T>|null} The node at the given index, or null if out of bounds.
    */
   get(index) {
     if (!this.length || index < 0 || index >= this.length) return null;
@@ -161,7 +161,7 @@ export class SinglyLinkedList {
   }
 
   /**
-   * Inserts a new Node with given value at the specified index in the list.
+   * Inserts a new node with given value at the specified index in the list.
    * @param {number} index - The zero-based position where to insert the new node.
    * @param {T} value - The new value to insert at the specified index.
    * @returns {boolean} True if the insertion was successful, false otherwise.
