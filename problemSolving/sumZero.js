@@ -1,13 +1,3 @@
-// Write a function called 'sumZero', which accepts a sorted array of integers.
-// The function should find the first pair of integers where the sum is 0.
-// Return an array with 2 elements that includes both values.
-// Return undefined if such a pair does not exist.
-
-// Examples:
-// [-3,-2,-1,0,1,2,3] - [-3,3]
-// [-2,0,1,3] - undefined
-// [1,2,3] - undefined
-
 /**
  * Finds the first pair of integers in a sorted array where the sum is 0.
  * @param {Array<number>} array - The sorted array of integers

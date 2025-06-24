@@ -1,6 +1,3 @@
-// Given a longer string (text) and a shorter string (lookup), count how many times the shorter string appears as a substring within the longer string.
-// Return 0 if the shorter string does not appear in the longer string.
-
 /**
  * Counts how many times a shorter string appears as a substring within a longer string.
  * @param {string} text - The longer string to search within

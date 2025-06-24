@@ -41,10 +41,8 @@ export function quickSort(array = [], startIndex = 0, endIndex = array.length - 
   if (endIndex > startIndex) {
     const pivotIndex = pivotHelper(array, startIndex, endIndex);
 
-    // Recursively sort the left part of the array.
     quickSort(array, startIndex, pivotIndex - 1);
 
-    // Recursively sort the right part of the array.
     quickSort(array, pivotIndex + 1, endIndex);
   }
 

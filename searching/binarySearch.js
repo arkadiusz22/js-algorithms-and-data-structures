@@ -1,6 +1,3 @@
-// Write a function called binarySearch which accepts a sorted array and a value and returns the index at which the value exists.
-// Otherwise, return -1.
-
 /**
  * Performs binary search on a sorted array and returns the index of the target value.
  * @param {Array<number>} array - The sorted array to search in

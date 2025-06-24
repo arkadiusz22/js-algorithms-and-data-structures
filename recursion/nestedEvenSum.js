@@ -1,6 +1,3 @@
-// Write a recursive function called nestedEvenSum.
-// Return the sum of all even numbers in an object which may contain nested objects.
-
 /**
  * Recursively calculates the sum of all even numbers in an object which may contain nested objects.
  * @param {Object} object - The object to search for even numbers

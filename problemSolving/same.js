@@ -1,12 +1,3 @@
-// Write a function called 'same', which accepts two arrays.
-// It should return true if every value in the first array has its corresponding value squared in the second array.
-// The frequency of values must be the same.
-
-// Examples:
-// [1,2,3], [4,1,9] - true
-// [1,2,3], [1,9] - false
-// [1,2,1], [4,4,1] - false (wrong frequencies)
-
 /**
  * Checks if every value in the first array has its corresponding value squared in the second array.
  * The frequency of values must be the same.

@@ -19,7 +19,6 @@ export function insertionSort(array) {
       j--;
     }
 
-    // Insert the element at the correct position
     array[j + 1] = elementToInsert;
 
     index++;
