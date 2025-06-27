@@ -31,7 +31,7 @@ export class HashTable {
 
     for (let index = 0; index < Math.min(str.length, MAX_CHARS); index++) {
       let charCode = str.charCodeAt(index);
-      total = (total + charCode * (index + 1) * BASE_PRIME) % this.keyMap.length;
+      total = (total * BASE_PRIME + charCode) % this.keyMap.length;
     }
 
     return total;
@@ -43,7 +43,7 @@ export class HashTable {
    * Uses separate chaining to handle hash collisions.
    * @param {string} key - The key to insert or update. Must be a non-empty string.
    * @param {V} value - The value to associate with the key.
-   * @returns {HashTable<K,V>|null} The hash table instance for chaining, or null if key is invalid.
+   * @returns {HashTable<V>|null} The hash table instance for chaining, or null if key is invalid.
    */
   set(key, value) {
     if (typeof key !== "string" || !key.length) return null;
@@ -84,5 +84,54 @@ export class HashTable {
     const entry = entries.find((entry) => entry.key === key);
 
     return entry ? entry.value : null;
+  }
+
+  /**
+   * Retrieves all keys defined in the hash table
+   * @returns {Array<string> | null} array of keys or null if hash table is empty
+   */
+  keys() {
+    if (!this.size) return null;
+
+    const keys = [];
+
+    for (let index = 0; index < this.keyMap.length; index++) {
+      if (this.keyMap[index]) {
+        for (let j = 0; j < this.keyMap[index].length; j++) {
+          const { key } = this.keyMap[index][j];
+          keys.push(key);
+        }
+      }
+    }
+
+    return keys;
+  }
+
+  /**
+   * Retrieves all unique values stored in the hash table
+   * @returns {Array<V>|null} array of values or null if hash table is empty
+   */
+  values() {
+    if (!this.size) return null;
+
+    const uniqueValues = [];
+    const seen = {};
+
+    for (let index = 0; index < this.keyMap.length; index++) {
+      if (this.keyMap[index]) {
+        for (let j = 0; j < this.keyMap[index].length; j++) {
+          const { value } = this.keyMap[index][j];
+
+          const lookupKey = typeof value === "object" && value !== null ? JSON.stringify(value) : String(value);
+
+          if (!seen[lookupKey]) {
+            seen[lookupKey] = true;
+            uniqueValues.push(value);
+          }
+        }
+      }
+    }
+
+    return uniqueValues;
   }
 }
