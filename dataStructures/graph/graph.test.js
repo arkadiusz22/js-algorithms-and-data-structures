@@ -249,6 +249,51 @@ describe("Graph", () => {
     });
   });
 
+  describe("breadthFirstTraverse", () => {
+    test("breadthFirstTraverse should return correct order of traversed vertices", () => {
+      const graph = new Graph();
+
+      graph.addVertex("A");
+      graph.addVertex("B");
+      graph.addVertex("C");
+      graph.addVertex("D");
+      graph.addVertex("E");
+      graph.addVertex("F");
+
+      graph.addEdge("A", "B");
+      graph.addEdge("A", "C");
+      graph.addEdge("B", "D");
+      graph.addEdge("C", "E");
+      graph.addEdge("D", "E");
+      graph.addEdge("D", "F");
+      graph.addEdge("E", "F");
+
+      expect(graph.breadthFirstTraverse("A")).toStrictEqual(["A", "B", "C", "D", "E", "F"]);
+    });
+
+    test("breadthFirstTraverse should return only the starting vertex if it is disconnected", () => {
+      const graph = new Graph();
+
+      graph.addVertex("A");
+      graph.addVertex("B");
+      graph.addVertex("C");
+
+      expect(graph.breadthFirstTraverse("B")).toStrictEqual(["B"]);
+    });
+
+    test("breadthFirstTraverse should throw error for invalid startingVertex", () => {
+      const graph = new Graph();
+
+      expect(() => graph.breadthFirstTraverse()).toThrowError("'undefined' is not a valid vertex.");
+    });
+
+    test("breadthFirstTraverse should throw error not existing startingVertex", () => {
+      const graph = new Graph();
+
+      expect(() => graph.breadthFirstTraverse("A")).toThrowError("There is no vertex 'A' in the graph.");
+    });
+  });
+
   describe("utilities", () => {
     test("_validateVertexName should throw error for invalid name", () => {
       const graph = new Graph();

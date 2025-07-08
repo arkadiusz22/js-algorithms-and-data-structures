@@ -1,4 +1,5 @@
 import { Stack } from "../stacksAndQueues/stack.js";
+import { Queue } from "../stacksAndQueues/queue.js";
 
 /**
  * Represents an undirected graph data structure capable of storing strings as vertices and edges.
@@ -114,6 +115,7 @@ export class Graph {
 
       if (!neighbors || !neighbors.length) return;
 
+      // Sort neighbors alphabetically for deterministic traversal order
       for (const neighbor of neighbors.sort((a, b) => a.localeCompare(b))) {
         if (visitedVertices[neighbor]) continue;
         depthFirstRecursiveTraverseHelper(neighbor);
@@ -155,6 +157,43 @@ export class Graph {
       // Push neighbors to the stack in reverse alphabetical order so the alphabetically first neighbor is processed first, matching recursive DFS order
       for (const neighbor of neighbors.sort((a, b) => b.localeCompare(a))) {
         stack.push(neighbor);
+      }
+    }
+
+    return traversedOrder;
+  }
+
+  /**
+   * @param {string} startingVertex
+   * @returns {Array<string>}
+   */
+  breadthFirstTraverse(startingVertex) {
+    this._validateVertexName(startingVertex);
+
+    if (!this._hasVertex(startingVertex)) {
+      throw new Error(`There is no vertex '${startingVertex}' in the graph.`);
+    }
+
+    /** @type {Queue<string>} */
+    const queue = new Queue();
+    const traversedOrder = [];
+    const visitedVertices = {};
+
+    visitedVertices[startingVertex] = true;
+    queue.enqueue(startingVertex);
+
+    while (!queue.isEmpty()) {
+      const vertex = queue.dequeue();
+
+      traversedOrder.push(vertex);
+      const neighbors = [...this.adjacencyList[vertex]];
+
+      // Sort neighbors alphabetically for deterministic traversal order
+      for (const neighbor of neighbors.sort((a, b) => a.localeCompare(b))) {
+        if (!visitedVertices[neighbor]) {
+          visitedVertices[neighbor] = true;
+          queue.enqueue(neighbor);
+        }
       }
     }
 
