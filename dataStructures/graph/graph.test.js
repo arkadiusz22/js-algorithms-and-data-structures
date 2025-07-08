@@ -196,8 +196,13 @@ describe("Graph", () => {
     });
   });
 
-  describe("depthFirstRecursiveTraverse", () => {
-    test("depthFirstRecursiveTraverse should return correct order of traversed vertices", () => {
+  describe("depthFirstTraverse methods", () => {
+    const traverseMethods = [
+      ["depthFirstRecursiveTraverse", (graph, vertex) => graph.depthFirstRecursiveTraverse(vertex)],
+      ["depthFirstIterativeTraverse", (graph, vertex) => graph.depthFirstIterativeTraverse(vertex)],
+    ];
+
+    test.each(traverseMethods)("%s should return correct order of traversed vertices", (methodName, traverse) => {
       const graph = new Graph();
 
       graph.addVertex("A");
@@ -215,29 +220,32 @@ describe("Graph", () => {
       graph.addEdge("D", "F");
       graph.addEdge("E", "F");
 
-      expect(graph.depthFirstRecursiveTraverse("A")).toStrictEqual(["A", "B", "D", "E", "C", "F"]);
+      expect(traverse(graph, "A")).toStrictEqual(["A", "B", "D", "E", "C", "F"]);
     });
 
-    test("depthFirstRecursiveTraverse should return only the starting vertex if it is disconnected", () => {
+    test.each(traverseMethods)(
+      "%s should return only the starting vertex if it is disconnected",
+      (methodName, traverse) => {
+        const graph = new Graph();
+
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+
+        expect(traverse(graph, "B")).toStrictEqual(["B"]);
+      }
+    );
+
+    test.each(traverseMethods)("%s should throw error for invalid startingVertex", (methodName, traverse) => {
       const graph = new Graph();
 
-      graph.addVertex("A");
-      graph.addVertex("B");
-      graph.addVertex("C");
-
-      expect(graph.depthFirstRecursiveTraverse("B")).toStrictEqual(["B"]);
+      expect(() => traverse(graph)).toThrowError("'undefined' is not a valid vertex.");
     });
 
-    test("depthFirstRecursiveTraverse should throw error for invalid startingVertex", () => {
+    test.each(traverseMethods)("%s should throw error not existing startingVertex", (methodName, traverse) => {
       const graph = new Graph();
 
-      expect(() => graph.depthFirstRecursiveTraverse()).toThrowError("'undefined' is not a valid vertex.");
-    });
-
-    test("depthFirstRecursiveTraverse should throw error not existing startingVertex", () => {
-      const graph = new Graph();
-
-      expect(() => graph.depthFirstRecursiveTraverse("A")).toThrowError("There is no vertex 'A' in the graph.");
+      expect(() => traverse(graph, "A")).toThrowError("There is no vertex 'A' in the graph.");
     });
   });
 

@@ -1,3 +1,5 @@
+import { Stack } from "../stacksAndQueues/stack.js";
+
 /**
  * Represents an undirected graph data structure capable of storing strings as vertices and edges.
  */
@@ -119,6 +121,42 @@ export class Graph {
     }
 
     depthFirstRecursiveTraverseHelper(startingVertex);
+
+    return traversedOrder;
+  }
+
+  /**
+   * @param {string} startingVertex
+   * @returns {Array<string>}
+   */
+  depthFirstIterativeTraverse(startingVertex) {
+    this._validateVertexName(startingVertex);
+
+    if (!this._hasVertex(startingVertex)) {
+      throw new Error(`There is no vertex '${startingVertex}' in the graph.`);
+    }
+
+    /** @type {Stack<string>} */
+    const stack = new Stack();
+    const traversedOrder = [];
+    const visitedVertices = {};
+
+    stack.push(startingVertex);
+
+    while (!stack.isEmpty()) {
+      const vertex = stack.pop();
+
+      if (visitedVertices[vertex]) continue;
+
+      traversedOrder.push(vertex);
+      visitedVertices[vertex] = true;
+      const neighbors = [...this.adjacencyList[vertex]];
+
+      // Push neighbors to the stack in reverse alphabetical order so the alphabetically first neighbor is processed first, matching recursive DFS order
+      for (const neighbor of neighbors.sort((a, b) => b.localeCompare(a))) {
+        stack.push(neighbor);
+      }
+    }
 
     return traversedOrder;
   }
