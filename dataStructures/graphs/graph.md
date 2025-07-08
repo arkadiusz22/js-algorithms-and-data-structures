@@ -1,4 +1,4 @@
-# Graphs
+# Graph
 
 A **graph** is a fundamental, non-linear data structure used to model relationships between objects. Graphs are made up of **vertices** (nodes) and **edges** (connections). They are more general than trees: each node can have multiple connections, and cycles are allowed.
 
