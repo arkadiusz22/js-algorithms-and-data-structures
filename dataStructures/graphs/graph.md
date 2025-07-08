@@ -85,31 +85,45 @@ Let v = number of vertices, e = number of edges.
 | Query edge    | O(v+e)         | O(1)             |
 | Storage       | O(v+e)         | O(v^2)           |
 
----
-
-## Common Algorithms
-
-- **Breadth-First Search (BFS):** Level-order traversal, shortest path in unweighted graphs
-- **Depth-First Search (DFS):** Explores as deep as possible, used for cycle detection, topological sort
-- **Dijkstra's Algorithm:** Shortest path in weighted graphs (non-negative weights)
-- **Kruskal's/Prim's Algorithms:** Minimum spanning tree
-- **Topological Sort:** Orders nodes in a DAG
-
-### Traversal Applications
-
-- Searching for nodes or paths
-- Pathfinding (shortest/any path)
-- Cycle detection
-- Component analysis (connected components)
-
----
-
 ## Tips & Best Practices
 
 - Use adjacency lists for sparse or large graphs
 - Use adjacency matrices for dense graphs or fast edge queries
 - Choose representation based on graph density and required operations
 - Real-world graphs are often large and sparse
+
+---
+
+## Graph Traversal
+
+Traversal means visiting, updating, or checking each vertex in a graph. In real-world applications, traversing a graph may involve finding the nearest neighbors, the most similar nodes, or the shortest path between two vertices. It does not necessarily mean accessing every vertex in the graph.
+
+Unlike trees, which have a root element, traversing a graph requires defining a starting point.
+
+### Common Algorithms
+
+- **Breadth-First Search (BFS):** Visits nodes level by level; finds the shortest path in unweighted graphs.
+- **Depth-First Search (DFS):** Explores as deep as possible before backtracking; used for cycle detection and topological sorting.
+- **Dijkstra's Algorithm:** Finds the shortest path in weighted graphs with non-negative weights.
+- **Kruskal's/Prim's Algorithms:** Find the minimum spanning tree.
+- **Topological Sort:** Orders nodes in a Directed Acyclic Graph (DAG).
+
+### Traversal Applications
+
+- Searching for nodes or paths
+- Pathfinding (e.g., shortest path problems, GPS, mazes)
+- Cycle detection
+- Component analysis (finding connected components)
+- Web crawling
+- Finding closest matches or recommendations
+
+### Depth-First vs. Breadth-First Graph Traversal
+
+- **Depth-First:** Delays backtracking as long as possible; visits the children, siblings, or neighbors of a visited vertex before backtracking to the previous vertex.
+- **Breadth-First:** Backtracks as early as possible; visits all neighbors of the current vertex, then backtracks and visits all neighbors of the next vertex.
+- **Critical feature:** Remember already visited vertices to avoid cycles and redundant work.
+- **Important feature:** Have a strategy for selecting which neighbor to visit first (e.g., visit neighbors with lower values, closer distance, or alphabetically first).
+- **Dead ends:** If all neighbors have been visited, backtrack to the previously visited vertex.
 
 ---
 

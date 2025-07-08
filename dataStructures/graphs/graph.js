@@ -88,6 +88,42 @@ export class Graph {
   }
 
   /**
+   * @param {string} startingVertex
+   * @returns {Array<string>}
+   */
+  depthFirstRecursiveTraverse(startingVertex) {
+    this._validateVertexName(startingVertex);
+
+    if (!this._hasVertex(startingVertex)) {
+      throw new Error(`There is no vertex '${startingVertex}' in the graph.`);
+    }
+
+    const adjacencyList = this.adjacencyList;
+    const traversedOrder = [];
+    const visitedVertices = {};
+
+    /**
+     * @param {string} vertex
+     */
+    function depthFirstRecursiveTraverseHelper(vertex) {
+      traversedOrder.push(vertex);
+      visitedVertices[vertex] = true;
+      const neighbors = adjacencyList[vertex];
+
+      if (!neighbors || !neighbors.length) return;
+
+      for (const neighbor of neighbors.sort((a, b) => a.localeCompare(b))) {
+        if (visitedVertices[neighbor]) continue;
+        depthFirstRecursiveTraverseHelper(neighbor);
+      }
+    }
+
+    depthFirstRecursiveTraverseHelper(startingVertex);
+
+    return traversedOrder;
+  }
+
+  /**
    * @param {string} vertex
    */
   _validateVertexName(vertex) {
