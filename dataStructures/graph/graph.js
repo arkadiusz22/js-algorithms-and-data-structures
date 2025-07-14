@@ -2,11 +2,11 @@ import { Stack } from "../stacksAndQueues/stack.js";
 import { Queue } from "../stacksAndQueues/queue.js";
 
 /**
- * Represents an undirected graph data structure capable of storing strings as vertices and edges.
+ * Represents an undirected, weighted graph data structure capable of storing vertices as strings.
  */
 export class Graph {
   constructor() {
-    /** @type {Record<string, string[]>} */
+    /** @type {Record<string, Array<{ name: string, weight: number }>>} */
     this.adjacencyList = {};
   }
 
@@ -24,8 +24,9 @@ export class Graph {
   /**
    * @param {string} vertex1
    * @param {string} vertex2
+   * @param {number} weight
    */
-  addEdge(vertex1, vertex2) {
+  addEdge(vertex1, vertex2, weight) {
     for (const vertex of [vertex1, vertex2]) {
       this._validateVertexName(vertex);
 
@@ -38,12 +39,16 @@ export class Graph {
       throw new Error(`Self-loops are not allowed.`);
     }
 
-    if (this.adjacencyList[vertex1].includes(vertex2)) {
+    if (!weight || typeof weight !== "number" || weight <= 0) {
+      throw new Error(`'${weight}' is not a valid edge weight.`);
+    }
+
+    if (this.adjacencyList[vertex1].some((vertex) => vertex.name === vertex2)) {
       throw new Error(`There is already an edge from vertex '${vertex1}' to vertex '${vertex2}'.`);
     }
 
-    this.adjacencyList[vertex1].push(vertex2);
-    this.adjacencyList[vertex2].push(vertex1);
+    this.adjacencyList[vertex1].push({ name: vertex2, weight });
+    this.adjacencyList[vertex2].push({ name: vertex1, weight });
   }
 
   /**
@@ -63,12 +68,12 @@ export class Graph {
       throw new Error(`Self-loops are not allowed.`);
     }
 
-    if (!this.adjacencyList[vertex1].includes(vertex2)) {
+    if (!this.adjacencyList[vertex1].some((vertex) => vertex.name === vertex2)) {
       throw new Error(`There is no edge from vertex '${vertex1}' to vertex '${vertex2}'.`);
     }
 
-    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter((vertex) => vertex !== vertex2);
-    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter((vertex) => vertex !== vertex1);
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter((vertex) => vertex.name !== vertex2);
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter((vertex) => vertex.name !== vertex1);
   }
 
   /**
@@ -84,25 +89,29 @@ export class Graph {
     const vertexEdges = [...this.adjacencyList[vertex]];
 
     for (const vertexEdge of vertexEdges) {
-      this.removeEdge(vertex, vertexEdge);
+      this.removeEdge(vertex, vertexEdge.name);
     }
 
     delete this.adjacencyList[vertex];
   }
 
   /**
-   * @param {string} startingVertex
+   * @param {string} startVertex
    * @returns {Array<string>}
    */
-  depthFirstRecursiveTraverse(startingVertex) {
-    this._validateVertexName(startingVertex);
+  depthFirstRecursiveTraverse(startVertex) {
+    this._validateVertexName(startVertex);
 
-    if (!this._hasVertex(startingVertex)) {
-      throw new Error(`There is no vertex '${startingVertex}' in the graph.`);
+    if (!this._hasVertex(startVertex)) {
+      throw new Error(`There is no vertex '${startVertex}' in the graph.`);
     }
 
     const adjacencyList = this.adjacencyList;
+
+    /** @type {Array<string>} */
     const traversedOrder = [];
+
+    /** @type {Record<string, boolean>} */
     const visitedVertices = {};
 
     /**
@@ -116,37 +125,42 @@ export class Graph {
       if (!neighbors || !neighbors.length) return;
 
       // Sort neighbors alphabetically for deterministic traversal order
-      for (const neighbor of neighbors.sort((a, b) => a.localeCompare(b))) {
-        if (visitedVertices[neighbor]) continue;
-        depthFirstRecursiveTraverseHelper(neighbor);
+      for (const neighbor of neighbors.sort((a, b) => a.name.localeCompare(b.name))) {
+        if (visitedVertices[neighbor.name]) continue;
+        depthFirstRecursiveTraverseHelper(neighbor.name);
       }
     }
 
-    depthFirstRecursiveTraverseHelper(startingVertex);
+    depthFirstRecursiveTraverseHelper(startVertex);
 
     return traversedOrder;
   }
 
   /**
-   * @param {string} startingVertex
+   * @param {string} startVertex
    * @returns {Array<string>}
    */
-  depthFirstIterativeTraverse(startingVertex) {
-    this._validateVertexName(startingVertex);
+  depthFirstIterativeTraverse(startVertex) {
+    this._validateVertexName(startVertex);
 
-    if (!this._hasVertex(startingVertex)) {
-      throw new Error(`There is no vertex '${startingVertex}' in the graph.`);
+    if (!this._hasVertex(startVertex)) {
+      throw new Error(`There is no vertex '${startVertex}' in the graph.`);
     }
 
     /** @type {Stack<string>} */
     const stack = new Stack();
+
+    /** @type {Array<string>} */
     const traversedOrder = [];
+
+    /** @type {Record<string, boolean>} */
     const visitedVertices = {};
 
-    stack.push(startingVertex);
+    stack.push(startVertex);
 
     while (!stack.isEmpty()) {
       const vertex = stack.pop();
+      if (vertex === null) continue;
 
       if (visitedVertices[vertex]) continue;
 
@@ -155,8 +169,8 @@ export class Graph {
       const neighbors = [...this.adjacencyList[vertex]];
 
       // Push neighbors to the stack in reverse alphabetical order so the alphabetically first neighbor is processed first, matching recursive DFS order
-      for (const neighbor of neighbors.sort((a, b) => b.localeCompare(a))) {
-        stack.push(neighbor);
+      for (const neighbor of neighbors.sort((a, b) => b.name.localeCompare(a.name))) {
+        stack.push(neighbor.name);
       }
     }
 
@@ -164,35 +178,40 @@ export class Graph {
   }
 
   /**
-   * @param {string} startingVertex
+   * @param {string} startVertex
    * @returns {Array<string>}
    */
-  breadthFirstTraverse(startingVertex) {
-    this._validateVertexName(startingVertex);
+  breadthFirstTraverse(startVertex) {
+    this._validateVertexName(startVertex);
 
-    if (!this._hasVertex(startingVertex)) {
-      throw new Error(`There is no vertex '${startingVertex}' in the graph.`);
+    if (!this._hasVertex(startVertex)) {
+      throw new Error(`There is no vertex '${startVertex}' in the graph.`);
     }
 
     /** @type {Queue<string>} */
     const queue = new Queue();
+
+    /** @type {Array<string>} */
     const traversedOrder = [];
+
+    /** @type {Record<string, boolean>} */
     const visitedVertices = {};
 
-    visitedVertices[startingVertex] = true;
-    queue.enqueue(startingVertex);
+    visitedVertices[startVertex] = true;
+    queue.enqueue(startVertex);
 
     while (!queue.isEmpty()) {
       const vertex = queue.dequeue();
+      if (vertex === null) continue;
 
       traversedOrder.push(vertex);
       const neighbors = [...this.adjacencyList[vertex]];
 
       // Sort neighbors alphabetically for deterministic traversal order
-      for (const neighbor of neighbors.sort((a, b) => a.localeCompare(b))) {
-        if (!visitedVertices[neighbor]) {
-          visitedVertices[neighbor] = true;
-          queue.enqueue(neighbor);
+      for (const neighbor of neighbors.sort((a, b) => a.name.localeCompare(b.name))) {
+        if (!visitedVertices[neighbor.name]) {
+          visitedVertices[neighbor.name] = true;
+          queue.enqueue(neighbor.name);
         }
       }
     }

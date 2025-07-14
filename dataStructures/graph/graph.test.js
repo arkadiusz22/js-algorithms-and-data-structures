@@ -41,16 +41,26 @@ describe("Graph", () => {
       graph.addVertex("Paris");
       graph.addVertex("London");
 
-      graph.addEdge("Tokyo", "Paris");
-      graph.addEdge("Paris", "Warsaw");
-      graph.addEdge("London", "Warsaw");
-      graph.addEdge("Tokyo", "Warsaw");
+      graph.addEdge("Tokyo", "Paris", 1);
+      graph.addEdge("Paris", "Warsaw", 2);
+      graph.addEdge("London", "Warsaw", 3);
+      graph.addEdge("Tokyo", "Warsaw", 4);
 
       expect(Object.keys(graph.adjacencyList).length).toBe(4);
-      expect(graph.adjacencyList["Tokyo"]).toStrictEqual(["Paris", "Warsaw"]);
-      expect(graph.adjacencyList["Warsaw"]).toStrictEqual(["Paris", "London", "Tokyo"]);
-      expect(graph.adjacencyList["Paris"]).toStrictEqual(["Tokyo", "Warsaw"]);
-      expect(graph.adjacencyList["London"]).toStrictEqual(["Warsaw"]);
+      expect(graph.adjacencyList["Tokyo"]).toStrictEqual([
+        { name: "Paris", weight: 1 },
+        { name: "Warsaw", weight: 4 },
+      ]);
+      expect(graph.adjacencyList["Warsaw"]).toStrictEqual([
+        { name: "Paris", weight: 2 },
+        { name: "London", weight: 3 },
+        { name: "Tokyo", weight: 4 },
+      ]);
+      expect(graph.adjacencyList["Paris"]).toStrictEqual([
+        { name: "Tokyo", weight: 1 },
+        { name: "Warsaw", weight: 2 },
+      ]);
+      expect(graph.adjacencyList["London"]).toStrictEqual([{ name: "Warsaw", weight: 3 }]);
     });
 
     test("addEdge should throw error for invalid name", () => {
@@ -78,11 +88,29 @@ describe("Graph", () => {
 
       graph.addVertex("Tokyo");
       graph.addVertex("Warsaw");
-      graph.addEdge("Tokyo", "Warsaw");
+      graph.addEdge("Tokyo", "Warsaw", 4);
 
-      expect(() => graph.addEdge("Tokyo", "Warsaw")).toThrowError(
+      expect(() => graph.addEdge("Tokyo", "Warsaw", 4)).toThrowError(
         "There is already an edge from vertex 'Tokyo' to vertex 'Warsaw'."
       );
+    });
+
+    test("addEdge should throw error for missing weight", () => {
+      const graph = new Graph();
+
+      graph.addVertex("Tokyo");
+      graph.addVertex("Warsaw");
+
+      expect(() => graph.addEdge("Tokyo", "Warsaw")).toThrowError("'undefined' is not a valid edge weight.");
+    });
+
+    test("addEdge should throw error for negative weight", () => {
+      const graph = new Graph();
+
+      graph.addVertex("Tokyo");
+      graph.addVertex("Warsaw");
+
+      expect(() => graph.addEdge("Tokyo", "Warsaw", -4).toThrowError("'-4' is not a valid edge weight."));
     });
   });
 
@@ -95,19 +123,22 @@ describe("Graph", () => {
       graph.addVertex("Paris");
       graph.addVertex("London");
 
-      graph.addEdge("Tokyo", "Paris");
-      graph.addEdge("Paris", "Warsaw");
-      graph.addEdge("London", "Warsaw");
-      graph.addEdge("Tokyo", "Warsaw");
+      graph.addEdge("Tokyo", "Paris", 1);
+      graph.addEdge("Paris", "Warsaw", 2);
+      graph.addEdge("London", "Warsaw", 3);
+      graph.addEdge("Tokyo", "Warsaw", 4);
 
       graph.removeEdge("Tokyo", "Warsaw");
       graph.removeEdge("Paris", "Tokyo");
 
       expect(Object.keys(graph.adjacencyList).length).toBe(4);
       expect(graph.adjacencyList["Tokyo"]).toStrictEqual([]);
-      expect(graph.adjacencyList["Warsaw"]).toStrictEqual(["Paris", "London"]);
-      expect(graph.adjacencyList["Paris"]).toStrictEqual(["Warsaw"]);
-      expect(graph.adjacencyList["London"]).toStrictEqual(["Warsaw"]);
+      expect(graph.adjacencyList["Warsaw"]).toStrictEqual([
+        { name: "Paris", weight: 2 },
+        { name: "London", weight: 3 },
+      ]);
+      expect(graph.adjacencyList["Paris"]).toStrictEqual([{ name: "Warsaw", weight: 2 }]);
+      expect(graph.adjacencyList["London"]).toStrictEqual([{ name: "Warsaw", weight: 3 }]);
     });
 
     test("removeEdge should throw error for invalid name", () => {
@@ -169,16 +200,17 @@ describe("Graph", () => {
       graph.addVertex("Paris");
       graph.addVertex("London");
 
-      graph.addEdge("Tokyo", "Paris");
-      graph.addEdge("Paris", "Warsaw");
-      graph.addEdge("London", "Warsaw");
-      graph.addEdge("Tokyo", "Warsaw");
+      graph.addEdge("Tokyo", "Paris", 1);
+      graph.addEdge("Paris", "Warsaw", 2);
+      graph.addEdge("London", "Warsaw", 3);
+      graph.addEdge("Tokyo", "Warsaw", 4);
 
       graph.removeVertex("Warsaw");
 
       expect(Object.keys(graph.adjacencyList).length).toBe(3);
-      expect(graph.adjacencyList["Tokyo"]).toStrictEqual(["Paris"]);
-      expect(graph.adjacencyList["Paris"]).toStrictEqual(["Tokyo"]);
+
+      expect(graph.adjacencyList["Tokyo"]).toStrictEqual([{ name: "Paris", weight: 1 }]);
+      expect(graph.adjacencyList["Paris"]).toStrictEqual([{ name: "Tokyo", weight: 1 }]);
       expect(graph.adjacencyList["London"]).toStrictEqual([]);
       expect(graph.adjacencyList["Warsaw"]).not.toBeDefined();
     });
@@ -196,32 +228,44 @@ describe("Graph", () => {
     });
   });
 
-  describe("depthFirstTraverse methods", () => {
+  describe("depth and breadth traverse methods", () => {
     const traverseMethods = [
-      ["depthFirstRecursiveTraverse", (graph, vertex) => graph.depthFirstRecursiveTraverse(vertex)],
-      ["depthFirstIterativeTraverse", (graph, vertex) => graph.depthFirstIterativeTraverse(vertex)],
+      [
+        "depthFirstRecursiveTraverse",
+        (graph, vertex) => graph.depthFirstRecursiveTraverse(vertex),
+        ["A", "B", "D", "E", "C", "F"],
+      ],
+      [
+        "depthFirstIterativeTraverse",
+        (graph, vertex) => graph.depthFirstIterativeTraverse(vertex),
+        ["A", "B", "D", "E", "C", "F"],
+      ],
+      ["breadthFirstTraverse", (graph, vertex) => graph.breadthFirstTraverse(vertex), ["A", "B", "C", "D", "E", "F"]],
     ];
 
-    test.each(traverseMethods)("%s should return correct order of traversed vertices", (methodName, traverse) => {
-      const graph = new Graph();
+    test.each(traverseMethods)(
+      "%s should return correct order of traversed vertices",
+      (methodName, traverse, expectedTraverseOrder) => {
+        const graph = new Graph();
 
-      graph.addVertex("A");
-      graph.addVertex("B");
-      graph.addVertex("C");
-      graph.addVertex("D");
-      graph.addVertex("E");
-      graph.addVertex("F");
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
+        graph.addVertex("F");
 
-      graph.addEdge("A", "B");
-      graph.addEdge("A", "C");
-      graph.addEdge("B", "D");
-      graph.addEdge("C", "E");
-      graph.addEdge("D", "E");
-      graph.addEdge("D", "F");
-      graph.addEdge("E", "F");
+        graph.addEdge("A", "B", 1);
+        graph.addEdge("A", "C", 2);
+        graph.addEdge("B", "D", 3);
+        graph.addEdge("C", "E", 4);
+        graph.addEdge("D", "E", 5);
+        graph.addEdge("D", "F", 6);
+        graph.addEdge("E", "F", 7);
 
-      expect(traverse(graph, "A")).toStrictEqual(["A", "B", "D", "E", "C", "F"]);
-    });
+        expect(traverse(graph, "A")).toStrictEqual(expectedTraverseOrder);
+      }
+    );
 
     test.each(traverseMethods)(
       "%s should return only the starting vertex if it is disconnected",
@@ -246,51 +290,6 @@ describe("Graph", () => {
       const graph = new Graph();
 
       expect(() => traverse(graph, "A")).toThrowError("There is no vertex 'A' in the graph.");
-    });
-  });
-
-  describe("breadthFirstTraverse", () => {
-    test("breadthFirstTraverse should return correct order of traversed vertices", () => {
-      const graph = new Graph();
-
-      graph.addVertex("A");
-      graph.addVertex("B");
-      graph.addVertex("C");
-      graph.addVertex("D");
-      graph.addVertex("E");
-      graph.addVertex("F");
-
-      graph.addEdge("A", "B");
-      graph.addEdge("A", "C");
-      graph.addEdge("B", "D");
-      graph.addEdge("C", "E");
-      graph.addEdge("D", "E");
-      graph.addEdge("D", "F");
-      graph.addEdge("E", "F");
-
-      expect(graph.breadthFirstTraverse("A")).toStrictEqual(["A", "B", "C", "D", "E", "F"]);
-    });
-
-    test("breadthFirstTraverse should return only the starting vertex if it is disconnected", () => {
-      const graph = new Graph();
-
-      graph.addVertex("A");
-      graph.addVertex("B");
-      graph.addVertex("C");
-
-      expect(graph.breadthFirstTraverse("B")).toStrictEqual(["B"]);
-    });
-
-    test("breadthFirstTraverse should throw error for invalid startingVertex", () => {
-      const graph = new Graph();
-
-      expect(() => graph.breadthFirstTraverse()).toThrowError("'undefined' is not a valid vertex.");
-    });
-
-    test("breadthFirstTraverse should throw error not existing startingVertex", () => {
-      const graph = new Graph();
-
-      expect(() => graph.breadthFirstTraverse("A")).toThrowError("There is no vertex 'A' in the graph.");
     });
   });
 
