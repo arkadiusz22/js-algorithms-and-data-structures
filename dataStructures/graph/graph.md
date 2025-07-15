@@ -127,6 +127,34 @@ Unlike trees, which have a root element, traversing a graph requires defining a 
 
 ---
 
+## Dijkstra's Algorithm
+
+Algorithm for finding the shortest path between two selected vertices in a weighted graph, with non-negative edge weights, using a priority queue.
+
+### Modern applications
+
+- GPS navigation (finding shortest driving routes)
+- Network routing (optimal data transfer paths)
+- Pathfinding in games and maps
+- Analyzing social or transportation networks, e.g disease spread, cheapes airline connection.
+
+### Key Points
+
+- Works only with non-negative edge weights.
+- Always explore the closest unvisited vertex.
+- Update distances only if a shorter path is found.
+- Track the previous vertex with shortest path for each node to reconstruct the shortest path.
+
+### Steps
+
+1. List all nodes as unvisited.
+2. Set the start node distance to 0 and all other nodes to infinity.
+3. While there are unvisited nodes with finite distances:
+   - Choose the unvisited node with the smallest distance.
+   - For each unvisited neighbor, calculate the distance via this node and update if it’s smaller.
+   - Mark the current node as visited.
+4. When no unvisited nodes with finite distances remain, the recorded distances are the shortest paths.
+
 ## Summary
 
 Graphs are versatile structures for modeling relationships and networks. Understanding their types, representations, and algorithms is essential for solving many real-world and computational problems.

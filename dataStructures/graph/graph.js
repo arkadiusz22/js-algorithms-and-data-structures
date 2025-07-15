@@ -1,5 +1,6 @@
 import { Stack } from "../stacksAndQueues/stack.js";
 import { Queue } from "../stacksAndQueues/queue.js";
+import { PriorityQueue } from "../heap/priorityQueue.js";
 
 /**
  * Represents an undirected, weighted graph data structure capable of storing vertices as strings.
@@ -217,6 +218,78 @@ export class Graph {
     }
 
     return traversedOrder;
+  }
+
+  /**
+   * @param {string} startVertex
+   * @param {string} endVertex
+   * @returns {Array<string> | null} An array of vertex names representing the shortest path, or null if no path exists.
+   */
+  findShortestPath(startVertex, endVertex) {
+    for (const vertex of [startVertex, endVertex]) {
+      this._validateVertexName(vertex);
+
+      if (!this._hasVertex(vertex)) {
+        throw new Error(`There is no vertex '${vertex}' in the graph.`);
+      }
+    }
+
+    if (startVertex === endVertex) {
+      throw new Error(`Self-loops are not allowed.`);
+    }
+
+    /** @type {Record<string, number>} */
+    const shortestDistances = {};
+
+    /** @type {PriorityQueue<string>} */
+    const unvisitedQueue = new PriorityQueue();
+
+    /** @type {Record<string, string | null>} */
+    const predecessors = {};
+
+    for (const vertex of Object.keys(this.adjacencyList)) {
+      shortestDistances[vertex] = vertex === startVertex ? 0 : Infinity;
+      predecessors[vertex] = null;
+    }
+    unvisitedQueue.enqueue(startVertex, 0);
+
+    while (!unvisitedQueue.isEmpty()) {
+      const currentVertexName = unvisitedQueue.dequeue();
+
+      if (currentVertexName === null) continue;
+
+      if (shortestDistances[currentVertexName] === Infinity) break;
+
+      if (currentVertexName === endVertex) {
+        const shortestPath = [];
+        let current = endVertex;
+
+        while (current) {
+          shortestPath.unshift(current);
+          current = predecessors[current];
+        }
+
+        // If no path exists, the reconstructed path will not start with the start vertex
+        if (shortestPath[0] !== startVertex) return null;
+
+        return shortestPath;
+      }
+
+      // Sort neighbors alphabetically for deterministic order
+      for (const neighborVertex of [...this.adjacencyList[currentVertexName]].sort((a, b) =>
+        a.name.localeCompare(b.name)
+      )) {
+        const newDistance = shortestDistances[currentVertexName] + neighborVertex.weight;
+
+        if (newDistance < shortestDistances[neighborVertex.name]) {
+          shortestDistances[neighborVertex.name] = newDistance;
+          predecessors[neighborVertex.name] = currentVertexName;
+          unvisitedQueue.enqueue(neighborVertex.name, newDistance);
+        }
+      }
+    }
+
+    return null;
   }
 
   /**

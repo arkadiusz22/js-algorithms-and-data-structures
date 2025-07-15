@@ -293,6 +293,78 @@ describe("Graph", () => {
     });
   });
 
+  describe("findShortestPath", () => {
+    test("findShortestPath should return correct path for a trivial graph", () => {
+      const graph = new Graph();
+
+      graph.addVertex("P");
+      graph.addVertex("Q");
+      graph.addEdge("P", "Q", 1);
+
+      expect(graph.findShortestPath("P", "Q")).toStrictEqual(["P", "Q"]);
+    });
+
+    test("findShortestPath should retturn correct shortest paths between given vertices", () => {
+      const graph = new Graph();
+
+      graph.addVertex("A");
+      graph.addVertex("B");
+      graph.addVertex("C");
+      graph.addVertex("D");
+      graph.addVertex("E");
+      graph.addVertex("F");
+
+      graph.addEdge("A", "B", 4);
+      graph.addEdge("A", "C", 2);
+      graph.addEdge("B", "E", 3);
+      graph.addEdge("C", "D", 2);
+      graph.addEdge("C", "F", 4);
+      graph.addEdge("D", "E", 3);
+      graph.addEdge("D", "F", 1);
+      graph.addEdge("E", "F", 1);
+
+      expect(graph.findShortestPath("A", "E")).toStrictEqual(["A", "C", "D", "F", "E"]);
+      expect(graph.findShortestPath("A", "F")).toStrictEqual(["A", "C", "D", "F"]);
+      expect(graph.findShortestPath("A", "D")).toStrictEqual(["A", "C", "D"]);
+      expect(graph.findShortestPath("A", "B")).toStrictEqual(["A", "B"]);
+      expect(graph.findShortestPath("B", "F")).toStrictEqual(["B", "E", "F"]);
+      expect(graph.findShortestPath("C", "E")).toStrictEqual(["C", "D", "F", "E"]);
+      expect(graph.findShortestPath("E", "A")).toStrictEqual(["E", "F", "D", "C", "A"]);
+    });
+
+    test("findShortestPath should throw error for invalid name", () => {
+      const graph = new Graph();
+
+      expect(() => graph.findShortestPath()).toThrowError("'undefined' is not a valid vertex.");
+    });
+
+    test("findShortestPath should throw error for not existing vertex", () => {
+      const graph = new Graph();
+
+      expect(() => graph.findShortestPath("Tokyo")).toThrowError("There is no vertex 'Tokyo' in the graph.");
+    });
+
+    test("findShortestPath should throw error for self looping edge", () => {
+      const graph = new Graph();
+
+      graph.addVertex("Tokyo");
+
+      expect(() => graph.findShortestPath("Tokyo", "Tokyo")).toThrowError("Self-loops are not allowed.");
+    });
+
+    test("findShortestPath should return null when there is no valid path", () => {
+      const graph = new Graph();
+
+      graph.addVertex("A");
+      graph.addVertex("B");
+      graph.addVertex("C");
+
+      graph.addEdge("A", "C", 2);
+
+      expect(graph.findShortestPath("A", "B")).toBeNull();
+    });
+  });
+
   describe("utilities", () => {
     test("_validateVertexName should throw error for invalid name", () => {
       const graph = new Graph();
