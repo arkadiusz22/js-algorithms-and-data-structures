@@ -1,4 +1,4 @@
-import { Queue } from "../stacksAndQueues/queue.js";
+import { Queue } from "../queue/queue.js";
 
 /**
  * Represents a node in a binary search tree.

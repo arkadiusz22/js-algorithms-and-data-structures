@@ -1,6 +1,6 @@
-import { Stack } from "../stacksAndQueues/stack.js";
-import { Queue } from "../stacksAndQueues/queue.js";
-import { PriorityQueue } from "../heap/priorityQueue.js";
+import { Stack } from "../stack/stack.js";
+import { Queue } from "../queue/queue.js";
+import { PriorityQueue } from "../priorityQueue/priorityQueue.js";
 
 /**
  * Represents an undirected, weighted graph data structure capable of storing vertices as strings.
