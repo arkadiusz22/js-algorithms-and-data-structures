@@ -8,6 +8,7 @@ import { minSubArrayLen } from "./minSubArrayLen.js";
 import { isSubsequence } from "./isSubsequence.js";
 import { countUniqueValues } from "./countUniqueValues.js";
 import { sortedFrequency } from "./sortedFrequency.js";
+import { primeGeneration } from "./primeGeneration.js";
 
 describe("validAnagram", () => {
   test("should return true for empty strings", () => {
@@ -136,5 +137,42 @@ describe("sortedFrequency", () => {
 
   test("should return -1 if number is not in the array", () => {
     expect(sortedFrequency([1, 1, 2, 2, 2, 2, 3], 4)).toBe(-1);
+  });
+});
+
+describe("primeGeneration", () => {
+  test("should return empty array for n lower than 2", () => {
+    expect(primeGeneration(0)).toStrictEqual([]);
+    expect(primeGeneration(1)).toStrictEqual([]);
+    expect(primeGeneration(-10)).toStrictEqual([]);
+  });
+
+  test("should return [2] for n = 3", () => {
+    expect(primeGeneration(3)).toStrictEqual([2]);
+  });
+
+  test("should return [2, 3] for n = 5", () => {
+    expect(primeGeneration(5)).toStrictEqual([2, 3]);
+  });
+
+  test("should return correct primes for n = 17", () => {
+    expect(primeGeneration(17)).toStrictEqual([2, 3, 5, 7, 11, 13]);
+  });
+
+  test("should return correct primes for n = 35", () => {
+    expect(primeGeneration(35)).toStrictEqual([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]);
+  });
+
+  test("should return correct primes for n = 100", () => {
+    expect(primeGeneration(100)).toStrictEqual([
+      2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97,
+    ]);
+  });
+
+  test("should handle large n efficiently (n = 1000)", () => {
+    const primes = primeGeneration(1000);
+    expect(primes.length).toBe(168);
+    expect(primes[0]).toBe(2);
+    expect(primes[primes.length - 1]).toBe(997);
   });
 });
