@@ -3,6 +3,7 @@ import { factorial } from "./factorial.js";
 import { productOfArray } from "./productOfArray.js";
 import { nestedEvenSum } from "./nestedEvenSum.js";
 import { flatten } from "./flatten.js";
+import { findGCD } from "./findGDC.js";
 
 describe("factorial", () => {
   test("should calculate factorial of small numbers", () => {
@@ -79,5 +80,24 @@ describe("flatten", () => {
 
   test("should handle empty array", () => {
     expect(flatten([])).toEqual([]);
+  });
+});
+
+describe("findGCD", () => {
+  test.each`
+    a       | b      | expected
+    ${5}    | ${10}  | ${5}
+    ${888}  | ${54}  | ${6}
+    ${1180} | ${482} | ${2}
+    ${80}   | ${30}  | ${10}
+    ${7}    | ${15}  | ${1}
+    ${9}    | ${0}   | ${9}
+    ${0}    | ${2}   | ${2}
+  `("should return $expected as gcd for $a and $b", ({ a, b, expected }) => {
+    expect(findGCD(a, b)).toBe(expected);
+  });
+
+  test("should throw error when both a and b are 0", () => {
+    expect(() => findGCD(0, 0)).toThrowError("GCD is undefined for (0, 0)");
   });
 });
