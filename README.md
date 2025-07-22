@@ -4,9 +4,6 @@ Based on https://www.udemy.com/course/js-algorithms-and-data-structures-mastercl
 
 # Next steps
 
-3. Disjoint Set / Union-Find (DSU)
-   Disjoint Set / Union-Find dataStructures/disjointSet/ (new)
-
 4. Trie (Prefix Tree)
    Trie (Prefix Tree) dataStructures/trie/ (new)
 
