@@ -1,10 +1,19 @@
-class DisjointSet {
+/**
+ * Represents a DisjointSet data structure capable of storing numbers.
+ */
+export class DisjointSet {
   constructor() {
+    /** @type {Array<number>} */
     this.parent = [];
+
+    /** @type {Array<number>} */
     this.rank = [];
+
+    /** @type {Array<number>} */
     this.size = [];
   }
 
+  /** @param {number} x */
   makeSet(x) {
     if (this.parent[x] !== undefined) return;
     this.parent[x] = x;
@@ -12,6 +21,10 @@ class DisjointSet {
     this.size[x] = 1;
   }
 
+  /**
+   * @param {number} x
+   * @returns {number}
+   */
   findRoot(x) {
     if (this.parent[x] === x) {
       return x;
@@ -22,7 +35,9 @@ class DisjointSet {
   }
 
   /**
-   * by rank
+   * union by rank
+   * @param {number} x
+   * @param {number} y
    */
   union(x, y) {
     const rootX = this.findRoot(x);
@@ -48,6 +63,8 @@ class DisjointSet {
 
   /**
    *  union by size - for learning purposes
+   * @param {number} x
+   * @param {number} y
    */
   _unionBySize(x, y) {
     const rootX = this.findRoot(x);
