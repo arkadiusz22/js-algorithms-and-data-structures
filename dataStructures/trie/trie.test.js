@@ -128,8 +128,8 @@ describe("trie", () => {
     const trie = new Trie();
 
     expect(trie.delete("cat")).toBe(false);
-
-    // TODO: add more expects
+    expect(trie.search("cat")).toBe(false);
+    expect(trie.root._isEmpty()).toBe(true);
   });
 
   test("delete returns true when trying to remove 'cat', from trie containing 'cat and 'apple'", () => {
@@ -139,8 +139,10 @@ describe("trie", () => {
     trie.insert("apple");
 
     expect(trie.delete("cat")).toBe(true);
-
-    // TODO: add more expects
+    expect(trie.search("cat")).toBe(false);
+    expect(trie.search("apple")).toBe(true);
+    expect(trie.startsWith("ca")).toBe(false);
+    expect(trie.startsWith("ap")).toBe(true);
   });
 
   test("delete returns true when removing 'caterpillar', from trie containing 'cat' and 'caterpillar'", () => {
@@ -150,12 +152,9 @@ describe("trie", () => {
     trie.insert("caterpillar");
 
     expect(trie.delete("caterpillar")).toBe(true);
-
-    for (let index = 0; index < 26; index++) {
-      expect(trie.root.children[index]).toBeNull();
-    }
-
-    // TODO: add more expects
+    expect(trie.search("caterpillar")).toBe(false);
+    expect(trie.search("cat")).toBe(true);
+    expect(trie.startsWith("cat")).toBe(true);
   });
 
   test("delete returns true when removing 'machine', from trie containing 'machine' and 'machinable'", () => {
@@ -165,19 +164,9 @@ describe("trie", () => {
     trie.insert("machinable");
 
     expect(trie.delete("machine")).toBe(true);
-
-    // TODO: add more expects
-  });
-
-  test("delete returns true when removing 'machine', from trie containing 'machinable'", () => {
-    const trie = new Trie();
-
-    trie.insert("machine");
-    trie.insert("machinable");
-
-    expect(trie.delete("machine")).toBe(true);
-
-    // TODO: add more expects
+    expect(trie.search("machine")).toBe(false);
+    expect(trie.search("machinable")).toBe(true);
+    expect(trie.startsWith("machin")).toBe(true);
   });
 
   test("_isEmpty returns true for empty node", () => {
