@@ -2,7 +2,7 @@ import { Trie } from "./trie.js";
 import { describe, expect, test } from "@jest/globals";
 
 describe("trie", () => {
-  test("insert adds 'cat' to empty trie ", () => {
+  test("insert adds 'cat' to empty trie", () => {
     const trie = new Trie();
 
     trie.insert("cat");
@@ -40,7 +40,7 @@ describe("trie", () => {
     expect(tNode.isWord).toBe(true);
   });
 
-  test("insert adds 'cat' and 'car' to empty trie ", () => {
+  test("insert adds 'cat' and 'car' to empty trie", () => {
     const trie = new Trie();
 
     trie.insert("cat");
@@ -64,7 +64,7 @@ describe("trie", () => {
     expect(tNode.isWord).toBe(true);
   });
 
-  test("insert adds 'app' to trie containing 'apple ", () => {
+  test("insert adds 'app' to trie containing 'apple'", () => {
     const trie = new Trie();
 
     trie.insert("apple");
@@ -96,7 +96,7 @@ describe("trie", () => {
     expect(p2Node.isWord).toBe(true);
   });
 
-  test("search returns correctly for trie containing 'cat' and 'car' ", () => {
+  test("search returns correctly for trie containing 'cat' and 'car'", () => {
     const trie = new Trie();
 
     trie.insert("cat");
@@ -109,7 +109,7 @@ describe("trie", () => {
     expect(trie.search("caterpillar")).toBe(false);
   });
 
-  test("startsWith returns correctly for trie containing 'cat' and 'car' ", () => {
+  test("startsWith returns correctly for trie containing 'cat' and 'car ", () => {
     const trie = new Trie();
 
     trie.insert("cat");
@@ -122,5 +122,83 @@ describe("trie", () => {
 
     expect(trie.startsWith("apple")).toBe(false);
     expect(trie.startsWith("caterpillar")).toBe(false);
+  });
+
+  test("delete returns false when trying to remove 'cat', from empty trie", () => {
+    const trie = new Trie();
+
+    expect(trie.delete("cat")).toBe(false);
+
+    // TODO: add more expects
+  });
+
+  test("delete returns true when trying to remove 'cat', from trie containing 'cat and 'apple'", () => {
+    const trie = new Trie();
+
+    trie.insert("cat");
+    trie.insert("apple");
+
+    expect(trie.delete("cat")).toBe(true);
+
+    // TODO: add more expects
+  });
+
+  test("delete returns true when removing 'caterpillar', from trie containing 'cat' and 'caterpillar'", () => {
+    const trie = new Trie();
+
+    trie.insert("cat");
+    trie.insert("caterpillar");
+
+    expect(trie.delete("caterpillar")).toBe(true);
+
+    for (let index = 0; index < 26; index++) {
+      expect(trie.root.children[index]).toBeNull();
+    }
+
+    // TODO: add more expects
+  });
+
+  test("delete returns true when removing 'machine', from trie containing 'machine' and 'machinable'", () => {
+    const trie = new Trie();
+
+    trie.insert("machine");
+    trie.insert("machinable");
+
+    expect(trie.delete("machine")).toBe(true);
+
+    // TODO: add more expects
+  });
+
+  test("delete returns true when removing 'machine', from trie containing 'machinable'", () => {
+    const trie = new Trie();
+
+    trie.insert("machine");
+    trie.insert("machinable");
+
+    expect(trie.delete("machine")).toBe(true);
+
+    // TODO: add more expects
+  });
+
+  test("_isEmpty returns true for empty node", () => {
+    const trie = new Trie();
+
+    expect(trie.root._isEmpty()).toBe(true);
+  });
+
+  test("_isEmpty returns false for non empty node", () => {
+    const trie = new Trie();
+
+    trie.insert("cat");
+
+    expect(trie.root._isEmpty()).toBe(false);
+  });
+
+  test("_getCharCode returns correct codes", () => {
+    const trie = new Trie();
+
+    expect(trie._getCharCode("a")).toBe(0);
+    expect(trie._getCharCode("n")).toBe(13);
+    expect(trie._getCharCode("z")).toBe(25);
   });
 });

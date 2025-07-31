@@ -1,17 +1,28 @@
+const LOWERCASE_ASCII_LETTER_OFFSET = 97;
+const ALPHABET_SIZE = 26;
+
 /**
  * Represents a letter node in a trie.
  */
 class Node {
   constructor() {
     /** @type {Array<Node | null>} */
-    this.children = Array.from({ length: 26 }).fill(null);
+    this.children = Array.from({ length: ALPHABET_SIZE }).fill(null);
 
     /** @type {boolean} */
     this.isWord = false;
   }
-}
 
-const LOWERCASE_ASCII_LETTER_OFFSET = 97;
+  /**
+   * @returns {boolean} true if node does not have any children
+   */
+  _isEmpty() {
+    for (let index = 0; index < ALPHABET_SIZE; index++) {
+      if (this.children[index] !== null) return false;
+    }
+    return true;
+  }
+}
 
 /**
  * Represents a trie data structure for lowercase letters
@@ -64,7 +75,42 @@ export class Trie {
    * @returns {boolean} true if element was deleted
    */
   delete(word) {
-    return false;
+    /**
+     * @param {Node} node
+     * @param {string} word
+     * @param {number} depth
+     * @returns {boolean} true if element should be deleted
+     */
+    const shouldRemoveNode = (node, word, depth) => {
+      if (word.length === depth) {
+        // if it's the last char in the word - remove its isWord indicator
+        node.isWord = false;
+
+        // if the node is empty - mark as the node which should be deleted
+        return node._isEmpty();
+      } else {
+        const charCode = this._getCharCode(word[depth]);
+        const child = node.children[charCode];
+        if (child === null) return false;
+
+        // if not the last char in the word - check the following char
+        const shouldRemoveNextNode = shouldRemoveNode(child, word, depth + 1);
+
+        // if next is true - should be deleted - remove it from the trie
+        if (shouldRemoveNextNode) {
+          node.children[charCode] = null;
+        }
+
+        return node._isEmpty() && !node.isWord;
+      }
+    };
+
+    if (this.search(word)) {
+      shouldRemoveNode(this.root, word, 0);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
