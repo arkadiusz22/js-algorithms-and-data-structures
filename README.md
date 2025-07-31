@@ -1,11 +1,8 @@
 Based on https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass
 
+Enahnced with tests and additional concepts
+
 ---
-
-# Next steps
-
-4. Trie (Prefix Tree)
-   Trie (Prefix Tree) dataStructures/trie/ (new)
 
 5. String Algorithms
    KMP (Knuth-Morris-Pratt)
