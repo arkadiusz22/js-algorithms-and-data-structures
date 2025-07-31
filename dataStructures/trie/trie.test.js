@@ -63,4 +63,64 @@ describe("trie", () => {
     expect(rNode.isWord).toBe(true);
     expect(tNode.isWord).toBe(true);
   });
+
+  test("insert adds 'app' to trie containing 'apple ", () => {
+    const trie = new Trie();
+
+    trie.insert("apple");
+
+    const aNode = trie.root.children[0];
+    expect(aNode).toBeDefined();
+    expect(trie.root.isWord).toBe(false);
+
+    const p1Node = aNode.children[15];
+    expect(p1Node).toBeDefined();
+    expect(aNode.isWord).toBe(false);
+
+    const p2Node = p1Node.children[15];
+    expect(p2Node).toBeDefined();
+    expect(p1Node.isWord).toBe(false);
+
+    const lNode = p2Node.children[11];
+    expect(lNode).toBeDefined();
+    expect(p2Node.isWord).toBe(false);
+
+    const eNode = lNode.children[4];
+    expect(eNode).toBeDefined();
+    expect(lNode.isWord).toBe(false);
+
+    expect(eNode.isWord).toBe(true);
+
+    trie.insert("app");
+
+    expect(p2Node.isWord).toBe(true);
+  });
+
+  test("search returns correctly for trie containing 'cat' and 'car' ", () => {
+    const trie = new Trie();
+
+    trie.insert("cat");
+    trie.insert("car");
+
+    expect(trie.search("cat")).toBe(true);
+    expect(trie.search("car")).toBe(true);
+
+    expect(trie.search("apple")).toBe(false);
+    expect(trie.search("caterpillar")).toBe(false);
+  });
+
+  test("startsWith returns correctly for trie containing 'cat' and 'car' ", () => {
+    const trie = new Trie();
+
+    trie.insert("cat");
+    trie.insert("car");
+
+    expect(trie.startsWith("c")).toBe(true);
+    expect(trie.startsWith("ca")).toBe(true);
+    expect(trie.startsWith("cat")).toBe(true);
+    expect(trie.startsWith("car")).toBe(true);
+
+    expect(trie.startsWith("apple")).toBe(false);
+    expect(trie.startsWith("caterpillar")).toBe(false);
+  });
 });

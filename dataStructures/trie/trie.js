@@ -25,22 +25,20 @@ export class Trie {
    * @param {string} word
    */
   insert(word) {
-    let parent = this.root;
+    let node = this.root;
 
     for (let index = 0; index < word.length; index++) {
-      const char = word[index];
+      const charCode = this._getCharCode(word[index]);
 
-      const charCode = char.toLowerCase().charCodeAt(0) - LOWERCASE_ASCII_LETTER_OFFSET;
-
-      if (parent.children[charCode] === null) {
+      if (node.children[charCode] === null) {
         const newNode = new Node();
-        parent.children[charCode] = newNode;
-        parent = newNode;
+        node.children[charCode] = newNode;
+        node = newNode;
       } else {
-        parent = parent.children[charCode];
+        node = node.children[charCode];
       }
     }
-    parent.isWord = true;
+    node.isWord = true;
   }
 
   /**
@@ -48,7 +46,8 @@ export class Trie {
    * @returns {boolean} true if word was inserted before
    */
   search(word) {
-    return false;
+    const node = this._findNode(word);
+    return node !== null && node.isWord;
   }
 
   /**
@@ -56,7 +55,8 @@ export class Trie {
    * @returns {boolean} true if word with the specified prefix was inserted before
    */
   startsWith(prefix) {
-    return false;
+    const node = this._findNode(prefix);
+    return node !== null;
   }
 
   /**
@@ -65,5 +65,31 @@ export class Trie {
    */
   delete(word) {
     return false;
+  }
+
+  /**
+   * @param {string} word
+   * @returns {Node | null}
+   */
+  _findNode(word) {
+    let node = this.root;
+
+    for (let index = 0; index < word.length; index++) {
+      const charCode = this._getCharCode(word[index]);
+
+      node = node.children[charCode];
+
+      if (node === null) return null;
+    }
+
+    return node;
+  }
+
+  /**
+   * @param {string} char
+   * @returns {number}
+   */
+  _getCharCode(char) {
+    return char.toLowerCase().charCodeAt(0) - LOWERCASE_ASCII_LETTER_OFFSET;
   }
 }
