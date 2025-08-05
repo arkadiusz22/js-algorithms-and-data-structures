@@ -1,17 +1,17 @@
-Based on https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass
+Based on https://www.udemy.com/course/js-algorithms-and-data-structures-masterclass.
 
-Enahnced with tests and additional concepts
+Enahnced with jsdocs, tests and many additional concepts.
 
 ---
 
-5. String Algorithms
-   KMP (Knuth-Morris-Pratt)
-   https://www.youtube.com/watch?v=BXCEFAzhxGY
-   https://www.youtube.com/watch?v=JoF0Z7nVSrA
+TODO:
+
+1. String Algorithms
+
    Rabin-Karp
    String Algorithms algorithms/string/ (new)
 
-6. Graph Algorithms
+2. Graph Algorithms
    Topological Sort
    Directed Acyclic Graphs (DAGs) concepts and algorithms
    Kruskal’s and Prim’s algorithms (Minimum Spanning Tree)
@@ -20,8 +20,8 @@ Enahnced with tests and additional concepts
    A\* Search Algorithm
    Graph Algorithms graph (existing)
 
-7. Suffix Tree / Suffix Array
+3. Suffix Tree / Suffix Array
    Suffix Tree / Suffix Array dataStructures/suffixStructures/ or algorithms/string/ (new)
 
-8. LRU Cache / Bloom Filter
+4. LRU Cache / Bloom Filter
    LRU Cache / Bloom Filter dataStructures/cache/ and/or dataStructures/probabilistic/ (new)
