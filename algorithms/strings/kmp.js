@@ -35,9 +35,34 @@ export function computeLPSArray(pattern) {
  * @returns {Array<number> | null}
  */
 export function kmpSearch(text, pattern) {
-  if (!pattern || pattern.length <= 0 || !text || text.length <= 0) return null;
+  if (!pattern || pattern.length <= 0 || !text || text.length <= 0 || pattern.length > text.length) return null;
 
   const lpsArray = computeLPSArray(pattern);
 
-  return -1;
+  const matches = [];
+  let textPointer = 0;
+  let patternPointer = 0;
+
+  while (textPointer < text.length) {
+    if (text[textPointer] === pattern[patternPointer]) {
+      // character match
+      textPointer += 1;
+      patternPointer += 1;
+
+      if (patternPointer === pattern.length) {
+        // pattern match
+        matches.push(textPointer - patternPointer);
+        patternPointer = lpsArray[patternPointer - 1];
+      }
+    } else {
+      // character mismatch
+      if (patternPointer === 0) {
+        textPointer += 1;
+      } else {
+        patternPointer = lpsArray[patternPointer - 1];
+      }
+    }
+  }
+
+  return matches.length > 0 ? matches : null;
 }

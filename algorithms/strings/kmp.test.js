@@ -22,13 +22,15 @@ describe("kmp", () => {
   test.each([
     ["", "ABC", null],
     ["ABC", "", null],
+    ["AAA", "AAAAA", [0, 1, 2]],
     ["BBA", "AAAAA", null],
     ["LL", "HELLO", [2]],
     ["AAAB", "AAAAAB", [2]],
     ["AB", "ABCAB", [0, 3]],
-    ["ABAB", "XXABABYYABABZZABAB", [2, 7, 13]],
+    ["AABA", "AABAACAADAABAABA", [0, 9, 12]],
+    ["ABAB", "XXABABYYABABZZABAB", [2, 8, 14]],
     ["CODE", "CODESDOPE", [0]],
-    ["ABABCAABAB", "BABABABABCABABCABAB", [5, 10]],
+    ["ABABCAABAB", "BABABABABCAABABCAABAB", [5, 11]],
     ["ABCABCABCD", "ABCABCABCABCABCABCD", [9]],
   ])("should correctly match indexes of '%s' pattern in '%s'", (pattern, text, expected) => {
     const result = kmpSearch(text, pattern);
