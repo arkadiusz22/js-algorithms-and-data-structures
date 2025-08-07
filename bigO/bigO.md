@@ -102,3 +102,10 @@ Big O describes the relationship between function runtime and input size.
 | shift/unshift     | O(n)       |
 | .sort             | O(n log n) |
 | .map/.filter/etc. | O(n)       |
+
+### Rule of Thumb for Acceptable Time Complexities
+
+- For inputs up to **10⁴**: Algorithms with O(n²) time complexity are generally acceptable.
+- For inputs up to **10⁵**: Aim for O(n log n) or better.
+- For inputs up to **10⁶**: O(n) is usually required for good performance.
+- For inputs larger than **10⁶**: Strive for O(log n) or O(1) solutions if possible.

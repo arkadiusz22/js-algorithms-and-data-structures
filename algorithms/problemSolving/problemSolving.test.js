@@ -9,6 +9,7 @@ import { isSubsequence } from "./isSubsequence.js";
 import { countUniqueValues } from "./countUniqueValues.js";
 import { sortedFrequency } from "./sortedFrequency.js";
 import { primeGeneration } from "./primeGeneration.js";
+import { twoSum } from "./twoSum.js";
 
 describe("validAnagram", () => {
   test("should return true for empty strings", () => {
@@ -174,5 +175,26 @@ describe("primeGeneration", () => {
     expect(primes.length).toBe(168);
     expect(primes[0]).toBe(2);
     expect(primes[primes.length - 1]).toBe(997);
+  });
+});
+
+describe("twoSum", () => {
+  test.each`
+    numbers           | target | expected
+    ${[2, 7, 11, 15]} | ${9}   | ${[0, 1]}
+    ${[2, 7, 11, 15]} | ${13}  | ${[0, 2]}
+    ${[2, 7, 11, 15]} | ${17}  | ${[0, 3]}
+    ${[2, 7, 11, 15]} | ${18}  | ${[1, 2]}
+    ${[2, 7, 11, 15]} | ${22}  | ${[1, 3]}
+    ${[2, 7, 11, 15]} | ${26}  | ${[2, 3]}
+  `(
+    "should return correct indicies $expected of numbers in $numbers adding up to $target ",
+    ({ numbers, target, expected }) => {
+      expect(twoSum(numbers, target)).toStrictEqual(expected);
+    }
+  );
+
+  test("should return null for numbers not adding up to the target", () => {
+    expect(twoSum([2, 7, 11, 15], 5)).toBe(null);
   });
 });
