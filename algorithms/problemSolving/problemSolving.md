@@ -16,7 +16,7 @@
 
 ### Frequency Counter
 
-- Use objects to group values and their frequencies
+- Use objects or maps to group values and their frequencies
 - Avoids nested loops, often O(n)
 - Example: `same`, `validAnagram`, `sameFrequency`
 
@@ -26,8 +26,12 @@
 
 - Use pointers for positions in input data
 - Move pointers based on conditions
-- Efficient for minimal space, avoids nested loops
+- Efficient for minimal space, avoids nested loops, reduces number of iterations
+- Used frequently in sorted arrays
 - Example: `sumZero`, `countUniqueValues`, `isSubsequence`
+- 2 variants:
+  - Both pointers move in the same direction – e.g., fast and slow pointers, detection of patterns or cycles
+  - Pointers move from the edges inward – checking for pairs, palindromes, reversals, k-size comparisons
 
 ---
 

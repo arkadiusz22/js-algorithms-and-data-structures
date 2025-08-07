@@ -10,6 +10,7 @@ import { countUniqueValues } from "./countUniqueValues.js";
 import { sortedFrequency } from "./sortedFrequency.js";
 import { primeGeneration } from "./primeGeneration.js";
 import { twoSum } from "./twoSum.js";
+import { isPalindrome } from "./isPalindrome.js";
 
 describe("validAnagram", () => {
   test("should return true for empty strings", () => {
@@ -196,5 +197,23 @@ describe("twoSum", () => {
 
   test("should return null for numbers not adding up to the target", () => {
     expect(twoSum([2, 7, 11, 15], 5)).toBe(null);
+  });
+});
+
+describe("isPalindrome", () => {
+  test.each([
+    ["test", false],
+    ["palindrome", false],
+    ["hello world", false],
+    ["12345", false],
+    ["Was it a car or a dog I saw", false],
+    ["", true],
+    ["a", true],
+    ["racecar", true],
+    ["12321", true],
+    ["Was it a car or a cat I saw", true],
+    ["A man, a plan, a canal: Panama.", true],
+  ])('should return %s for "%s"', (input, expected) => {
+    expect(isPalindrome(input)).toBe(expected);
   });
 });
