@@ -7,5 +7,6 @@ export default {
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
+  watchPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.git/"],
   testEnvironment: "node",
 };
