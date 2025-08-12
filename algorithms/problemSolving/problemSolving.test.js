@@ -11,6 +11,7 @@ import { sortedFrequency } from "./sortedFrequency.js";
 import { primeGeneration } from "./primeGeneration.js";
 import { twoSum } from "./twoSum.js";
 import { isPalindrome } from "./isPalindrome.js";
+import { longestUniqeSubstring } from "./longestUniqeSubstring.js";
 
 describe("validAnagram", () => {
   test("should return true for empty strings", () => {
@@ -215,5 +216,15 @@ describe("isPalindrome", () => {
     ["A man, a plan, a canal: Panama.", true],
   ])('should return %s for "%s"', (input, expected) => {
     expect(isPalindrome(input)).toBe(expected);
+  });
+});
+
+describe("longestUniqeSubstring", () => {
+  test.each`
+    text             | expected
+    ${"abccabcabcc"} | ${"abc"}
+    ${"aaaabaaa"}    | ${"ab"}
+  `("should return $expected as longest uniqe substring of $text", ({ text, expected }) => {
+    expect(longestUniqeSubstring(text)).toBe(expected);
   });
 });

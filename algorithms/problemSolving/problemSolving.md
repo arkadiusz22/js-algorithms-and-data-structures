@@ -37,10 +37,16 @@
 
 ### Sliding Window
 
-- Create a window (range of indices/subset) that moves through data
-- Window expands, contracts, or shifts based on conditions
-- Efficient for tracking subsets in arrays/strings
-- Example: `maxSubarraySum`, `minSubArrayLen`
+- An extension of the two pointers approach, optimized for problems involving contiguous sequences.
+- Maintains a "window" (a range of indices or subset) that moves through the data structure.
+- The window can expand, contract, or shift based on problem-specific conditions.
+- Highly efficient for tracking subsets in arrays or strings, such as substrings, subarrays, or groups of consecutive elements.
+- Common use cases: finding maximum/minimum sums, lengths, or counts within a contiguous segment (e.g., `maxSubarraySum`, `minSubArrayLen`).
+- Each element is visited at most twice, ensuring O(n) time complexity—much faster than brute force O(n²) approaches.
+- Two main types:
+  - **Fixed-size window:** The window size remains constant (e.g., sum of every k-length block).
+  - **Dynamic-size window:** The window size changes to satisfy a condition (e.g., longest substring with at most k unique characters).
+- The sliding window pattern is especially useful for problems involving optimal ranges, counts, or aggregations over contiguous data.
 
 ---
 
