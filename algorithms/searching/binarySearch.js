@@ -26,3 +26,30 @@ export function binarySearch(array, value) {
 
   return -1;
 }
+
+/**
+ * Finds index of the minimum element in given array using binary search.
+ * @param {Array<number>} array - sorted array of uniqe numbers, rotated at unknown pivot
+ * @returns {number}
+ */
+export function findRotatedArrayMinimum(array) {
+  let left = 0;
+  let right = array.length - 1;
+
+  let minCandidate = -1;
+
+  const lastElementValue = array[array.length - 1];
+
+  while (left <= right) {
+    let middle = Math.floor((right - left) / 2) + left;
+
+    if (array[middle] <= lastElementValue) {
+      minCandidate = middle;
+      right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
+  }
+
+  return minCandidate;
+}

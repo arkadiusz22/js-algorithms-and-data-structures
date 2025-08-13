@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { linearSearch } from "./linearSearch.js";
-import { binarySearch } from "./binarySearch.js";
+import { binarySearch, findRotatedArrayMinimum } from "./binarySearch.js";
 import { substringSearch } from "./substringSearch.js";
 
 describe("linearSearch", () => {
@@ -91,4 +91,18 @@ describe("substringSearch", () => {
   test("should correctly count repeating patterns", () => {
     expect(substringSearch("mississippi", "iss")).toBe(2);
   });
+});
+
+describe("findRotatedArrayMinimum", () => {
+  test.each`
+    array                           | expectedIndex
+    ${[30, 40, 50, 10, 20]}         | ${3}
+    ${[3, 5, 7, 11, 13, 17, 19, 2]} | ${7}
+    ${[17, 19, 2, 3, 5, 7, 11, 13]} | ${2}
+  `(
+    "should correctly find the index of the minimum element: $expectedIndex in the array: $array",
+    ({ array, expectedIndex }) => {
+      expect(findRotatedArrayMinimum(array)).toBe(expectedIndex);
+    }
+  );
 });

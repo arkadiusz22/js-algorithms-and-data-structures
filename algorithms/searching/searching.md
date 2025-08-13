@@ -14,11 +14,15 @@
 
 ## Binary Search
 
-- Much faster for sorted datasets
-- Eliminates half the search space at each step
-- Requires sorted input
-- Divide-and-conquer approach
-- Time complexity: O(log n)
+## Binary Search
+
+- Highly efficient for searching in sorted datasets
+- At each step, eliminates half of the remaining search space
+- Requires input to be sorted or monotonic
+  _(Monotonic means the data is always increasing or always decreasing, never switching direction.)_
+- Uses a divide-and-conquer strategy: repeatedly splits the array and focuses on the relevant half
+- Time complexity: O(log n), making it much faster than linear search for large datasets
+- Can be adapted to find the first or last occurrence of an element, or the first element meeting
 
 ---
 
