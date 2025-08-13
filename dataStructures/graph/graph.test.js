@@ -21,14 +21,14 @@ describe("Graph", () => {
     test("addVertex should throw error for invalid name", () => {
       const graph = new Graph();
 
-      expect(() => graph.addVertex()).toThrowError("'undefined' is not a valid vertex.");
+      expect(() => graph.addVertex()).toThrow("'undefined' is not a valid vertex.");
     });
 
     test("addVertex should throw error when overwriting existing vertex", () => {
       const graph = new Graph();
 
       graph.addVertex("Tokyo");
-      expect(() => graph.addVertex("Tokyo")).toThrowError("Vertex 'Tokyo' already exists.");
+      expect(() => graph.addVertex("Tokyo")).toThrow("Vertex 'Tokyo' already exists.");
     });
   });
 
@@ -66,13 +66,13 @@ describe("Graph", () => {
     test("addEdge should throw error for invalid name", () => {
       const graph = new Graph();
 
-      expect(() => graph.addEdge()).toThrowError("'undefined' is not a valid vertex.");
+      expect(() => graph.addEdge()).toThrow("'undefined' is not a valid vertex.");
     });
 
     test("addEdge should throw error for not existing vertex", () => {
       const graph = new Graph();
 
-      expect(() => graph.addEdge("Tokyo")).toThrowError("There is no vertex 'Tokyo' in the graph.");
+      expect(() => graph.addEdge("Tokyo")).toThrow("There is no vertex 'Tokyo' in the graph.");
     });
 
     test("addEdge should throw error for self looping edge", () => {
@@ -80,7 +80,7 @@ describe("Graph", () => {
 
       graph.addVertex("Tokyo");
 
-      expect(() => graph.addEdge("Tokyo", "Tokyo")).toThrowError("Self-loops are not allowed.");
+      expect(() => graph.addEdge("Tokyo", "Tokyo")).toThrow("Self-loops are not allowed.");
     });
 
     test("addEdge should throw error for duplicated edge", () => {
@@ -90,7 +90,7 @@ describe("Graph", () => {
       graph.addVertex("Warsaw");
       graph.addEdge("Tokyo", "Warsaw", 4);
 
-      expect(() => graph.addEdge("Tokyo", "Warsaw", 4)).toThrowError(
+      expect(() => graph.addEdge("Tokyo", "Warsaw", 4)).toThrow(
         "There is already an edge from vertex 'Tokyo' to vertex 'Warsaw'."
       );
     });
@@ -101,7 +101,7 @@ describe("Graph", () => {
       graph.addVertex("Tokyo");
       graph.addVertex("Warsaw");
 
-      expect(() => graph.addEdge("Tokyo", "Warsaw")).toThrowError("'undefined' is not a valid edge weight.");
+      expect(() => graph.addEdge("Tokyo", "Warsaw")).toThrow("'undefined' is not a valid edge weight.");
     });
 
     test("addEdge should throw error for negative weight", () => {
@@ -110,7 +110,7 @@ describe("Graph", () => {
       graph.addVertex("Tokyo");
       graph.addVertex("Warsaw");
 
-      expect(() => graph.addEdge("Tokyo", "Warsaw", -4).toThrowError("'-4' is not a valid edge weight."));
+      expect(() => graph.addEdge("Tokyo", "Warsaw", -4).toThrow("'-4' is not a valid edge weight."));
     });
   });
 
@@ -144,13 +144,13 @@ describe("Graph", () => {
     test("removeEdge should throw error for invalid name", () => {
       const graph = new Graph();
 
-      expect(() => graph.removeEdge()).toThrowError("'undefined' is not a valid vertex.");
+      expect(() => graph.removeEdge()).toThrow("'undefined' is not a valid vertex.");
     });
 
     test("removeEdge should throw error for not existing vertex", () => {
       const graph = new Graph();
 
-      expect(() => graph.removeEdge("Tokyo")).toThrowError("There is no vertex 'Tokyo' in the graph.");
+      expect(() => graph.removeEdge("Tokyo")).toThrow("There is no vertex 'Tokyo' in the graph.");
     });
 
     test("removeEdge should throw error for self looping edge", () => {
@@ -158,7 +158,7 @@ describe("Graph", () => {
 
       graph.addVertex("Tokyo");
 
-      expect(() => graph.removeEdge("Tokyo", "Tokyo")).toThrowError("Self-loops are not allowed.");
+      expect(() => graph.removeEdge("Tokyo", "Tokyo")).toThrow("Self-loops are not allowed.");
     });
 
     test("removeEdge should throw error for not existing edge", () => {
@@ -167,7 +167,7 @@ describe("Graph", () => {
       graph.addVertex("Tokyo");
       graph.addVertex("Warsaw");
 
-      expect(() => graph.removeEdge("Tokyo", "Warsaw")).toThrowError(
+      expect(() => graph.removeEdge("Tokyo", "Warsaw")).toThrow(
         "There is no edge from vertex 'Tokyo' to vertex 'Warsaw'."
       );
     });
@@ -218,13 +218,13 @@ describe("Graph", () => {
     test("removeVertex should throw error for invalid name", () => {
       const graph = new Graph();
 
-      expect(() => graph.removeVertex()).toThrowError("'undefined' is not a valid vertex.");
+      expect(() => graph.removeVertex()).toThrow("'undefined' is not a valid vertex.");
     });
 
     test("removeVertex should throw error for not existing vertex", () => {
       const graph = new Graph();
 
-      expect(() => graph.removeVertex("Tokyo")).toThrowError("There is no vertex 'Tokyo' in the graph.");
+      expect(() => graph.removeVertex("Tokyo")).toThrow("There is no vertex 'Tokyo' in the graph.");
     });
   });
 
@@ -283,13 +283,13 @@ describe("Graph", () => {
     test.each(traverseMethods)("%s should throw error for invalid startingVertex", (methodName, traverse) => {
       const graph = new Graph();
 
-      expect(() => traverse(graph)).toThrowError("'undefined' is not a valid vertex.");
+      expect(() => traverse(graph)).toThrow("'undefined' is not a valid vertex.");
     });
 
     test.each(traverseMethods)("%s should throw error not existing startingVertex", (methodName, traverse) => {
       const graph = new Graph();
 
-      expect(() => traverse(graph, "A")).toThrowError("There is no vertex 'A' in the graph.");
+      expect(() => traverse(graph, "A")).toThrow("There is no vertex 'A' in the graph.");
     });
   });
 
@@ -335,13 +335,13 @@ describe("Graph", () => {
     test("findShortestPath should throw error for invalid name", () => {
       const graph = new Graph();
 
-      expect(() => graph.findShortestPath()).toThrowError("'undefined' is not a valid vertex.");
+      expect(() => graph.findShortestPath()).toThrow("'undefined' is not a valid vertex.");
     });
 
     test("findShortestPath should throw error for not existing vertex", () => {
       const graph = new Graph();
 
-      expect(() => graph.findShortestPath("Tokyo")).toThrowError("There is no vertex 'Tokyo' in the graph.");
+      expect(() => graph.findShortestPath("Tokyo")).toThrow("There is no vertex 'Tokyo' in the graph.");
     });
 
     test("findShortestPath should throw error for self looping edge", () => {
@@ -349,7 +349,7 @@ describe("Graph", () => {
 
       graph.addVertex("Tokyo");
 
-      expect(() => graph.findShortestPath("Tokyo", "Tokyo")).toThrowError("Self-loops are not allowed.");
+      expect(() => graph.findShortestPath("Tokyo", "Tokyo")).toThrow("Self-loops are not allowed.");
     });
 
     test("findShortestPath should return null when there is no valid path", () => {
@@ -369,15 +369,15 @@ describe("Graph", () => {
     test("_validateVertexName should throw error for invalid name", () => {
       const graph = new Graph();
 
-      expect(() => graph._validateVertexName()).toThrowError("'undefined' is not a valid vertex.");
-      expect(() => graph._validateVertexName(123)).toThrowError("'123' is not a valid vertex.");
-      expect(() => graph._validateVertexName("")).toThrowError("'' is not a valid vertex.");
+      expect(() => graph._validateVertexName()).toThrow("'undefined' is not a valid vertex.");
+      expect(() => graph._validateVertexName(123)).toThrow("'123' is not a valid vertex.");
+      expect(() => graph._validateVertexName("")).toThrow("'' is not a valid vertex.");
     });
 
     test("_validateVertexName should pass for valid name", () => {
       const graph = new Graph();
 
-      expect(() => graph._validateVertexName("Tokyo")).not.toThrowError();
+      expect(() => graph._validateVertexName("Tokyo")).not.toThrow();
     });
 
     test("_hasVertex should return false for not existing vertex", () => {

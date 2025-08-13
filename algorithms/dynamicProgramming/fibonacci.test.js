@@ -27,15 +27,13 @@ describe("fibonacci", () => {
 
   test("should throw error for missing argument", () => {
     implementations.forEach(([name, fn]) => {
-      expect(() => fn()).toThrowError(
-        "'undefined' is not a valid Fibonacci sequence index. It must be a positive integer."
-      );
+      expect(() => fn()).toThrow("'undefined' is not a valid Fibonacci sequence index. It must be a positive integer.");
     });
   });
 
   test("should throw error for invalid argument", () => {
     implementations.forEach(([name, fn]) => {
-      expect(() => fn(-5)).toThrowError("'-5' is not a valid Fibonacci sequence index. It must be a positive integer.");
+      expect(() => fn(-5)).toThrow("'-5' is not a valid Fibonacci sequence index. It must be a positive integer.");
     });
   });
 

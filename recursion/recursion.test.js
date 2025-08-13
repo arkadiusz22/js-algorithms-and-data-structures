@@ -98,6 +98,6 @@ describe("findGCD", () => {
   });
 
   test("should throw error when both a and b are 0", () => {
-    expect(() => findGCD(0, 0)).toThrowError("GCD is undefined for (0, 0)");
+    expect(() => findGCD(0, 0)).toThrow("GCD is undefined for (0, 0)");
   });
 });
