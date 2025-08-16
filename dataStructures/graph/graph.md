@@ -102,7 +102,7 @@ Unlike trees, which have a root element, traversing a graph requires defining a 
 
 ### Common Algorithms
 
-- **Breadth-First Search (BFS):** Visits nodes level by level; finds the shortest path in unweighted graphs.
+- **Breadth-First Search (BFS):** Visits nodes level by level; finds the shortest path in unweighted graphs, shortest number of steps or explores possible states.
 - **Depth-First Search (DFS):** Explores as deep as possible before backtracking; used for cycle detection and topological sorting.
 - **Dijkstra's Algorithm:** Finds the shortest path in weighted graphs with non-negative weights.
 - **Kruskal's/Prim's Algorithms:** Find the minimum spanning tree.

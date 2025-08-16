@@ -43,6 +43,7 @@ BFS Order: [10, 6, 15, 3, 8, 20]
 - Shortest path in unweighted graphs
 - Level-order processing
 - Finding nodes at a specific distance
+- Looking for the first occurence or closest match from the root
 - Web crawling
 
 ---
